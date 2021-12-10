@@ -1,0 +1,9 @@
+.cart {
+  position: relative;
+}
+
+.cart-num {
+  position: absolute;
+  right: -10px;
+  top: -5px;
+}

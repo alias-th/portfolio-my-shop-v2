@@ -1,0 +1,14 @@
+.nav-links {
+  display: flex;
+  list-style: none;
+  font-size: 1.6rem;
+  justify-content: right;
+  column-gap: 5rem;
+  min-width: 30rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  list-style: none;
+  color: white;
+}

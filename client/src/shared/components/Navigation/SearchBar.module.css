@@ -1,0 +1,9 @@
+.form-search-bar {
+  display: flex;
+  min-width: 40rem;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.5rem;
+}
