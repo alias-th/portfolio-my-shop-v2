@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 5000;
 
 const productRouter = require("./routes/productRouter");
 
@@ -18,6 +17,15 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+app.all("*", (req, res, next) => {
+  res.status(404).json({
+    status: "fail",
+    message: `Can't find ${req.originalUrl} on this server`,
+  });
+});
+
+const PORT = process.env.PORT || 5000;
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
