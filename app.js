@@ -26,6 +26,6 @@ app.all("*", (req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
