@@ -1,0 +1,6 @@
+.form-filter {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  width: 20%;
+}
