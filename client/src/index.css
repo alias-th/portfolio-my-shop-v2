@@ -48,3 +48,7 @@ body {
   column-gap: 5rem;
   margin-top: 2rem;
 }
+
+.font-weight-300 {
+  font-weight: 300;
+}

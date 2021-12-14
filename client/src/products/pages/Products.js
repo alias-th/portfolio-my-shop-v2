@@ -1,4 +1,5 @@
 import ProductsList from "../components/ProductsList";
+import MainFilter from "../../shared/components/Filter/MainFilter";
 
 import classes from "./Products.module.css";
 
@@ -31,9 +32,12 @@ const DUMMY_PRODUCT = [
 
 function Products() {
   return (
-    <div className={classes.product}>
-      <ProductsList products={DUMMY_PRODUCT} />
-    </div>
+    <>
+      <MainFilter />
+      <div className={classes.product}>
+        <ProductsList products={DUMMY_PRODUCT} />
+      </div>
+    </>
   );
 }
 
