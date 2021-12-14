@@ -12,10 +12,6 @@ function UserProfile() {
       <MainSidebar />
       <div className={classes["content-layout"]}>
         <ProfileCard className={classes["content-layout-1"]}>
-          <img
-            src="https://images.unsplash.com/photo-1553272725-086100aecf5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80"
-            alt="user-1"
-          />
           <div className={classes["content-layout-2"]}>
             <p className="heading-style-1">About You</p>
             <hr />
@@ -31,6 +27,10 @@ function UserProfile() {
               </div>
             </div>
           </div>
+          <img
+            src="https://images.unsplash.com/photo-1553272725-086100aecf5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80"
+            alt="user-1"
+          />
         </ProfileCard>
         <Outlet />
       </div>

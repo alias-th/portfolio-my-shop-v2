@@ -8,7 +8,7 @@
 .detail-layout-2 {
   display: flex;
   flex-direction: row;
-  column-gap: 2rem;
+  column-gap: 5rem;
 }
 
 .img {

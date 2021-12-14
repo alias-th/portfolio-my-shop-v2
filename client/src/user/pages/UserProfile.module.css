@@ -2,13 +2,14 @@
   display: flex;
   column-gap: 5rem;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .content-layout {
   display: flex;
   flex-direction: column;
   width: 100%;
+  row-gap: 2rem;
 }
 
 .content-layout-1 {
@@ -28,7 +29,7 @@
 
 .content-layout-2 {
   display: flex;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   flex-direction: column;
   row-gap: 0.5rem;
   width: 100%;
@@ -37,6 +38,7 @@
 .content-layout-3 {
   display: flex;
   column-gap: 5rem;
+  padding: 2rem;
 }
 
 .content-layout-4 {

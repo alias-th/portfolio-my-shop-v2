@@ -1,0 +1,86 @@
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  row-gap: 0.5rem;
+}
+.mainCard {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 10rem;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  column-gap: 3.4rem;
+  padding: 2rem;
+}
+
+.itemName {
+  font-size: 1.2rem;
+  width: 20%;
+}
+
+.itemContent {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.btn {
+  align-self: flex-start;
+  margin-bottom: 2rem;
+}
+
+.circle {
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 20rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.input {
+  padding: 0.5rem;
+}
+
+.alignItemCenter {
+  align-items: center;
+}
+
+.flexRow {
+  flex-direction: row;
+}
+
+.itemRadio {
+  display: flex;
+  align-items: center;
+  width: 6rem;
+  margin-right: 1rem;
+}
+
+.itemRadio label {
+  padding-left: 0.5rem;
+}
