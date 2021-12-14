@@ -15,29 +15,10 @@ function NavLinks() {
           All Products
         </NavLink>
       </li>
+
       <li>
         <NavLink
-          to="/profile/products"
-          style={({ isActive }) =>
-            isActive ? { textDecoration: "underline" } : undefined
-          }
-        >
-          Your Products
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/profile/product/new"
-          style={({ isActive }) =>
-            isActive ? { textDecoration: "underline" } : undefined
-          }
-        >
-          Add Product
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/profile/edit"
+          to="/profile"
           style={({ isActive }) =>
             isActive ? { textDecoration: "underline" } : undefined
           }

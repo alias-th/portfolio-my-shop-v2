@@ -1,0 +1,5 @@
+.profile-layout {
+  display: flex;
+  column-gap: 5rem;
+  width: 100%;
+}

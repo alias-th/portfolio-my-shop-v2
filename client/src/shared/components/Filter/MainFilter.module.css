@@ -4,3 +4,8 @@
   row-gap: 2rem;
   width: 20%;
 }
+
+legend {
+  font-size: 1.6rem;
+  padding: 1rem 0;
+}

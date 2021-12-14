@@ -4,9 +4,10 @@ import MainFooter from "./shared/components/Navigation/MainFooter";
 
 import Products from "./products/pages/Products";
 import ProductsDetail from "./products/pages/ProductsDetail";
-import UserProducts from "./user/UserProducts";
-import UserProfile from "./user/UserProfile";
-import UserAddProduct from "./user/UserAddProduct";
+import UserProducts from "./user/pages/UserProducts";
+import UserProfile from "./user/pages/UserProfile";
+import UserAddProduct from "./user/pages/UserAddProduct";
+import UserEdit from "./user/pages/UserEdit";
 
 function App() {
   return (
@@ -16,9 +17,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/products/:productId" element={<ProductsDetail />} />
-          <Route path="/profile/edit" element={<UserProfile />} />
-          <Route path="/profile/products" element={<UserProducts />} />
-          <Route path="/profile/product/new" element={<UserAddProduct />} />
+          <Route path="profile" element={<UserProfile />}>
+            <Route path="products" element={<UserProducts />} />
+            <Route path="product/new" element={<UserAddProduct />} />
+            <Route path="edit" element={<UserEdit />} />
+          </Route>
         </Routes>
       </main>
       <MainFooter />
