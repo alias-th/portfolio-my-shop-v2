@@ -2,4 +2,45 @@
   display: flex;
   column-gap: 5rem;
   width: 100%;
+  height: 100vh;
+}
+
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content-layout-1 {
+  display: flex;
+  flex-direction: row;
+  row-gap: 1rem;
+  height: max-content;
+  padding: 2rem;
+  column-gap: 2rem;
+}
+
+.content-layout-1 img {
+  width: 10rem;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.content-layout-2 {
+  display: flex;
+  font-size: 1.6rem;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  width: 100%;
+}
+
+.content-layout-3 {
+  display: flex;
+  column-gap: 5rem;
+}
+
+.content-layout-4 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
 }

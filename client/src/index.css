@@ -43,11 +43,10 @@ body {
 
 .layout-flex-row__main {
   display: flex;
-  min-width: 100vw;
-  min-height: 100vh;
   padding: 0 5rem 0 5rem;
   column-gap: 5rem;
   margin-top: 2rem;
+  height: fit-content;
 }
 
 .font-weight-300 {
