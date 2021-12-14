@@ -1,3 +1,5 @@
+import Button from "../FormElements/Button";
+
 import classes from "./SearchBar.module.css";
 
 function SearchBar() {
@@ -8,7 +10,7 @@ function SearchBar() {
         type="text"
         placeholder="Search for products"
       />
-      <button className="button-style-1">Search</button>
+      <Button white>Search</Button>
     </form>
   );
 }

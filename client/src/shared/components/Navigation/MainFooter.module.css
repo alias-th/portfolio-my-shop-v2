@@ -1,0 +1,13 @@
+.main-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color-1);
+
+  height: 5rem;
+  padding: 0 5rem 0 5rem;
+
+  font-size: 1.6rem;
+  color: white;
+  margin-top: 10rem;
+}

@@ -44,6 +44,7 @@ body {
 .layout-flex-row__main {
   display: flex;
   min-width: 100vw;
+  min-height: 100vh;
   padding: 0 5rem 0 5rem;
   column-gap: 5rem;
   margin-top: 2rem;
@@ -51,4 +52,13 @@ body {
 
 .font-weight-300 {
   font-weight: 300;
+}
+
+.heading-style-1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+.heading-style-2 {
+  font-size: 2rem;
+  font-weight: 400;
 }

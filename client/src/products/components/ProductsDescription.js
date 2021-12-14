@@ -1,12 +1,14 @@
 import Card from "../../shared/components/UIElements/Card";
 
+import Button from "../../shared/components/FormElements/Button";
+
 import classes from "./ProductsDescription.module.css";
 
 function ProductDescription() {
   return (
     <Card className={classes["desc-layout-1"]}>
-      <p>Title</p>
-      <p>2000 THB</p>
+      <p className="heading-style-1">Title</p>
+      <p className="heading-style-2">2000 THB</p>
       <form className={classes["desc-form"]}>
         <div>
           <label for="select-color">Primary color</label>
@@ -41,7 +43,7 @@ function ProductDescription() {
           </p>
         </div>
         <hr />
-        <button className="button-style-1">Add to Cart</button>
+        <Button inverse>Add to Cart</Button>
       </form>
     </Card>
   );

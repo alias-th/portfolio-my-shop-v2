@@ -17,7 +17,7 @@ function NavLinks() {
       </li>
       <li>
         <NavLink
-          to="/u1/products"
+          to="/profile/products"
           style={({ isActive }) =>
             isActive ? { textDecoration: "underline" } : undefined
           }
@@ -27,7 +27,7 @@ function NavLinks() {
       </li>
       <li>
         <NavLink
-          to="/u1/products"
+          to="/profile/product/new"
           style={({ isActive }) =>
             isActive ? { textDecoration: "underline" } : undefined
           }
@@ -37,7 +37,7 @@ function NavLinks() {
       </li>
       <li>
         <NavLink
-          to="/u1/products"
+          to="/profile/edit"
           style={({ isActive }) =>
             isActive ? { textDecoration: "underline" } : undefined
           }
