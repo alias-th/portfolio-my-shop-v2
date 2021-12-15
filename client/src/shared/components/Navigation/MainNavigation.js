@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
 import Cart from "./Cart";
 
-function MainNavigation() {
+function MainNavigation(props) {
   return (
     <MainHeader>
       <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -13,7 +13,7 @@ function MainNavigation() {
       </Link>
       <SearchBar />
       <NavLinks />
-      <Cart />
+      <Cart onShowCart={props.onShowCart} />
     </MainHeader>
   );
 }

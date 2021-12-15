@@ -1,6 +1,10 @@
+import { useState } from "react";
+
 import { Routes, Route } from "react-router-dom";
+
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import MainFooter from "./shared/components/Navigation/MainFooter";
+import Cart from "./cart/components/Cart";
 
 import Products from "./products/pages/Products";
 import ProductsDetail from "./products/pages/ProductsDetail";
@@ -9,11 +13,25 @@ import UserProfile from "./user/pages/UserProfile";
 import UserAddProduct from "./user/pages/UserAddProduct";
 import UserEdit from "./user/pages/UserEdit";
 import UserSettings from "./user/pages/UserSettings";
+import UserAuth from "./user/pages/UserAuth";
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
   return (
     <>
-      <MainNavigation />
+      {cartIsShown && (
+        <Cart cartIsShown={cartIsShown} onClose={hideCartHandler} />
+      )}
+      <MainNavigation onShowCart={showCartHandler} />
       <main className="layout-flex-row__main">
         <Routes>
           <Route path="/" element={<Products />} />
@@ -24,6 +42,7 @@ function App() {
             <Route path="edit" element={<UserEdit />} />
             <Route path="settings" element={<UserSettings />} />
           </Route>
+          <Route path="/auth" element={<UserAuth />} />
         </Routes>
       </main>
       <MainFooter />

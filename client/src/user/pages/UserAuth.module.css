@@ -1,0 +1,36 @@
+.content-layout-1 {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 30%;
+  padding: 4rem;
+  box-shadow: 1px 2px 8px 1px rgba(0, 0, 0, 0.17);
+  row-gap: 2rem;
+  margin: 0 auto;
+  min-height: 50rem;
+}
+
+.content-layout-form {
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 2rem;
+}
+
+.content-layout-form div {
+  display: flex;
+  column-gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 23.573rem;
+}
+
+.content-layout-signup {
+  display: flex;
+  flex-direction: column;
+  min-width: 23.573rem;
+  row-gap: 1rem;
+  margin-top: 5rem;
+}

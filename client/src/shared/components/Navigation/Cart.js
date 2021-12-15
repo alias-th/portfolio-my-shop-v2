@@ -2,9 +2,9 @@ import classes from "./Cart.module.css";
 
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-function Cart() {
+function Cart(props) {
   return (
-    <div className={classes["cart"]}>
+    <div className={classes["cart"]} onClick={props.onShowCart}>
       <AiOutlineShoppingCart
         style={{
           fontSize: "2.5rem",
