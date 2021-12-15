@@ -7,7 +7,7 @@ import classes from "./ProductsDescription.module.css";
 function ProductDescription() {
   return (
     <Card className={classes["desc-layout-1"]}>
-      <p className="heading-style-1">Title</p>
+      <p className="heading-style-1">Some Product</p>
       <p className="heading-style-2">2000 THB</p>
       <form className={classes["desc-form"]}>
         <div>

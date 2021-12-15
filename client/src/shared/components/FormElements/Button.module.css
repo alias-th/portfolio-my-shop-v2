@@ -32,6 +32,18 @@
   background: #ff0055;
 }
 
+.button--primary {
+  background-color: #064663;
+  color: white;
+  border-color: #064663;
+}
+
+.button--primary:hover,
+.button--primary:active {
+  color: rgb(0, 0, 0);
+  background: #0646633b;
+}
+
 .button--white {
   background: white;
   color: black;

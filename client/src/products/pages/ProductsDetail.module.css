@@ -1,23 +1,13 @@
 .detail-layout-1 {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  row-gap: 2rem;
-}
-
-.detail-layout-2 {
-  display: flex;
-  flex-direction: row;
-  column-gap: 5rem;
+  column-gap: 3rem;
 }
 
 .img {
-  align-self: center;
-}
-
-.img img {
-  width: 50rem;
+  width: 60rem;
   border-radius: 1rem;
+  object-fit: cover;
 }
 
 .reviews-layout-1 {

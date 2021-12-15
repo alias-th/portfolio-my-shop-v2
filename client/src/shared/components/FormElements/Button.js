@@ -9,6 +9,7 @@ const Button = (props) => {
     ${classes[`${props.inverse && "button--inverse"}`]}
     ${classes[`${props.danger && "button--danger"}`]}
     ${classes[`${props.white && "button--white"}`]}
+    ${classes[`${props.primary && "button--primary"}`]}
     `}
       type={props.type}
       onClick={props.onClick}

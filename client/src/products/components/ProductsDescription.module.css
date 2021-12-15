@@ -4,14 +4,17 @@
   row-gap: 2rem;
   padding: 2rem;
 
+  align-items: center;
+  justify-content: center;
   font-size: 1.2rem;
-  width: 40%;
+  width: 50%;
 }
 
 .desc-form {
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
+
+  row-gap: 3rem;
 }
 
 .desc-form div {

@@ -1,0 +1,27 @@
+.content-layout {
+  padding: 2rem;
+}
+
+.content-layout-1 {
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-layout-2 {
+  font-size: 1.2rem;
+  display: flex;
+  column-gap: 10rem;
+}
+
+.img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.content-layout-2 p {
+  align-self: center;
+}
