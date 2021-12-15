@@ -1,0 +1,64 @@
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  row-gap: 0.5rem;
+  min-height: 45vh;
+}
+.mainCard {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  row-gap: 2rem;
+}
+
+.cardOne {
+  width: 100%;
+  display: flex;
+  column-gap: 2rem;
+  padding: 2rem;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.cardItemOne {
+  width: 30%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: space-between;
+}
+
+.flexRow {
+  display: flex;
+}
+
+.width {
+  width: 10rem;
+}
+
+.padding {
+  padding: 1.5rem;
+}
+
+.input {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.close-your-account {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.password-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 1.5rem;
+}

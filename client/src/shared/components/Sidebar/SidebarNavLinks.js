@@ -37,7 +37,7 @@ function NavLinks() {
       </li>
       <li>
         <NavLink
-          to="/"
+          to="settings"
           style={({ isActive }) =>
             isActive ? { fontWeight: "500" } : undefined
           }

@@ -8,6 +8,7 @@ import UserProducts from "./user/pages/UserProducts";
 import UserProfile from "./user/pages/UserProfile";
 import UserAddProduct from "./user/pages/UserAddProduct";
 import UserEdit from "./user/pages/UserEdit";
+import UserSettings from "./user/pages/UserSettings";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="products" element={<UserProducts />} />
             <Route path="product/new" element={<UserAddProduct />} />
             <Route path="edit" element={<UserEdit />} />
+            <Route path="settings" element={<UserSettings />} />
           </Route>
         </Routes>
       </main>
