@@ -15,9 +15,8 @@
 
 .nav-links li:hover,
 .nav-links li:active {
-  color: white;
-  background: #0646633b;
-  border-radius: 1rem;
+  color: rgb(0, 0, 0);
+  background: #06466359;
 }
 
 .nav-links a {
