@@ -25,6 +25,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: 23.573rem;
+  align-items: flex-start;
 }
 
 .content-layout-signup {
@@ -33,4 +34,14 @@
   min-width: 23.573rem;
   row-gap: 1rem;
   margin-top: 5rem;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-is-invalid {
+  font-size: 0.9rem;
+  color: red;
 }
