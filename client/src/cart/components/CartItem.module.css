@@ -13,7 +13,7 @@
 .content-layout-2 {
   font-size: 1.2rem;
   display: flex;
-  column-gap: 10rem;
+  column-gap: 2rem;
 }
 
 .img {
@@ -24,4 +24,8 @@
 
 .content-layout-2 p {
   align-self: center;
+}
+
+.margin-button button {
+  margin-left: 0.5rem;
 }

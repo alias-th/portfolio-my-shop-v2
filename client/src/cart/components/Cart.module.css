@@ -1,15 +1,16 @@
 .total-amount {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 2rem;
 }
 
-.total-amount-btn {
+.total-amount-actions {
   display: flex;
   justify-content: flex-end;
   padding: 2rem;
 }
 
-.total-amount-btn button {
+.total-amount-actions button {
   margin-left: 0.5rem;
 }
