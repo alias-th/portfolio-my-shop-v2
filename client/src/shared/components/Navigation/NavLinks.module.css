@@ -5,10 +5,28 @@
   justify-content: right;
   column-gap: 5rem;
   min-width: 30rem;
+  height: 100%;
+  align-items: center;
+}
+
+.nav-links li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .nav-links a {
   text-decoration: none;
   list-style: none;
   color: white;
+}
+
+.user-img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 50%;
 }

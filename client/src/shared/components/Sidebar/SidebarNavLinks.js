@@ -5,7 +5,7 @@ function NavLinks() {
   return (
     <ul className={classes["nav-links"]}>
       <NavLink
-        to="edit"
+        to="/profile/edit"
         style={({ isActive }) =>
           isActive
             ? { fontWeight: "500", backgroundColor: "#0646631e" }
@@ -16,7 +16,7 @@ function NavLinks() {
       </NavLink>
 
       <NavLink
-        to="products"
+        to="/profile/products"
         style={({ isActive }) =>
           isActive
             ? { fontWeight: "500", backgroundColor: "#0646631e" }
@@ -26,7 +26,7 @@ function NavLinks() {
         <li>Your Products</li>
       </NavLink>
       <NavLink
-        to="product/new"
+        to="/profile/product/new"
         style={({ isActive }) =>
           isActive
             ? { fontWeight: "500", backgroundColor: "#0646631e" }
@@ -36,7 +36,7 @@ function NavLinks() {
         <li>Add Product</li>
       </NavLink>
       <NavLink
-        to="settings"
+        to="/profile/settings"
         style={({ isActive }) =>
           isActive
             ? { fontWeight: "500", backgroundColor: "#0646631e" }

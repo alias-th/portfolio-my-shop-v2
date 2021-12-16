@@ -11,7 +11,7 @@ function UserProducts() {
       <hr />
       <ul>
         <li>
-          <ProfileCard className={classes["content-layout-1"]}>
+          <div className={classes["content-layout-1"]}>
             <div className={classes["content-layout-2"]}>
               <img
                 src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
@@ -26,10 +26,10 @@ function UserProducts() {
               <Button inverse>Edit</Button>
               <Button danger>Delete</Button>
             </div>
-          </ProfileCard>
+          </div>
         </li>
         <li>
-          <ProfileCard className={classes["content-layout-1"]}>
+          <div className={classes["content-layout-1"]}>
             <div className={classes["content-layout-2"]}>
               <img
                 src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
@@ -44,10 +44,10 @@ function UserProducts() {
               <Button inverse>Edit</Button>
               <Button danger>Delete</Button>
             </div>
-          </ProfileCard>
+          </div>
         </li>
         <li>
-          <ProfileCard className={classes["content-layout-1"]}>
+          <div className={classes["content-layout-1"]}>
             <div className={classes["content-layout-2"]}>
               <img
                 src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
@@ -62,10 +62,10 @@ function UserProducts() {
               <Button inverse>Edit</Button>
               <Button danger>Delete</Button>
             </div>
-          </ProfileCard>
+          </div>
         </li>
         <li>
-          <ProfileCard className={classes["content-layout-1"]}>
+          <div className={classes["content-layout-1"]}>
             <div className={classes["content-layout-2"]}>
               <img
                 src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
@@ -80,7 +80,7 @@ function UserProducts() {
               <Button inverse>Edit</Button>
               <Button danger>Delete</Button>
             </div>
-          </ProfileCard>
+          </div>
         </li>
       </ul>
     </ProfileCard>

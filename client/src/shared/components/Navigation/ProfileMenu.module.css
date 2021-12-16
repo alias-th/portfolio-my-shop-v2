@@ -1,0 +1,10 @@
+.menu-profile {
+  position: absolute;
+
+  top: 45px;
+  right: 0px;
+
+  min-width: 25rem;
+  min-height: 25rem;
+  background-color: white;
+}
