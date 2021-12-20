@@ -11,7 +11,7 @@ function ProductDescription() {
       <p className="heading-style-2">2000 THB</p>
       <form className={classes["desc-form"]}>
         <div>
-          <label for="select-color">Primary color</label>
+          <label htmlFor="select-color">Primary color</label>
           <select name="colors" id="select-color">
             <option value="">--Please choose an option--</option>
             <option value="red">Red</option>
@@ -20,7 +20,7 @@ function ProductDescription() {
           </select>
         </div>
         <div>
-          <label for="select-size">Size</label>
+          <label htmlFor="select-size">Size</label>
           <select name="sizes" id="select-size">
             <option value="">--Please choose an option--</option>
             <option value="red">Red</option>
@@ -29,11 +29,11 @@ function ProductDescription() {
           </select>
         </div>
         <div>
-          <label for="select-quantity">Quantity</label>
+          <label htmlFor="select-quantity">Quantity</label>
           <input type="number" id="select-quantity" />
         </div>
         <div>
-          <label for="description">Description</label>
+          <label htmlFor="description">Description</label>
           <p id="description" className="font-weight-300">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

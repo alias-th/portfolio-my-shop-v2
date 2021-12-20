@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { uiSliceActions } from "./ui-slice";
+import { authSliceActions } from "./auth-slice";
 
 export const signupAction = (data) => {
   return async (dispatch) => {
@@ -45,7 +46,7 @@ export const signupAction = (data) => {
 
     setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 10000);
+    }, 5000);
   };
 };
 
@@ -66,6 +67,8 @@ export const loginAction = (data) => {
           url: "/api/v1/users/login",
           data: data,
         });
+
+        window.location.reload();
       } catch (error) {
         throw new Error(error.response.data.message);
       }
@@ -92,7 +95,7 @@ export const loginAction = (data) => {
 
     setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 10000);
+    }, 5000);
   };
 };
 
@@ -112,8 +115,17 @@ export const isLoggedInAction = () => {
     };
 
     try {
-      const user = await getData();
-      console.log(user);
+      console.log("isLogged");
+      const res = await getData();
+      const user = res.data.data;
+
+      dispatch(
+        authSliceActions.isLoggedIn({
+          name: user.name,
+          email: user.email,
+          photo: user.photo,
+        })
+      );
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -123,5 +135,59 @@ export const isLoggedInAction = () => {
         })
       );
     }
+
+    setTimeout(() => {
+      dispatch(uiSliceActions.hideNotification());
+    }, 5000);
+  };
+};
+
+export const logoutAction = () => {
+  return async (dispatch) => {
+    dispatch(
+      uiSliceActions.showNotification({
+        status: "pending",
+        title: "Loading...",
+        message: "Sending data!",
+      })
+    );
+
+    const getData = async () => {
+      try {
+        dispatch(
+          uiSliceActions.showNotification({
+            status: "success",
+            title: "Success",
+            message: "Logout successfully!",
+          })
+        );
+
+        await axios({
+          method: "get",
+          url: "/api/v1/users/logout",
+        });
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    };
+
+    try {
+      await getData();
+
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+      dispatch(
+        uiSliceActions.showNotification({
+          status: "error",
+          title: "Error!",
+          message: error.message,
+        })
+      );
+    }
+
+    setTimeout(() => {
+      dispatch(uiSliceActions.hideNotification());
+    }, 5000);
   };
 };

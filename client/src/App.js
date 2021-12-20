@@ -22,11 +22,8 @@ import UserAuth from "./user/pages/UserAuth";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(isLoggedInAction());
-  }, [dispatch]);
-
   const [cartIsShown, setCartIsShown] = useState(false);
+
   const notification = useSelector((state) => state.ui.notification);
 
   const showCartHandler = () => {
@@ -36,6 +33,10 @@ function App() {
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
+
+  useEffect(() => {
+    dispatch(isLoggedInAction());
+  }, [dispatch]);
 
   return (
     <>

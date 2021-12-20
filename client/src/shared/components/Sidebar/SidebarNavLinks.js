@@ -1,7 +1,18 @@
 import { NavLink } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+
+import { logoutAction } from "../../store/auth-actions";
+
 import classes from "./SidebarNavLinks.module.css";
 
 function NavLinks() {
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logoutAction());
+  };
+
   return (
     <ul className={classes["nav-links"]}>
       <NavLink
@@ -45,15 +56,8 @@ function NavLinks() {
       >
         <li>Settings</li>
       </NavLink>
-      <NavLink
-        to="/"
-        style={({ isActive }) =>
-          isActive
-            ? { fontWeight: "500", backgroundColor: "#0646631e" }
-            : undefined
-        }
-      >
-        <li>Sign out</li>
+      <NavLink to="/">
+        <li onClick={logoutHandler}>Sign out</li>
       </NavLink>
     </ul>
   );
