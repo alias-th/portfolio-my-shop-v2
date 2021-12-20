@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import useInput from "../../shared/hooks/use-input";
 
@@ -8,8 +8,14 @@ import Button from "../../shared/components/FormElements/Button";
 
 import classes from "./UserAuth.module.css";
 
+import Input from "../../shared/components/FormElements/Input";
+
 function UserAuth() {
   const [isLogin, setIsLogin] = useState(true);
+
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const confirmPasswordInputRef = useRef();
 
   const {
     value: emailValue,
@@ -61,7 +67,11 @@ function UserAuth() {
       return;
     }
 
-    // console.log(emailValue, passwordValue, confirmPasswordValue);
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+    const enteredConfirmPassword = confirmPasswordInputRef.current.value;
+
+    console.log(enteredEmail, enteredPassword, enteredConfirmPassword);
 
     resetEmail();
     resetPassword();
@@ -75,60 +85,48 @@ function UserAuth() {
         className={classes["content-layout-form"]}
         onSubmit={formSubmitHandler}
       >
-        <div>
-          <label htmlFor="user-email">Email</label>
-          <div className={classes["form-input"]}>
-            <input
-              type="text"
-              id="user-email"
-              value={emailValue}
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-            />
-            {emailHasError && (
-              <p className={classes["input-is-invalid"]}>
-                Email must include '@'!
-              </p>
-            )}
-          </div>
-        </div>
+        <Input
+          ref={emailInputRef}
+          label="Email"
+          input={{
+            type: "email",
+            id: "user-email",
+            value: emailValue,
+            onChange: emailChangeHandler,
+            onBlur: emailBlurHandler,
+          }}
+          hasError={emailHasError}
+          errorText="Email must include '@'!"
+        />
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <div className={classes["form-input"]}>
-            <input
-              type="password"
-              id="password"
-              value={passwordValue}
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-            />
-            {passwordHasError && (
-              <p className={classes["input-is-invalid"]}>
-                Password must be at least 6 characters!
-              </p>
-            )}
-          </div>
-        </div>
+        <Input
+          ref={passwordInputRef}
+          label="Password"
+          input={{
+            type: "password",
+            id: "password",
+            value: passwordValue,
+            onChange: passwordChangeHandler,
+            onBlur: passwordBlurHandler,
+          }}
+          hasError={passwordHasError}
+          errorText="Password must be at least 6 characters!"
+        />
 
         {!isLogin && (
-          <div>
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <div className={classes["form-input"]}>
-              <input
-                type="password"
-                id="confirm-password"
-                value={confirmPasswordValue}
-                onChange={confirmPasswordChangeHandler}
-                onBlur={confirmPasswordBlurHandler}
-              />
-              {confirmPasswordHasError && (
-                <p className={classes["input-is-invalid"]}>
-                  Confirm password must be equal to password!
-                </p>
-              )}
-            </div>
-          </div>
+          <Input
+            ref={confirmPasswordInputRef}
+            label="Confirm Password"
+            input={{
+              type: "password",
+              id: "confirm-password",
+              value: confirmPasswordValue,
+              onChange: confirmPasswordChangeHandler,
+              onBlur: confirmPasswordBlurHandler,
+            }}
+            hasError={confirmPasswordHasError}
+            errorText="Confirm password must be equal to password!"
+          />
         )}
         {isLogin && <p>forgot your password?</p>}
 

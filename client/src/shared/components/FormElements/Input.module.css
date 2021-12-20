@@ -1,0 +1,9 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-is-invalid {
+  font-size: 0.9rem;
+  color: red;
+}
