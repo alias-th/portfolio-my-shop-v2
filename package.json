@@ -5,12 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "start:dev": "nodemon server.js ",
-    "start:prod": "SET NODE_ENV=production&&nodemon server.js ",
     "server": "nodemon server.js ",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "prod": "concurrently \"npm run start:prod\" \"npm run client\"",
+    "prod": "concurrently \"SET NODE_ENV=production&&nodemon server.js\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "monton",
