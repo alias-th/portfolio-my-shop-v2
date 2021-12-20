@@ -3,7 +3,7 @@ const AppError = require("../utils/appError");
 // helper function
 const handleValidationErrorDatabase = (error) => {
   const errors = Object.values(error.errors).map((el) => el.message); // array
-  const messages = `Invalid input data! ${errors.join(". ")}`;
+  const messages = `Invalid input data! ${errors.join(". ")} !`;
   return new AppError(messages, 400);
 };
 
@@ -40,6 +40,8 @@ const handleJWTExpiredError = (err) => {
 };
 
 module.exports = (err, req, res, next) => {
+  console.log(err.name);
+
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 

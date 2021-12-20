@@ -1,5 +1,8 @@
 import { useState, useRef } from "react";
 
+import { useDispatch } from "react-redux";
+import { signupAction } from "../../shared/store/auth-actions";
+
 import useInput from "../../shared/hooks/use-input";
 
 import Card from "../../shared/components/UIElements/Card";
@@ -11,9 +14,11 @@ import classes from "./UserAuth.module.css";
 import Input from "../../shared/components/FormElements/Input";
 
 function UserAuth() {
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
 
   const emailInputRef = useRef();
+  const nameInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
 
@@ -25,6 +30,15 @@ function UserAuth() {
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
   } = useInput((value) => value.includes("@"));
+
+  const {
+    value: nameValue,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetName,
+  } = useInput((value) => value.length !== 0);
 
   const {
     value: passwordValue,
@@ -55,7 +69,12 @@ function UserAuth() {
       formIsValid = true;
     }
   } else if (!isLogin) {
-    if (emailIsValid && passwordIsValid && confirmPasswordIsValid) {
+    if (
+      emailIsValid &&
+      nameIsValid &&
+      passwordIsValid &&
+      confirmPasswordIsValid
+    ) {
       // console.log(confirmPasswordIsValid);
       formIsValid = true;
     }
@@ -68,12 +87,21 @@ function UserAuth() {
     }
 
     const enteredEmail = emailInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredConfirmPassword = confirmPasswordInputRef.current.value;
 
-    console.log(enteredEmail, enteredPassword, enteredConfirmPassword);
+    dispatch(
+      signupAction({
+        email: enteredEmail,
+        name: enteredName,
+        password: enteredPassword,
+        passwordConfirm: enteredConfirmPassword,
+      })
+    );
 
     resetEmail();
+    resetName();
     resetPassword();
     resetConfirmPassword();
   };
@@ -98,6 +126,22 @@ function UserAuth() {
           hasError={emailHasError}
           errorText="Email must include '@'!"
         />
+
+        {!isLogin && (
+          <Input
+            ref={nameInputRef}
+            label="Name"
+            input={{
+              type: "text",
+              id: "user-name",
+              value: nameValue,
+              onChange: nameChangeHandler,
+              onBlur: nameBlurHandler,
+            }}
+            hasError={nameHasError}
+            errorText="Name must not be empty!"
+          />
+        )}
 
         <Input
           ref={passwordInputRef}

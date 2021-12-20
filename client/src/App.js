@@ -2,10 +2,13 @@ import { useState } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import MainFooter from "./shared/components/Navigation/MainFooter";
-import Cart from "./cart/components/Cart";
+import Notification from "./shared/components/UIElements/Notification";
 
+import Cart from "./cart/components/Cart";
 import Products from "./products/pages/Products";
 import ProductsDetail from "./products/pages/ProductsDetail";
 import UserProducts from "./user/pages/UserProducts";
@@ -17,6 +20,7 @@ import UserAuth from "./user/pages/UserAuth";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
+  const notification = useSelector((state) => state.ui.notification);
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -28,6 +32,13 @@ function App() {
 
   return (
     <>
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
       {cartIsShown && (
         <Cart cartIsShown={cartIsShown} onClose={hideCartHandler} />
       )}
