@@ -1,10 +1,31 @@
 const express = require("express");
+
+const morgan = require("morgan");
+
+const cookieParser = require("cookie-parser");
+
 const app = express();
 
-const productRouter = require("./routes/productRouter");
+// Routes
+const userRouter = require("./routes/userRoutes");
+const productRouter = require("./routes/productRoutes");
 
-app.use("/api/v2/products", productRouter);
+// Handle Error
+const globalErrorHandler = require("./controller/errorController");
 
+// MiddleWare
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+app.use(cookieParser());
+
+app.use(express.json());
+
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/products", productRouter);
+
+// Serve Html Client
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
 
@@ -24,8 +45,6 @@ app.all("*", (req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+app.use(globalErrorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
-});
+module.exports = app;
