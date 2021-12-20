@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 
 import { useDispatch } from "react-redux";
-import { signupAction } from "../../shared/store/auth-actions";
+import { signupAction, loginAction } from "../../shared/store/auth-actions";
 
 import useInput from "../../shared/hooks/use-input";
 
@@ -86,19 +86,24 @@ function UserAuth() {
       return;
     }
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredName = nameInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const enteredConfirmPassword = confirmPasswordInputRef.current.value;
-
-    dispatch(
-      signupAction({
-        email: enteredEmail,
-        name: enteredName,
-        password: enteredPassword,
-        passwordConfirm: enteredConfirmPassword,
-      })
-    );
+    if (isLogin) {
+      const enteredEmail = emailInputRef.current.value;
+      const enteredPassword = passwordInputRef.current.value;
+      dispatch(loginAction({ email: enteredEmail, password: enteredPassword }));
+    } else if (!isLogin) {
+      const enteredEmail = emailInputRef.current.value;
+      const enteredName = nameInputRef.current.value;
+      const enteredPassword = passwordInputRef.current.value;
+      const enteredConfirmPassword = confirmPasswordInputRef.current.value;
+      dispatch(
+        signupAction({
+          email: enteredEmail,
+          name: enteredName,
+          password: enteredPassword,
+          passwordConfirm: enteredConfirmPassword,
+        })
+      );
+    }
 
     resetEmail();
     resetName();

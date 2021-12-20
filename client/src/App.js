@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { isLoggedInAction } from "./shared/store/auth-actions";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import MainFooter from "./shared/components/Navigation/MainFooter";
@@ -19,6 +20,12 @@ import UserSettings from "./user/pages/UserSettings";
 import UserAuth from "./user/pages/UserAuth";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(isLoggedInAction());
+  }, [dispatch]);
+
   const [cartIsShown, setCartIsShown] = useState(false);
   const notification = useSelector((state) => state.ui.notification);
 

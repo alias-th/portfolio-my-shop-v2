@@ -177,12 +177,9 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
         photo: currentUser.photo,
       },
     });
-  } else {
-    res.status(200).json({
-      status: "success",
-      data: null,
-    });
   }
+
+  return;
 });
 
 exports.restrictToMiddleware = function (...roles) {

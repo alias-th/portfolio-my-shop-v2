@@ -9,11 +9,9 @@ function NavLinks() {
   const [profileIsTouched, setProfileIsTouched] = useState(false);
 
   const mouseOverHandler = (e) => {
-    console.log("t");
     setProfileIsTouched(true);
   };
   const mouseOutHandler = (e) => {
-    console.log("f");
     setProfileIsTouched(false);
   };
   return (
