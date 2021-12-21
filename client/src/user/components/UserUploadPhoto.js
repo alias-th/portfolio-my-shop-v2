@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "../pages/UserEdit.module.css";
 
-function UserUploadPhoto() {
+function UserUploadPhoto(props) {
   const [{ alt, src }, setImg] = useState({
-    src: `/uploads/images/default.png`,
+    src: `/uploads/images/${props.currentUser.photo}`,
     alt: "Upload an Image",
   });
 
-  const setImageHandle = (e) => {
-    console.log(e.target.files);
-    if (e.target.files[0]) {
+  useEffect(() => {
+    console.log("this run");
+    if (props.photoValue) {
       setImg({
-        src: URL.createObjectURL(e.target.files[0]),
-        alt: e.target.files[0].name,
+        src: URL.createObjectURL(props.photoValue),
+        alt: props.photoValue.name,
       });
     }
-  };
-  // console.log(alt, src);
+  }, [props.photoValue]);
+
+  console.log(props.photoValue);
+
   return (
     <div className={classes.item}>
       <div className={classes.itemName}>
@@ -28,7 +30,7 @@ function UserUploadPhoto() {
           accept=".png, .jpg, .jpeg"
           className={classes["visually-hidden"]}
           id="photo"
-          onChange={setImageHandle}
+          onChange={props.photoChangeHandler}
         />
         <div className={classes["form__img-container"]}>
           <label htmlFor="photo" className={classes["form-img__file-label"]}>

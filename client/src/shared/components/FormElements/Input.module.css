@@ -1,6 +1,7 @@
 .form-input {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .input-is-invalid {

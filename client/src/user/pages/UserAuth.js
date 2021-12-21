@@ -125,6 +125,7 @@ function UserAuth() {
         onSubmit={formSubmitHandler}
       >
         <Input
+          classLabel={classes["form-input__label"]}
           ref={emailInputRef}
           label="Email"
           input={{
@@ -140,6 +141,7 @@ function UserAuth() {
 
         {!isLogin && (
           <Input
+            classLabel={classes["form-input__label"]}
             ref={nameInputRef}
             label="Name"
             input={{
@@ -155,6 +157,7 @@ function UserAuth() {
         )}
 
         <Input
+          classLabel={classes["form-input__label"]}
           ref={passwordInputRef}
           label="Password"
           input={{
@@ -170,6 +173,7 @@ function UserAuth() {
 
         {!isLogin && (
           <Input
+            classLabel={classes["form-input__label"]}
             ref={confirmPasswordInputRef}
             label="Confirm Password"
             input={{

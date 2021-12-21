@@ -20,6 +20,13 @@ const inputStateReducer = (state, actions) => {
   if (actions.type === "RESET") {
     return { isTouched: false, value: "" };
   }
+
+  if (actions.type === "PHOTO") {
+    return {
+      value: actions.value,
+      isTouched: state.isTouched,
+    };
+  }
   return initialInputState;
 };
 
@@ -32,6 +39,11 @@ const useInput = (validateValue) => {
 
   const valueChangeHandler = (event) => {
     dispatch({ type: "INPUT", value: event.target.value });
+  };
+
+  const photoChangeHandler = (event) => {
+    console.log(event.target.files);
+    dispatch({ type: "PHOTO", value: event.target.files[0] });
   };
 
   const inputBlurHandler = (event) => {
@@ -49,6 +61,7 @@ const useInput = (validateValue) => {
     isValid: valueIsValid,
     hasError,
     valueChangeHandler,
+    photoChangeHandler,
     inputBlurHandler,
     reset,
   };
