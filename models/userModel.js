@@ -37,18 +37,25 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: "default.jpg",
+    default: "default.png",
   },
   role: {
     type: String,
     enum: ["user", "seller", "admin"],
     default: "user",
   },
+  gender: {
+    type: String,
+    enum: ["male", "female", "not say"],
+  },
+
   active: {
     type: Boolean,
     default: true,
     select: false,
   },
+  phoneNumber: String,
+  birthday: String,
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,

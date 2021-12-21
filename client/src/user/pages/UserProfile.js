@@ -6,7 +6,9 @@ import ProfileCard from "../../shared/components/UIElements/ProfileCard";
 
 import classes from "./UserProfile.module.css";
 
-function UserProfile() {
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+
+function UserProfile(props) {
   return (
     <div className={classes["profile-layout"]}>
       <MainSidebar />
@@ -15,22 +17,33 @@ function UserProfile() {
           <div className={classes["content-layout-2"]}>
             <p className="heading-style-1">About You</p>
             <hr />
-            <div className={classes["content-layout-3"]}>
-              <div className={classes["content-layout-4"]}>
-                <p>Name : Monton Onnom</p>
-                <p>Gender : Male</p>
-                <p>Birthday : 1 June 1997</p>
+            {!props.currentUser ? (
+              <div className="centered">
+                <LoadingSpinner />
               </div>
-              <div className={classes["content-layout-4"]}>
-                <p>Email : monton.onnom1@gmail.com</p>
-                <p>Phone Number : 091-0000000</p>
+            ) : (
+              <div className={classes["content-layout-3"]}>
+                <div className={classes["content-layout-4"]}>
+                  <p>
+                    Name : <span>{`${props.currentUser.name}`}</span>
+                  </p>
+                  <p>Gender : Male</p>
+                  <p>Birthday : 1 June 1997</p>
+                </div>
+                <div className={classes["content-layout-4"]}>
+                  <p>Email : {`${props.currentUser.email}`}</p>
+                  <p>Phone numbers : 091-0000000</p>
+                  <p>Role : {`${props.currentUser.role}`}</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1553272725-086100aecf5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80"
-            alt="user-1"
-          />
+          {props.currentUser && (
+            <img
+              src={`/uploads/images/${props.currentUser.photo}`}
+              alt={`${props.currentUser.name}`}
+            />
+          )}
         </ProfileCard>
         <Outlet />
       </div>

@@ -4,33 +4,18 @@ import Button from "../../shared/components/FormElements/Button";
 
 import classes from "./UserEdit.module.css";
 
+import UserUploadPhoto from "../components/UserUploadPhoto";
+
 function UserEdit() {
   return (
     <ProfileCard className={classes["content-layout"]}>
       <p className="heading-style-1">Edit Your Profile</p>
       <hr />
-      <div>
-        <div className={classes.item}>
-          <div className={classes.itemName}>
-            <p>Profile Picture</p>
-          </div>
-          <div className={classes.itemContent}>
-            <button className={classes.btn}>Choose File</button>
-            <div className={classes.circle}>
-              <img
-                src="https://images.unsplash.com/photo-1553272725-086100aecf5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80"
-                alt="user-1"
-                className={classes.img}
-              />
-            </div>
-            <p>
-              Must be a .jpg file smaller than 10 mb and at least 100px by 100px
-            </p>
-          </div>
-        </div>
+      <form>
+        <UserUploadPhoto />
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <div className={classes.itemName}>
-            <p>First Name</p>
+            <p>Name</p>
           </div>
           <div className={classes.itemContent}>
             <input className={classes.input} />
@@ -38,7 +23,7 @@ function UserEdit() {
         </div>
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <div className={classes.itemName}>
-            <p>Last Name</p>
+            <p>Phone Number</p>
           </div>
           <div className={classes.itemContent}>
             <input className={classes.input} />
@@ -77,7 +62,7 @@ function UserEdit() {
             <Button inverse>Save Changes</Button>
           </div>
         </div>
-      </div>
+      </form>
     </ProfileCard>
   );
 }

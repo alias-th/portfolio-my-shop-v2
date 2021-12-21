@@ -8,7 +8,7 @@
 .content-layout {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   row-gap: 2rem;
 }
 
@@ -22,8 +22,8 @@
 }
 
 .content-layout-1 img {
-  width: 10rem;
-  border-radius: 1rem;
+  width: 200px;
+  border-radius: 50%;
   object-fit: cover;
 }
 
@@ -36,6 +36,7 @@
 }
 
 .content-layout-3 {
+  height: 100%;
   display: flex;
   column-gap: 5rem;
   padding: 2rem;
@@ -44,5 +45,5 @@
 .content-layout-4 {
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
+  row-gap: 3rem;
 }

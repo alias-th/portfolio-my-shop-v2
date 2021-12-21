@@ -108,7 +108,7 @@ function UserAuth() {
           passwordConfirm: enteredConfirmPassword,
         })
       );
-      navigate("/", { replace: true });
+      navigate("/auth", { replace: true });
     }
 
     resetEmail();

@@ -19,11 +19,13 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  min-height: 100vh;
 }
 
 body {
   font-family: "Roboto", sans-serif;
   background-color: #06466310;
+  min-height: 100vh;
 }
 
 .padding-5 {
@@ -47,7 +49,7 @@ body {
   padding: 0 5rem 0 5rem;
   column-gap: 5rem;
   margin-top: 2rem;
-  height: fit-content;
+  min-height: 70vh;
 }
 
 .font-weight-300 {
@@ -87,4 +89,12 @@ ul {
   transform: translateY(-10rem);
   opacity: 0;
   transition: all 200ms;
+}
+
+.centered {
+  margin: 3rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

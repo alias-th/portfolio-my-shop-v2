@@ -34,6 +34,7 @@ export const signupAction = (data) => {
           message: "Sign up successfully!",
         })
       );
+      window.location.reload();
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({

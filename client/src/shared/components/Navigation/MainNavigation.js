@@ -8,7 +8,10 @@ import Cart from "./Cart";
 function MainNavigation(props) {
   return (
     <MainHeader>
-      <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+      <Link
+        to="/"
+        style={{ textDecoration: "none", color: "white", minWidth: "14rem" }}
+      >
         My Shop
       </Link>
       <SearchBar />
