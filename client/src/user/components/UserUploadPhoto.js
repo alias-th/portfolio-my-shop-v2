@@ -17,8 +17,6 @@ function UserUploadPhoto(props) {
     }
   }, [props.photoValue]);
 
-  console.log(props.photoValue);
-
   return (
     <div className={classes.item}>
       <div className={classes.itemName}>
@@ -31,6 +29,7 @@ function UserUploadPhoto(props) {
           className={classes["visually-hidden"]}
           id="photo"
           onChange={props.photoChangeHandler}
+          ref={props.photoInputRef}
         />
         <div className={classes["form__img-container"]}>
           <label htmlFor="photo" className={classes["form-img__file-label"]}>

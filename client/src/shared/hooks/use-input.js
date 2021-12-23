@@ -42,8 +42,9 @@ const useInput = (validateValue) => {
   };
 
   const photoChangeHandler = (event) => {
-    console.log(event.target.files);
     dispatch({ type: "PHOTO", value: event.target.files[0] });
+
+    return;
   };
 
   const inputBlurHandler = (event) => {

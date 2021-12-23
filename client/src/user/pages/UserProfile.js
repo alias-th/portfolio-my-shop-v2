@@ -10,11 +10,11 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 function UserProfile(props) {
   return (
-    <div className={classes["profile-layout"]}>
+    <div className={classes["profile__container"]}>
       <MainSidebar />
-      <div className={classes["content-layout"]}>
-        <ProfileCard className={classes["content-layout-1"]}>
-          <div className={classes["content-layout-2"]}>
+      <div className={classes["profile__contents--container"]}>
+        <ProfileCard className={classes["profile__contents--card"]}>
+          <div className={classes["profile__contents__form-container"]}>
             <p className="heading-style-1">About You</p>
             <hr />
             {!props.currentUser ? (
@@ -22,18 +22,55 @@ function UserProfile(props) {
                 <LoadingSpinner />
               </div>
             ) : (
-              <div className={classes["content-layout-3"]}>
-                <div className={classes["content-layout-4"]}>
+              <div className={classes["contents__form-container"]}>
+                <div
+                  className={
+                    classes["contents__form-container--content-container"]
+                  }
+                >
                   <p>
-                    Name : <span>{`${props.currentUser.name}`}</span>
+                    Name :{" "}
+                    <span
+                      className={classes["contents__form-container--underline"]}
+                    >{`${props.currentUser.name}`}</span>
                   </p>
-                  <p>Gender : Male</p>
-                  <p>Birthday : 1 June 1997</p>
+
+                  <p>
+                    Gender :{" "}
+                    <span
+                      className={classes["contents__form-container--underline"]}
+                    >{`Male`}</span>
+                  </p>
+                  <p>
+                    Birthday :{" "}
+                    <span
+                      className={classes["contents__form-container--underline"]}
+                    >{`1 June 1997`}</span>
+                  </p>
                 </div>
-                <div className={classes["content-layout-4"]}>
-                  <p>Email : {`${props.currentUser.email}`}</p>
-                  <p>Phone numbers : 091-0000000</p>
-                  <p>Role : {`${props.currentUser.role}`}</p>
+                <div
+                  className={
+                    classes["contents__form-container--content-container"]
+                  }
+                >
+                  <p>
+                    Email :{" "}
+                    <span
+                      className={classes["contents__form-container--underline"]}
+                    >{`${props.currentUser.email}`}</span>
+                  </p>
+                  <p>
+                    Phone numbers :{" "}
+                    <span
+                      className={classes["contents__form-container--underline"]}
+                    >{`091-881-5555`}</span>
+                  </p>
+                  <p>
+                    Role :{" "}
+                    <span
+                      className={classes["contents__form-container--underline"]}
+                    >{`${props.currentUser.role}`}</span>
+                  </p>
                 </div>
               </div>
             )}
@@ -42,6 +79,7 @@ function UserProfile(props) {
             <img
               src={`/uploads/images/${props.currentUser.photo}`}
               alt={`${props.currentUser.name}`}
+              className={classes["profile__contents--img"]}
             />
           )}
         </ProfileCard>

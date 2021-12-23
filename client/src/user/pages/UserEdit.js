@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 import ProfileCard from "../../shared/components/UIElements/ProfileCard";
 
 import Button from "../../shared/components/FormElements/Button";
@@ -13,33 +15,91 @@ import useInput from "../../shared/hooks/use-input";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 function UserEdit(props) {
+  // Use Ref
+  const photoInputRef = useRef();
+  const nameInputRef = useRef();
+  const phoneNumInputRef = useRef();
+  const genderInputRef = useRef();
+  const birthDayInputRef = useRef();
+
+  // Custom Hooks
   const {
     value: photoValue,
-    isValid: photoIsValid,
-    hasError: photoHasError,
-    photoChangeHandler: photoChangeHandler,
+    photoChangeHandler,
     inputBlurHandler: photoBlurHandler,
-    reset: resetPhoto,
-  } = useInput((value) => value.length === 0);
+  } = useInput((value) => value.length > 0);
 
   const {
     value: nameValue,
     isValid: nameIsValid,
     hasError: nameHasError,
-    photoChangeHandler: nameChangeHandler,
+    valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetName,
-  } = useInput((value) => value.length === 0 || value.length > 100);
+  } = useInput((value) => value.length > 0);
 
+  const {
+    value: phoneNumValue,
+    isValid: phoneNumIsValid,
+    hasError: phoneNumHasError,
+    valueChangeHandler: phoneNumChangeHandler,
+    inputBlurHandler: phoneNumBlurHandler,
+    reset: resetPhoneNum,
+  } = useInput((value) => value.length === 10);
+
+  const {
+    valueChangeHandler: genderChangeHandler,
+    inputBlurHandler: genderBlurHandler,
+    reset: resetGender,
+  } = useInput((value) => value.length > 0);
+
+  const {
+    value: birthDayValue,
+    isValid: birthDayIsValid,
+    hasError: birthDayHasError,
+    valueChangeHandler: birthDayChangeHandler,
+    inputBlurHandler: birthDayBlurHandler,
+    reset: resetBirthDay,
+  } = useInput((value) => value.length !== 0);
+
+  // Validate Form Input
   let formIsValid;
-  if (photoIsValid && nameIsValid) {
+  if (nameIsValid && phoneNumIsValid && birthDayIsValid) {
     formIsValid = true;
   }
 
-  const formSubmitHandler = (e) => {};
+  // Form Submit Handler
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    if (!formIsValid) {
+      return;
+    }
+
+    const enteredPhoto =
+      props.currentUser.photo || photoInputRef.current.files[0].name;
+    const enteredName = nameInputRef.current.value;
+    const enteredPhoneNum = phoneNumInputRef.current.value;
+    const enteredGender = genderInputRef.current.value;
+    const enteredBirthDay = birthDayInputRef.current.value;
+
+    console.log(
+      enteredPhoto,
+      enteredName,
+      enteredPhoneNum,
+      enteredGender,
+      enteredBirthDay
+    );
+
+    resetName();
+    resetPhoneNum();
+    resetGender();
+    resetBirthDay();
+  };
+
   return (
     <ProfileCard className={classes["content-layout"]}>
-      <form>
+      <form onSubmit={formSubmitHandler}>
         <p className="heading-style-1">Edit Your Profile</p>
         <hr />
         {props.currentUser ? (
@@ -48,6 +108,7 @@ function UserEdit(props) {
             photoChangeHandler={photoChangeHandler}
             photoBlurHandler={photoBlurHandler}
             currentUser={props.currentUser}
+            photoInputRef={photoInputRef}
           />
         ) : (
           <div className={`${classes.item} ${classes.alignItemCenter}`}>
@@ -56,6 +117,7 @@ function UserEdit(props) {
         )}
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <Input
+            ref={nameInputRef}
             label="Name"
             input={{
               type: "text",
@@ -72,12 +134,19 @@ function UserEdit(props) {
         </div>
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <Input
+            ref={phoneNumInputRef}
             label="Phone numbers"
             input={{
               id: "phone-numbers-input",
               className: classes["input-custom__input"],
+              value: phoneNumValue,
+              onChange: phoneNumChangeHandler,
+              onBlur: phoneNumBlurHandler,
+              type: "number",
             }}
             classes={classes["input-custom__container"]}
+            hasError={phoneNumHasError}
+            errorText="Phone number must be 10 characters!"
           />
         </div>
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
@@ -87,31 +156,41 @@ function UserEdit(props) {
           <div className={`${classes.itemContent} ${classes.flexRow} `}>
             <Input
               label="Female"
+              ref={genderInputRef}
               input={{
                 id: "radio-Female",
                 type: "radio",
                 name: "gender",
                 value: "female",
+                onChange: genderChangeHandler,
+                onBlur: genderBlurHandler,
               }}
               classes={classes["input-radio__container"]}
             />
             <Input
               label="Male"
+              ref={genderInputRef}
               input={{
                 id: "radio-Male",
                 type: "radio",
                 name: "gender",
                 value: "male",
+                onChange: genderChangeHandler,
+                onBlur: genderBlurHandler,
               }}
               classes={classes["input-radio__container"]}
             />
             <Input
               label="Not Say"
+              ref={genderInputRef}
               input={{
                 id: "radio-not-say",
                 type: "radio",
                 name: "gender",
                 value: "not-say",
+                defaultChecked: "checked",
+                onChange: genderChangeHandler,
+                onBlur: genderBlurHandler,
               }}
               classes={classes["input-radio__container"]}
             />
@@ -119,19 +198,27 @@ function UserEdit(props) {
         </div>
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <Input
+            ref={birthDayInputRef}
             label="Birth Day"
             input={{
               id: "birth-day-input",
               type: "date",
               className: classes["input-custom__input"],
+              value: birthDayValue,
+              onChange: birthDayChangeHandler,
+              onBlur: birthDayBlurHandler,
             }}
+            hasError={birthDayHasError}
+            errorText={"Birth day must not be empty!"}
             classes={classes["input-custom__container"]}
           />
         </div>
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <div className={classes.itemName}></div>
           <div className={`${classes.itemContent} ${classes.flexRow} `}>
-            <Button inverse>Save Changes</Button>
+            <Button inverse type="submit" disabled={!formIsValid}>
+              Save Changes
+            </Button>
           </div>
         </div>
       </form>

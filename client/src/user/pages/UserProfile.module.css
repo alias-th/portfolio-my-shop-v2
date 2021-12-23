@@ -1,18 +1,18 @@
-.profile-layout {
+.profile__container {
   display: flex;
   column-gap: 5rem;
   width: 100%;
   min-height: 100vh;
 }
 
-.content-layout {
+.profile__contents--container {
   display: flex;
   flex-direction: column;
   width: 80%;
   row-gap: 2rem;
 }
 
-.content-layout-1 {
+.profile__contents--card {
   display: flex;
   flex-direction: row;
   row-gap: 1rem;
@@ -21,13 +21,13 @@
   column-gap: 2rem;
 }
 
-.content-layout-1 img {
+.profile__contents--img {
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.content-layout-2 {
+.profile__contents__form-container {
   display: flex;
   font-size: 1.2rem;
   flex-direction: column;
@@ -35,15 +35,30 @@
   width: 100%;
 }
 
-.content-layout-3 {
+.contents__form-container {
   height: 100%;
   display: flex;
-  column-gap: 5rem;
+  column-gap: 2rem;
   padding: 2rem;
+  justify-content: center;
+  margin-left: 18rem;
 }
 
-.content-layout-4 {
+.contents__form-container--content-container {
+  min-width: 20rem;
   display: flex;
   flex-direction: column;
-  row-gap: 3rem;
+  row-gap: 2rem;
+  justify-content: center;
+  align-content: center;
+}
+.contents__form-container--content-container p {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 3rem;
+}
+
+.contents__form-container--underline {
+  text-decoration: underline;
+  width: 15rem;
 }
