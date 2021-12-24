@@ -2,13 +2,20 @@ import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { uiSliceActions } from "../store/ui-slice";
 
-function useHttp(requestFunction, notification, messageNotification) {
+function useHttp(
+  requestFunction,
+  notification,
+  messageNotification,
+  mustReload
+) {
   const [data, setData] = useState();
 
   const dispatch = useDispatch();
 
   const sendRequest = useCallback(
     async function (requestData) {
+      let timer;
+
       notification &&
         dispatch(
           uiSliceActions.showNotification({
@@ -28,7 +35,10 @@ function useHttp(requestFunction, notification, messageNotification) {
             })
           );
         const responseData = await requestFunction(requestData);
+
         setData(responseData);
+
+        clearTimeout(timer);
       } catch (error) {
         dispatch(
           uiSliceActions.showNotification({
@@ -38,12 +48,14 @@ function useHttp(requestFunction, notification, messageNotification) {
           })
         );
       }
-
-      setTimeout(() => {
+      timer = setTimeout(() => {
+        if (mustReload) {
+          window.location.reload();
+        }
         dispatch(uiSliceActions.hideNotification());
       }, 5000);
     },
-    [requestFunction, dispatch, messageNotification, notification]
+    [requestFunction, dispatch, messageNotification, notification, mustReload]
   );
 
   return { sendRequest, data };

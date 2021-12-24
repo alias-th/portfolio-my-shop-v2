@@ -67,7 +67,6 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     "birthday"
   );
   if (req.file) {
-    console.log(req.file, "req.file");
     filterBody.photo = req.file.filename;
   }
 

@@ -25,7 +25,7 @@ import UserAuth from "./user/pages/UserAuth";
 function App() {
   const user = useSelector((state) => state.auth.user);
 
-  const { sendRequest, data } = useHttp(getCurrentUser, false);
+  const { sendRequest, data: currentUser } = useHttp(getCurrentUser, false);
 
   const dispatch = useDispatch();
 
@@ -69,15 +69,23 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Products />} />
           <Route path="/products/:productId" element={<ProductsDetail />} />
-          {user && (
-            <Route path="profile" element={<UserProfile currentUser={data} />}>
+          {user && currentUser && (
+            <Route
+              path="profile"
+              element={<UserProfile currentUser={currentUser} />}
+            >
               <Route path="products" element={<UserProducts />} />
               <Route path="product/new" element={<UserAddProduct />} />
-              <Route path="edit" element={<UserEdit currentUser={data} />} />
+              <Route
+                path="edit"
+                element={<UserEdit currentUser={currentUser} />}
+              />
               <Route path="settings" element={<UserSettings />} />
             </Route>
           )}
-          {!user && <Route path="/auth" element={<UserAuth />} />}
+          {!user && !currentUser && (
+            <Route path="/auth" element={<UserAuth />} />
+          )}
         </Routes>
       </main>
       <MainFooter />

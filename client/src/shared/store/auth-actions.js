@@ -4,6 +4,7 @@ import { uiSliceActions } from "./ui-slice";
 import { authSliceActions } from "./auth-slice";
 
 export const signupAction = (data) => {
+  let timer;
   return async (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
@@ -35,6 +36,7 @@ export const signupAction = (data) => {
         })
       );
       window.location.reload();
+      clearTimeout(timer);
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -45,13 +47,14 @@ export const signupAction = (data) => {
       );
     }
 
-    setTimeout(() => {
+    timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
     }, 5000);
   };
 };
 
 export const loginAction = (data) => {
+  let timer;
   return async (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
@@ -84,6 +87,7 @@ export const loginAction = (data) => {
           message: "Login successfully!",
         })
       );
+      clearTimeout(timer);
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -94,13 +98,14 @@ export const loginAction = (data) => {
       );
     }
 
-    setTimeout(() => {
+    timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
     }, 5000);
   };
 };
 
 export const isLoggedInAction = () => {
+  let timer;
   return async (dispatch) => {
     const getData = async () => {
       try {
@@ -135,15 +140,17 @@ export const isLoggedInAction = () => {
           message: error.message,
         })
       );
-    }
 
-    setTimeout(() => {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
     }, 5000);
   };
 };
 
 export const logoutAction = () => {
+  let timer;
   return async (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
@@ -167,6 +174,8 @@ export const logoutAction = () => {
           method: "get",
           url: "/api/v1/users/logout",
         });
+
+        clearTimeout(timer);
       } catch (error) {
         throw new Error(error.response.data.message);
       }
@@ -187,7 +196,7 @@ export const logoutAction = () => {
       );
     }
 
-    setTimeout(() => {
+    timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
     }, 5000);
   };

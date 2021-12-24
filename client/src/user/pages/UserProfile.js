@@ -39,13 +39,20 @@ function UserProfile(props) {
                     Gender :{" "}
                     <span
                       className={classes["contents__form-container--underline"]}
-                    >{`Male`}</span>
+                    >{`${props.currentUser.gender}`}</span>
                   </p>
                   <p>
                     Birthday :{" "}
                     <span
                       className={classes["contents__form-container--underline"]}
-                    >{`1 June 1997`}</span>
+                    >{`${new Date(
+                      props.currentUser.birthday
+                    ).toLocaleDateString("en-US", {
+                      weekday: "long",
+                      month: "long",
+                      year: "numeric",
+                      day: "numeric",
+                    })} `}</span>
                   </p>
                 </div>
                 <div

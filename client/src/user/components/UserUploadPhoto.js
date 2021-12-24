@@ -8,7 +8,6 @@ function UserUploadPhoto(props) {
   });
 
   useEffect(() => {
-    console.log("this run");
     if (props.photoValue) {
       setImg({
         src: URL.createObjectURL(props.photoValue),

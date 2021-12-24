@@ -33,7 +33,7 @@ function UserAuth() {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmail,
-  } = useInput((value) => value.includes("@"));
+  } = useInput((value) => value.includes("@"), true);
 
   const {
     value: nameValue,
@@ -42,7 +42,7 @@ function UserAuth() {
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetName,
-  } = useInput((value) => value.length !== 0);
+  } = useInput((value) => value.length !== 0, true);
 
   const {
     value: passwordValue,
@@ -51,7 +51,10 @@ function UserAuth() {
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPassword,
-  } = useInput((value) => value.trim() !== "" && value.trim().length >= 6);
+  } = useInput(
+    (value) => value.trim() !== "" && value.trim().length >= 6,
+    true
+  );
 
   const {
     value: confirmPasswordValue,
@@ -60,7 +63,7 @@ function UserAuth() {
     valueChangeHandler: confirmPasswordChangeHandler,
     inputBlurHandler: confirmPasswordBlurHandler,
     reset: resetConfirmPassword,
-  } = useInput((value) => value === passwordValue);
+  } = useInput((value) => value === passwordValue, true);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prev) => !prev);

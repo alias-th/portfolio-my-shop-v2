@@ -12,11 +12,9 @@ export async function getCurrentUser() {
 }
 
 export async function updateMe(data) {
-  const response = await axios({
+  await axios({
     method: "patch",
     url: "/api/v1/users/updateMe",
     data,
   });
-
-  console.log(response);
 }

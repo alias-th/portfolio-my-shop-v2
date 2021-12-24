@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 const initialInputState = {
   value: "",
@@ -6,6 +6,13 @@ const initialInputState = {
 };
 
 const inputStateReducer = (state, actions) => {
+  if (actions.type === "INIT") {
+    return {
+      value: actions.value,
+      isTouched: state.isTouched,
+    };
+  }
+
   if (actions.type === "INPUT") {
     return {
       value: actions.value,
@@ -30,12 +37,21 @@ const inputStateReducer = (state, actions) => {
   return initialInputState;
 };
 
-const useInput = (validateValue) => {
+const useInput = (validateValue, isValidate, initialValue) => {
+  useEffect(() => {
+    if (initialValue !== undefined) {
+      dispatch({ type: "INIT", value: initialValue });
+    }
+  }, [initialValue]);
+
   const [state, dispatch] = useReducer(inputStateReducer, initialInputState);
 
-  const valueIsValid = validateValue(state.value);
-
-  const hasError = !valueIsValid && state.isTouched;
+  let hasError;
+  let valueIsValid;
+  if (isValidate) {
+    valueIsValid = validateValue(state.value);
+    hasError = !valueIsValid && state.isTouched;
+  }
 
   const valueChangeHandler = (event) => {
     dispatch({ type: "INPUT", value: event.target.value });
@@ -54,8 +70,6 @@ const useInput = (validateValue) => {
   const reset = () => {
     dispatch({ type: "RESET" });
   };
-
-  //   console.log(state);
 
   return {
     value: state.value,
