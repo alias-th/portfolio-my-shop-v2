@@ -12,6 +12,8 @@ const AppError = require("../utils/appError");
 const multerStorage = multer.memoryStorage(); // store in buffer
 
 const multerFilter = (req, file, cb) => {
+  // console.log(file, "multer");
+
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
@@ -35,18 +37,22 @@ exports.uploadUserPhotoMiddleware = upload.single("photo");
 exports.resizeUserPhotoMiddleware = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
+  // console.log(req.file);
+
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpg`;
 
   await sharp(req.file.buffer)
-    .resize(500, 500)
+    .resize(200, 200)
     .toFormat("jpg")
     .jpeg({ quality: 90 })
-    .toFile(`client/public/images/users/${req.file.filename}`);
+    .toFile(`uploads/images/${req.file.filename}`);
 
   next();
 });
 
 exports.updateMe = catchAsync(async (req, res, next) => {
+  // console.log(req.file, "update me");
+
   // create error if user POST password data
   if (req.body.password || req.body.passwordConfirm) {
     return next(new AppError("This route is not for updates password!", 400));
@@ -60,7 +66,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     "gender",
     "birthday"
   );
-  if (req.file) filterBody.photo = req.file.filename;
+  if (req.file) {
+    console.log(req.file, "req.file");
+    filterBody.photo = req.file.filename;
+  }
 
   // update user document
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filterBody, {

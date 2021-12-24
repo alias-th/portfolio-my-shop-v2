@@ -14,6 +14,10 @@ import useInput from "../../shared/hooks/use-input";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
+import { updateMe } from "../../shared/lib/api";
+
+import useHttp from "../../shared/hooks/use-http";
+
 function UserEdit(props) {
   // Use Ref
   const photoInputRef = useRef();
@@ -21,6 +25,12 @@ function UserEdit(props) {
   const phoneNumInputRef = useRef();
   const genderInputRef = useRef();
   const birthDayInputRef = useRef();
+
+  const { sendRequest } = useHttp(
+    updateMe,
+    true,
+    "Updated your profile successfully"
+  );
 
   // Custom Hooks
   const {
@@ -76,20 +86,21 @@ function UserEdit(props) {
       return;
     }
 
-    const enteredPhoto =
-      props.currentUser.photo || photoInputRef.current.files[0].name;
+    const enteredPhoto = photoInputRef.current.files[0];
+
     const enteredName = nameInputRef.current.value;
     const enteredPhoneNum = phoneNumInputRef.current.value;
     const enteredGender = genderInputRef.current.value;
     const enteredBirthDay = birthDayInputRef.current.value;
 
-    console.log(
-      enteredPhoto,
-      enteredName,
-      enteredPhoneNum,
-      enteredGender,
-      enteredBirthDay
-    );
+    const form = new FormData();
+    form.append("photo", enteredPhoto);
+    form.append("name", enteredName);
+    form.append("phoneNumber", enteredPhoneNum);
+    form.append("gender", enteredGender);
+    form.append("birthDay", enteredBirthDay);
+
+    sendRequest(form);
 
     resetName();
     resetPhoneNum();

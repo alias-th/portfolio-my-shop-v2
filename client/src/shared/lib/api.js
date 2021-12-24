@@ -15,6 +15,8 @@ export async function updateMe(data) {
   const response = await axios({
     method: "patch",
     url: "/api/v1/users/updateMe",
-    data: data,
+    data,
   });
+
+  console.log(response);
 }

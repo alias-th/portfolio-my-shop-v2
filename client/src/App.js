@@ -25,7 +25,7 @@ import UserAuth from "./user/pages/UserAuth";
 function App() {
   const user = useSelector((state) => state.auth.user);
 
-  const { sendRequest, data } = useHttp(getCurrentUser);
+  const { sendRequest, data } = useHttp(getCurrentUser, false);
 
   const dispatch = useDispatch();
 

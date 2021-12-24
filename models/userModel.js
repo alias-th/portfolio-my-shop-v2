@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["male", "female", "not say"],
+    enum: ["male", "female", "not-say"],
   },
 
   active: {
@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   phoneNumber: String,
-  birthday: String,
+  birthday: Date,
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,

@@ -25,7 +25,7 @@ function UserUploadPhoto(props) {
       <div className={classes["form__img-input-container"]}>
         <input
           type="file"
-          accept=".png, .jpg, .jpeg"
+          accept=".jpg, .jpeg"
           className={classes["visually-hidden"]}
           id="photo"
           onChange={props.photoChangeHandler}
