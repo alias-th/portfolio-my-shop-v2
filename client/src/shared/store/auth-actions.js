@@ -71,8 +71,6 @@ export const loginAction = (data) => {
           url: "/api/v1/users/login",
           data: data,
         });
-
-        window.location.reload();
       } catch (error) {
         throw new Error(error.response.data.message);
       }
@@ -88,6 +86,7 @@ export const loginAction = (data) => {
         })
       );
       clearTimeout(timer);
+      window.location.reload();
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({

@@ -124,16 +124,17 @@ function UserEdit(props) {
 
   return (
     <ProfileCard className={classes["content-layout"]}>
+      <p className="heading-style-1">Edit Your Profile</p>
+      <hr />
       <form onSubmit={formSubmitHandler}>
-        <p className="heading-style-1">Edit Your Profile</p>
-        <hr />
         {props.currentUser ? (
           <>
             <UserUploadPhoto
+              title="Profile Picture"
               photoValue={photoValue}
               photoChangeHandler={photoChangeHandler}
               photoBlurHandler={photoBlurHandler}
-              currentUser={props.currentUser}
+              currentPhoto={props.currentUser.photo}
               photoInputRef={photoInputRef}
             />
 

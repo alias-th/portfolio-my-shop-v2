@@ -70,7 +70,7 @@ function UserProfile(props) {
                     Phone numbers :{" "}
                     <span
                       className={classes["contents__form-container--underline"]}
-                    >{`091-881-5555`}</span>
+                    >{`${props.currentUser.phoneNumber}`}</span>
                   </p>
                   <p>
                     Role :{" "}
@@ -79,16 +79,16 @@ function UserProfile(props) {
                     >{`${props.currentUser.role}`}</span>
                   </p>
                 </div>
+                {/* {props.currentUser && (
+                  <img
+                    src={`/uploads/images/${props.currentUser.photo}`}
+                    alt={`${props.currentUser.name}`}
+                    className={classes["profile__contents--img"]}
+                  />
+                )} */}
               </div>
             )}
           </div>
-          {props.currentUser && (
-            <img
-              src={`/uploads/images/${props.currentUser.photo}`}
-              alt={`${props.currentUser.name}`}
-              className={classes["profile__contents--img"]}
-            />
-          )}
         </ProfileCard>
         <Outlet />
       </div>

@@ -43,7 +43,7 @@ const productSchema = new Schema({
     required: [true, "A product must have a category"],
     enum: {
       values: ["shoes", "clothing"],
-      message: "Difficulty is either : easy, medium, difficult",
+      message: "Difficulty is either : shoes, clothing",
     },
   },
   slug: String,

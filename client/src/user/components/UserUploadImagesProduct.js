@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import classes from "./UserUploadPhoto.module.css";
+import classes from "./UserUploadImagesProduct.module.css";
 
-function UserUploadPhoto(props) {
+function UserUploadImagesProduct(props) {
   const [{ alt, src }, setImg] = useState({
     src: `/uploads/images/${props.currentPhoto}`,
     alt: "Upload an Image",
@@ -33,30 +33,20 @@ function UserUploadPhoto(props) {
         <div className={classes["form__img-container"]}>
           <div className={classes["form__img-container--upload"]}>
             <label htmlFor="photo" className={classes["form-img__file-label"]}>
-              <p> Upload</p>
-              <img
-                src="/uploads/images/upload.png"
-                alt="upload"
-                style={{
-                  width: "200px",
-                  height: "200px",
-
-                  borderRadius: "50%",
-                }}
-              />
-              <p>
-                Must be a .jpg file smaller than 10 mb and at least 200px by
-                200px
-              </p>
+              <p> Upload Image 1</p>
             </label>
+            <label htmlFor="photo" className={classes["form-img__file-label"]}>
+              <p> Upload Image 2</p>
+            </label>
+            <label htmlFor="photo" className={classes["form-img__file-label"]}>
+              <p> Upload Image 3</p>
+            </label>
+            <p>
+              Must be a .jpg file smaller than 10 mb and at least 200px by 200px
+            </p>
           </div>
           <div className={classes["form__img-container--upload"]}>
-            <p>Preview</p>
-            <img
-              src={src}
-              alt={alt}
-              className={classes["form-img__img-preview"]}
-            />
+            <p className="padding-1">File 1</p>
           </div>
         </div>
       </div>
@@ -64,4 +54,4 @@ function UserUploadPhoto(props) {
   );
 }
 
-export default UserUploadPhoto;
+export default UserUploadImagesProduct;

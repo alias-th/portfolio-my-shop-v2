@@ -29,11 +29,14 @@ body {
 }
 
 .padding-5 {
-  padding: 5;
+  padding: 5rem;
+}
+.padding-1 {
+  padding: 1rem;
 }
 
 .margin-5 {
-  margin: 5;
+  margin: 5rem;
 }
 
 .button-style-1 {

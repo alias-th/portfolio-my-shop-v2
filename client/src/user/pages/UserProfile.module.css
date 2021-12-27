@@ -8,8 +8,8 @@
 .profile__contents--container {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  row-gap: 2rem;
+  width: 60%;
+  row-gap: 5rem;
 }
 
 .profile__contents--card {
@@ -38,10 +38,10 @@
 .contents__form-container {
   height: 100%;
   display: flex;
-  column-gap: 2rem;
+  column-gap: 10rem;
   padding: 2rem;
-  justify-content: center;
-  margin-left: 18rem;
+
+  margin-left: 30rem;
 }
 
 .contents__form-container--content-container {

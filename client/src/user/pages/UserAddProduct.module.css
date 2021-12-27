@@ -54,3 +54,18 @@
 .flexRow .selector {
   width: 20%;
 }
+
+.input-custom__input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.input-custom__container {
+  display: flex;
+  width: 100%;
+}
+
+.input-custom__container label {
+  width: 29.5%;
+  font-size: 1.2rem;
+}

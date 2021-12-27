@@ -75,7 +75,10 @@ function App() {
               element={<UserProfile currentUser={currentUser} />}
             >
               <Route path="products" element={<UserProducts />} />
-              <Route path="product/new" element={<UserAddProduct />} />
+              <Route
+                path="product/new"
+                element={<UserAddProduct currentUser={currentUser} />}
+              />
               <Route
                 path="edit"
                 element={<UserEdit currentUser={currentUser} />}

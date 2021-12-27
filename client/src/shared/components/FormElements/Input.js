@@ -9,7 +9,28 @@ const Input = React.forwardRef((props, ref) => {
         {props.label}
       </label>
       <div className={classes["form-input"]}>
-        <input ref={ref} {...props.input} />
+        {props.input.type === "textarea" && (
+          <textarea ref={ref} {...props.input} />
+        )}
+
+        {props.input.type === "text" && <input ref={ref} {...props.input} />}
+        {props.input.type === "email" && <input ref={ref} {...props.input} />}
+        {props.input.type === "password" && (
+          <input ref={ref} {...props.input} />
+        )}
+
+        {props.input.type === "number" && <input ref={ref} {...props.input} />}
+
+        {props.input.type === "date" && <input ref={ref} {...props.input} />}
+
+        {props.input.type === "radio" && <input ref={ref} {...props.input} />}
+
+        {props.input.type === "selector" && (
+          <select ref={ref} {...props.input}>
+            {props.options}
+          </select>
+        )}
+
         {props.hasError && (
           <p className={classes["input-is-invalid"]}>{props.errorText}</p>
         )}
