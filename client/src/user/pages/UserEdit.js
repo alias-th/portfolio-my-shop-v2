@@ -98,13 +98,10 @@ function UserEdit(props) {
     }
 
     const enteredPhoto = photoInputRef.current.files[0];
-
     const enteredName = nameInputRef.current.value;
     const enteredPhoneNum = phoneNumInputRef.current.value;
     const enteredGender = genderValue;
     const enteredBirthDay = new Date(birthDayInputRef.current.value);
-
-    console.log(enteredGender, "form");
 
     const form = new FormData();
     form.append("photo", enteredPhoto);

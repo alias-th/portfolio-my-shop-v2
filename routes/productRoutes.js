@@ -24,6 +24,8 @@ productRouter
   .post(
     protectMiddleware,
     restrictToMiddleware("seller", "admin"),
+    uploadProductImagesMiddleware,
+    resizeProductImagesMiddleware,
     createNewProduct
   );
 

@@ -11,6 +11,14 @@ export async function getCurrentUser() {
   return currentUser;
 }
 
+export async function createProduct(data) {
+  await axios({
+    method: "post",
+    url: "/api/v1/products",
+    data,
+  });
+}
+
 export async function updateMe(data) {
   await axios({
     method: "patch",

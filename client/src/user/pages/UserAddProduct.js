@@ -1,20 +1,25 @@
 import { useRef } from "react";
 
-import ProfileCard from "../../shared/components/UIElements/ProfileCard";
+// import { useNavigate } from "react-router-dom";
 
-import Button from "../../shared/components/FormElements/Button";
+import ProfileCard from "../../shared/components/UIElements/ProfileCard";
 
 import UserUploadPhoto from "../components/UserUploadPhoto";
 
 import UserUploadImagesProduct from "../components/UserUploadImagesProduct";
 
 import useInput from "../../shared/hooks/use-input";
-
+import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
+import useHttp from "../../shared/hooks/use-http";
+import { createProduct } from "../../shared/lib/api";
 
 import classes from "./UserAddProduct.module.css";
 
 function UserAddProduct(props) {
+  // const navigate = useNavigate();
+
+  const imagesInputRef = useRef();
   const photoInputRef = useRef();
   const nameInputRef = useRef();
   const descriptionInputRef = useRef();
@@ -22,11 +27,27 @@ function UserAddProduct(props) {
   const priceInputRef = useRef();
   const categoryInputRef = useRef();
 
+  const { sendRequest: createNewProduct } = useHttp(
+    createProduct,
+    true, //notification
+    "Created your product successfully",
+    false // reload
+  );
+
   const {
     value: photoValue,
     photoChangeHandler,
     reset: resetPhoto,
   } = useInput(() => {}, false);
+
+  const {
+    value: imagesValue,
+    imagesChangeHandler,
+    inputBlurHandler: imagesBlurHandler,
+    reset: resetImages,
+    hasError: imagesHasError,
+    isValid: imagesIsValid,
+  } = useInput((value) => value.length >= 3 && value.length <= 3, true);
 
   const {
     value: nameValue,
@@ -75,6 +96,7 @@ function UserAddProduct(props) {
 
   let formIsValid;
   if (
+    imagesIsValid &&
     nameIsValid &&
     descriptionIsValid &&
     quantityIsValid &&
@@ -91,7 +113,8 @@ function UserAddProduct(props) {
       return;
     }
 
-    const enteredPhoto = photoInputRef.current.files[0];
+    const enteredImageCover = photoInputRef.current.files[0];
+
     const enteredName = nameInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
     const enteredQuantity = quantityInputRef.current.value;
@@ -99,17 +122,22 @@ function UserAddProduct(props) {
     const enteredCategory = categoryInputRef.current.value;
     const enteredSeller = props.currentUser._id;
 
-    console.log(
-      enteredSeller,
-      enteredPhoto,
-      enteredName,
-      enteredDescription,
-      enteredQuantity,
-      enteredPrice,
-      enteredCategory
-    );
+    const form = new FormData();
+    form.append("name", enteredName);
+    form.append("description", enteredDescription);
+    form.append("quantity", enteredQuantity);
+    form.append("price", enteredPrice);
+    form.append("imageCover", enteredImageCover);
+    form.append("images", imagesInputRef.current.files[0]);
+    form.append("images", imagesInputRef.current.files[1]);
+    form.append("images", imagesInputRef.current.files[2]);
+    form.append("seller", enteredSeller);
+    form.append("categories", enteredCategory);
+
+    createNewProduct(form);
 
     resetPhoto();
+    resetImages();
     resetName();
     resetDescription();
     resetQuantity();
@@ -129,7 +157,14 @@ function UserAddProduct(props) {
           currentPhoto="no-image.jpg"
           photoInputRef={photoInputRef}
         />
-        <UserUploadImagesProduct title="Images product" />
+        <UserUploadImagesProduct
+          imagesValue={imagesValue}
+          title="Images product"
+          imagesChangeHandler={imagesChangeHandler}
+          imagesInputRef={imagesInputRef}
+          imagesHasError={imagesHasError}
+          imagesBlurHandler={imagesBlurHandler}
+        />
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <Input
             ref={nameInputRef}

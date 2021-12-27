@@ -37,15 +37,15 @@ exports.uploadUserPhotoMiddleware = upload.single("photo");
 exports.resizeUserPhotoMiddleware = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
-  // console.log(req.file);
+  console.log(req.file);
 
-  req.file.filename = `user-${req.user.id}-${Date.now()}.jpg`;
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 
   await sharp(req.file.buffer)
     .resize(200, 200)
-    .toFormat("jpg")
+    .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(`uploads/images/${req.file.filename}`);
+    .toFile(`uploads/images/users/${req.file.filename}`);
 
   next();
 });

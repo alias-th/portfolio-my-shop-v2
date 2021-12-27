@@ -32,34 +32,39 @@ exports.resizeProductImagesMiddleware = catchAsync(async (req, res, next) => {
   if (!req.files.imageCover || !req.files.images) return next();
 
   // cover image
-  req.body.imageCover = `product-${req.params.id}-${Date.now()}-cover.jpeg`;
+  req.body.imageCover = `product-${req.user.id}-${Date.now()}-cover.jpeg`;
+
   await sharp(req.files.imageCover[0].buffer)
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(`client/public/images/products/${req.body.imageCover}`);
+    .toFile(`uploads/images/products/${req.body.imageCover}`);
 
   // images
   req.body.images = [];
 
   await Promise.all(
     req.files.images.map(async (file, i) => {
-      const filename = `product-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+      const filename = `product-${req.user.id}-${Date.now()}-${i + 1}.jpeg`;
       await sharp(file.buffer)
         .resize(500, 500)
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
-        .toFile(`client/public/images/products/${filename}`);
+        .toFile(`uploads/images/products/${filename}`);
 
       req.body.images.push(filename);
     })
   );
-
+  console.log(req.body);
   next();
 });
 
 exports.createNewProduct = catchAsync(async (req, res) => {
   const doc = await Product.create(req.body);
+
+  if (!doc) {
+    return new AppError("some thing went wrong on create new product", 500);
+  }
 
   res.status(200).json({
     status: "create new Product successfully",
@@ -70,7 +75,7 @@ exports.createNewProduct = catchAsync(async (req, res) => {
       quantity: doc.quantity,
       price: doc.price,
       seller: doc.seller,
-      image: doc.image,
+      images: doc.images,
       imageCover: doc.imageCover,
     },
   });
