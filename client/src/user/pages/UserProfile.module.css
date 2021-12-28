@@ -7,18 +7,19 @@
 
 .profile__contents--container {
   display: flex;
-  flex-direction: column;
-  width: 60%;
-  row-gap: 5rem;
+
+  width: 81%;
+  column-gap: 5rem;
 }
 
 .profile__contents--card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   row-gap: 1rem;
   height: max-content;
   padding: 2rem;
   column-gap: 2rem;
+  max-width: 30%;
 }
 
 .profile__contents--img {
@@ -38,8 +39,9 @@
 .contents__form-container {
   height: 100%;
   display: flex;
-  column-gap: 10rem;
-  padding: 2rem;
+  flex-direction: column;
+
+  padding: 1.5rem;
   justify-content: center;
 }
 
@@ -49,12 +51,10 @@
   flex-direction: column;
   row-gap: 2rem;
   justify-content: center;
-  align-content: center;
 }
 .contents__form-container--content-container p {
   display: flex;
   justify-content: space-between;
-  column-gap: 3rem;
 }
 
 .contents__form-container--underline {

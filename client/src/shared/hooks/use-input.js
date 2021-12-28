@@ -67,8 +67,6 @@ const useInput = (validateValue, isValidate, initialValue) => {
 
   const photoChangeHandler = (event) => {
     dispatch({ type: "PHOTO", value: event.target.files[0] });
-
-    return;
   };
 
   const imagesChangeHandler = (event) => {

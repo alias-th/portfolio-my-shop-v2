@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ import { createProduct } from "../../shared/lib/api";
 import classes from "./UserAddProduct.module.css";
 
 function UserAddProduct(props) {
-  // const navigate = useNavigate();
+  const [formIsValid, setFormIsValid] = useState(false);
 
   const imagesInputRef = useRef();
   const photoInputRef = useRef();
@@ -37,8 +37,11 @@ function UserAddProduct(props) {
   const {
     value: photoValue,
     photoChangeHandler,
+    inputBlurHandler: photoBlurHandler,
     reset: resetPhoto,
-  } = useInput(() => {}, false);
+    hasError: photoHasError,
+    isValid: photoIsValid,
+  } = useInput((value) => value.length !== 0, true);
 
   const {
     value: imagesValue,
@@ -94,17 +97,32 @@ function UserAddProduct(props) {
     reset: resetCategory,
   } = useInput((value) => value.length > 0, true, "shoes");
 
-  let formIsValid;
-  if (
-    imagesIsValid &&
-    nameIsValid &&
-    descriptionIsValid &&
-    quantityIsValid &&
-    priceIsValid &&
-    categoryIsValid
-  ) {
-    formIsValid = true;
-  }
+  // debounce and cleanup
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFormIsValid(
+        photoIsValid &&
+          imagesIsValid &&
+          nameIsValid &&
+          descriptionIsValid &&
+          quantityIsValid &&
+          priceIsValid &&
+          categoryIsValid
+      );
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [
+    photoIsValid,
+    imagesIsValid,
+    nameIsValid,
+    descriptionIsValid,
+    quantityIsValid,
+    priceIsValid,
+    categoryIsValid,
+  ]);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -114,7 +132,6 @@ function UserAddProduct(props) {
     }
 
     const enteredImageCover = photoInputRef.current.files[0];
-
     const enteredName = nameInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
     const enteredQuantity = quantityInputRef.current.value;
@@ -143,6 +160,8 @@ function UserAddProduct(props) {
     resetQuantity();
     resetPrice();
     resetCategory();
+
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -154,8 +173,10 @@ function UserAddProduct(props) {
           title="Image cover"
           photoValue={photoValue}
           photoChangeHandler={photoChangeHandler}
+          photoBlurHandler={photoBlurHandler}
           currentPhoto="no-image.jpg"
           photoInputRef={photoInputRef}
+          photoHasError={photoHasError}
         />
         <UserUploadImagesProduct
           imagesValue={imagesValue}
@@ -207,6 +228,7 @@ function UserAddProduct(props) {
             label="Quantity"
             input={{
               type: "number",
+              min: "1",
               id: "quantity-input",
               value: quantityValue,
               onChange: quantityChangeHandler,

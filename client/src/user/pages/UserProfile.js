@@ -8,11 +8,14 @@ import classes from "./UserProfile.module.css";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
+import { phoneFormat } from "../../shared/helper/phoneFormat";
+
 function UserProfile(props) {
   return (
     <div className={classes["profile__container"]}>
       <MainSidebar />
       <div className={classes["profile__contents--container"]}>
+        <Outlet />
         <ProfileCard className={classes["profile__contents--card"]}>
           <div className={classes["profile__contents__form-container"]}>
             <p className="heading-style-1">About You</p>
@@ -54,12 +57,7 @@ function UserProfile(props) {
                       day: "numeric",
                     })} `}</span>
                   </p>
-                </div>
-                <div
-                  className={
-                    classes["contents__form-container--content-container"]
-                  }
-                >
+
                   <p>
                     Email :{" "}
                     <span
@@ -70,7 +68,7 @@ function UserProfile(props) {
                     Phone numbers :{" "}
                     <span
                       className={classes["contents__form-container--underline"]}
-                    >{`${props.currentUser.phoneNumber}`}</span>
+                    >{`${phoneFormat(props.currentUser.phoneNumber)}`}</span>
                   </p>
                   <p>
                     Role :{" "}
@@ -90,7 +88,6 @@ function UserProfile(props) {
             )}
           </div>
         </ProfileCard>
-        <Outlet />
       </div>
     </div>
   );

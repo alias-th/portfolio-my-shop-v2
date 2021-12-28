@@ -44,7 +44,7 @@ function NavLinks() {
             }
           >
             <img
-              src={`/uploads/images/${user ? user.photo : "default.png"}`}
+              src={`/uploads/images/users/${user ? user.photo : "default.png"}`}
               alt="user-1"
               className={classes["user-img"]}
             />

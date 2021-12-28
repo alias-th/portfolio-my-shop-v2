@@ -117,6 +117,8 @@ function UserEdit(props) {
     resetPhoneNum();
     resetGender();
     resetBirthDay();
+
+    window.scroll(0, 0);
   };
 
   return (
@@ -162,7 +164,7 @@ function UserEdit(props) {
                   value: phoneNumValue,
                   onChange: phoneNumChangeHandler,
                   onBlur: phoneNumBlurHandler,
-                  type: "number",
+                  type: "tel",
                 }}
                 classes={classes["input-custom__container"]}
                 hasError={phoneNumHasError}

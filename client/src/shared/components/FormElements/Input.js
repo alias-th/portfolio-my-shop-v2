@@ -25,6 +25,8 @@ const Input = React.forwardRef((props, ref) => {
 
         {props.input.type === "radio" && <input ref={ref} {...props.input} />}
 
+        {props.input.type === "tel" && <input ref={ref} {...props.input} />}
+
         {props.input.type === "selector" && (
           <select ref={ref} {...props.input}>
             {props.options}

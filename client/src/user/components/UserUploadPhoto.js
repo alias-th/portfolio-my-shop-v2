@@ -3,7 +3,7 @@ import classes from "./UserUploadPhoto.module.css";
 
 function UserUploadPhoto(props) {
   const [{ alt, src }, setImg] = useState({
-    src: `/uploads/images/${props.currentPhoto}`,
+    src: `/uploads/images/users/${props.currentPhoto}`,
     alt: "Upload an Image",
   });
 
@@ -28,6 +28,7 @@ function UserUploadPhoto(props) {
           className={classes["visually-hidden"]}
           id="photo"
           onChange={props.photoChangeHandler}
+          onBlur={props.photoBlurHandler}
           ref={props.photoInputRef}
         />
         <div className={classes["form__img-container"]}>
@@ -57,6 +58,9 @@ function UserUploadPhoto(props) {
               alt={alt}
               className={classes["form-img__img-preview"]}
             />
+            {props.photoHasError && (
+              <p style={{ color: "red" }}>Must to upload image cover!</p>
+            )}
           </div>
         </div>
       </div>

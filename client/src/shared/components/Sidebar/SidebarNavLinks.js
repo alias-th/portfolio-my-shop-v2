@@ -27,16 +27,6 @@ function NavLinks() {
       </NavLink>
 
       <NavLink
-        to="/profile/products"
-        style={({ isActive }) =>
-          isActive
-            ? { fontWeight: "500", backgroundColor: "#0646631e" }
-            : undefined
-        }
-      >
-        <li>Your Products</li>
-      </NavLink>
-      <NavLink
         to="/profile/product/new"
         style={({ isActive }) =>
           isActive
@@ -45,6 +35,17 @@ function NavLinks() {
         }
       >
         <li>Add Product</li>
+      </NavLink>
+
+      <NavLink
+        to="/profile/products"
+        style={({ isActive }) =>
+          isActive
+            ? { fontWeight: "500", backgroundColor: "#0646631e" }
+            : undefined
+        }
+      >
+        <li>Your Products</li>
       </NavLink>
       <NavLink
         to="/profile/settings"

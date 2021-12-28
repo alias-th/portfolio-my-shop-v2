@@ -51,7 +51,15 @@ function UserUploadImagesProduct(props) {
                 <p>{imageThree ? imageThree.name : ""}</p>
               </>
             )}
-            {props.imagesHasError && <p>You must upload 3 images</p>}
+            {props.imagesHasError && (
+              <p
+                style={{
+                  color: "red",
+                }}
+              >
+                You must upload 3 images
+              </p>
+            )}
           </div>
         </div>
       </div>
