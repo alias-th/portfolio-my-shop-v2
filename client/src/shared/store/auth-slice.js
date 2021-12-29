@@ -9,6 +9,7 @@ const authSlice = createSlice({
         name: action.payload.name,
         email: action.payload.email,
         photo: action.payload.photo,
+        active: action.payload.active,
       };
     },
   },

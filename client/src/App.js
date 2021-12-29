@@ -21,6 +21,7 @@ import UserAddProduct from "./user/pages/UserAddProduct";
 import UserEdit from "./user/pages/UserEdit";
 import UserSettings from "./user/pages/UserSettings";
 import UserAuth from "./user/pages/UserAuth";
+// import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -51,6 +52,51 @@ function App() {
     dispatch(isLoggedInAction());
   }, [dispatch]);
 
+  if (user && currentUser) {
+    return (
+      <>
+        {notification && (
+          <Notification
+            status={notification.status}
+            title={notification.title}
+            message={notification.message}
+          />
+        )}
+        {cartIsShown && (
+          <Cart cartIsShown={cartIsShown} onClose={hideCartHandler} />
+        )}
+        <MainNavigation onShowCart={showCartHandler} />
+        <main className="layout-flex-row__main">
+          <Routes>
+            <Route path="*" element={<NotFound />} />
+            <>
+              <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<Products />} />
+              <Route path="/products/:productId" element={<ProductsDetail />} />
+
+              <Route
+                path="profile"
+                element={<UserProfile currentUser={currentUser} />}
+              >
+                <Route path="products" element={<UserProducts />} />
+                <Route
+                  path="product/new"
+                  element={<UserAddProduct currentUser={currentUser} />}
+                />
+                <Route
+                  path="edit"
+                  element={<UserEdit currentUser={currentUser} />}
+                />
+                <Route path="settings" element={<UserSettings />} />
+              </Route>
+            </>
+          </Routes>
+        </main>
+        <MainFooter />
+      </>
+    );
+  }
+
   return (
     <>
       {notification && (
@@ -67,36 +113,15 @@ function App() {
       <main className="layout-flex-row__main">
         <Routes>
           <Route path="*" element={<NotFound />} />
-          <Route path="/" element={<Products />} />
-          <Route path="/products/:productId" element={<ProductsDetail />} />
-          {user && currentUser && (
-            <Route
-              path="profile"
-              element={<UserProfile currentUser={currentUser} />}
-            >
-              <Route path="products" element={<UserProducts />} />
-              <Route
-                path="product/new"
-                element={<UserAddProduct currentUser={currentUser} />}
-              />
-              <Route
-                path="edit"
-                element={<UserEdit currentUser={currentUser} />}
-              />
-              <Route path="settings" element={<UserSettings />} />
-            </Route>
-          )}
-          {!user && !currentUser && (
-            <Route
-              path="/auth"
-              element={<UserAuth currentUser={currentUser} />}
-            />
-          )}
+          <>
+            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Products />} />
+            <Route path="/auth" element={<UserAuth />} />
+          </>
         </Routes>
       </main>
       <MainFooter />
     </>
   );
 }
-
 export default App;

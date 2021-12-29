@@ -12,7 +12,7 @@ import useInput from "../../shared/hooks/use-input";
 
 import useHttp from "../../shared/hooks/use-http";
 
-import { updatePassword } from "../../shared/lib/api";
+import { updatePassword, deleteMe } from "../../shared/lib/api";
 
 function UserSettings() {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -21,6 +21,13 @@ function UserSettings() {
     updatePassword,
     true,
     "Updated your password successfully",
+    true
+  );
+
+  const { sendRequest: deleteMeRequest } = useHttp(
+    deleteMe,
+    true,
+    "Deleted your password successfully",
     true
   );
 
@@ -80,6 +87,10 @@ function UserSettings() {
     resetCurrentPassword();
     resetNewPassword();
     resetNewPasswordConfirm();
+  };
+
+  const deleteMeHandler = () => {
+    deleteMeRequest();
   };
   return (
     <ProfileCard className={classes["content-layout"]}>
@@ -159,7 +170,7 @@ function UserSettings() {
             </p>
           </div>
           <div className={classes["button-submit__container"]}>
-            <Button>Close Your Account</Button>
+            <Button onClick={deleteMeHandler}>Close Your Account</Button>
           </div>
         </div>
       </div>

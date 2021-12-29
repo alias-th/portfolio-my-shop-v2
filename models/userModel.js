@@ -53,7 +53,6 @@ const userSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: true,
-    select: false,
   },
   phoneNumber: String,
   birthday: Date,
@@ -83,10 +82,10 @@ userSchema.pre("save", function (next) {
   next();
 });
 
-userSchema.pre(/^find/, function (next) {
-  this.find({ active: true });
-  next();
-});
+// userSchema.pre(/^find/, function (next) {
+//   this.find({ active: true });
+//   next();
+// });
 
 // decode password
 userSchema.methods.correctPassword = async function (

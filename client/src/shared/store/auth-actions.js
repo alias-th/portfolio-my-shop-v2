@@ -125,6 +125,7 @@ export const isLoggedInAction = () => {
           name: user.name,
           email: user.email,
           photo: user.photo,
+          active: user.active,
         })
       );
     } catch (error) {

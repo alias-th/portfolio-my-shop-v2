@@ -64,6 +64,10 @@ exports.login = catchAsync(async (req, res, next) => {
 
   // 2) check if user exists and password is correct
   const user = await User.findOne({ email }).select("+password");
+
+  if (!user) {
+    return next(new AppError("These is no user with email address.", 404));
+  }
   // 2.1) compare req.password and bcrypt
   const correct = await user.correctPassword(password, user.password);
   if (!user || !correct) {
@@ -175,6 +179,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
         email: currentUser.email,
         photo: currentUser.photo,
         gender: currentUser.gender,
+        active: currentUser.active,
       },
     });
   }

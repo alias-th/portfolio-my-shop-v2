@@ -34,3 +34,10 @@ export async function updatePassword(data) {
     data,
   });
 }
+
+export async function deleteMe(data) {
+  await axios({
+    method: "delete",
+    url: "/api/v1/users/deleteMe",
+  });
+}
