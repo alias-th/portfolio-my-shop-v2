@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 2rem;
   row-gap: 0.5rem;
-  min-height: 45vh;
+  font-size: 1.2rem;
 }
 .mainCard {
   display: flex;
@@ -12,17 +12,31 @@
   row-gap: 2rem;
 }
 
-.cardOne {
+.content__container {
   width: 100%;
+
   display: flex;
-  column-gap: 2rem;
+  flex-direction: column;
+
   padding: 2rem;
-  align-items: center;
-  row-gap: 1rem;
+
+  row-gap: 5rem;
 }
 
-.cardItemOne {
-  width: 30%;
+.password__container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: space-between;
+}
+
+.close-account__container {
+  width: 100%;
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
@@ -56,9 +70,29 @@
   row-gap: 1.5rem;
 }
 
-.password-content {
+.password__container--input {
   display: flex;
   flex-direction: column;
   width: 100%;
   row-gap: 1.5rem;
+}
+
+.input-custom__container {
+  display: flex;
+  width: 100%;
+}
+
+.input-custom__container label {
+  width: 29.5%;
+  font-size: 1.2rem;
+}
+
+.input-custom__input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.button-submit__container {
+  max-width: 15rem;
+  margin-left: 13.5rem;
 }

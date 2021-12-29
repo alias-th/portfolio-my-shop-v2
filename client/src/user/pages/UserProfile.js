@@ -48,14 +48,18 @@ function UserProfile(props) {
                     Birthday :{" "}
                     <span
                       className={classes["contents__form-container--underline"]}
-                    >{`${new Date(
+                    >{`${
                       props.currentUser.birthday
-                    ).toLocaleDateString("en-US", {
-                      weekday: "long",
-                      month: "long",
-                      year: "numeric",
-                      day: "numeric",
-                    })} `}</span>
+                        ? new Date(
+                            props.currentUser.birthday
+                          ).toLocaleDateString("en-US", {
+                            weekday: "long",
+                            month: "long",
+                            year: "numeric",
+                            day: "numeric",
+                          })
+                        : "not-defined"
+                    } `}</span>
                   </p>
 
                   <p>
@@ -68,7 +72,11 @@ function UserProfile(props) {
                     Phone numbers :{" "}
                     <span
                       className={classes["contents__form-container--underline"]}
-                    >{`${phoneFormat(props.currentUser.phoneNumber)}`}</span>
+                    >{`${
+                      props.currentUser
+                        ? phoneFormat(props.currentUser.phoneNumber)
+                        : "not-defined"
+                    }`}</span>
                   </p>
                   <p>
                     Role :{" "}

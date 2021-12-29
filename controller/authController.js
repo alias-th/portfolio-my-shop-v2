@@ -121,8 +121,7 @@ exports.protectMiddleware = catchAsync(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new AppError("You are not logged in, Please login to get access!"),
-      401
+      new AppError("You are not logged in, Please login to get access!", 401)
     );
   }
 
@@ -175,6 +174,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
         name: currentUser.name,
         email: currentUser.email,
         photo: currentUser.photo,
+        gender: currentUser.gender,
       },
     });
   }

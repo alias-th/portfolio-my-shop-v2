@@ -87,7 +87,10 @@ function App() {
             </Route>
           )}
           {!user && !currentUser && (
-            <Route path="/auth" element={<UserAuth />} />
+            <Route
+              path="/auth"
+              element={<UserAuth currentUser={currentUser} />}
+            />
           )}
         </Routes>
       </main>

@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 
 import { signupAction, loginAction } from "../../shared/store/auth-actions";
 
-import { useNavigate } from "react-router-dom";
-
 import useInput from "../../shared/hooks/use-input";
 
 import Card from "../../shared/components/UIElements/Card";
@@ -16,8 +14,7 @@ import classes from "./UserAuth.module.css";
 
 import Input from "../../shared/components/FormElements/Input";
 
-function UserAuth() {
-  const navigate = useNavigate();
+function UserAuth(props) {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
 
@@ -97,7 +94,6 @@ function UserAuth() {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
       dispatch(loginAction({ email: enteredEmail, password: enteredPassword }));
-      navigate("/", { replace: true });
     } else if (!isLogin) {
       const enteredEmail = emailInputRef.current.value;
       const enteredName = nameInputRef.current.value;
@@ -111,7 +107,6 @@ function UserAuth() {
           passwordConfirm: enteredConfirmPassword,
         })
       );
-      navigate("/auth", { replace: true });
     }
 
     resetEmail();

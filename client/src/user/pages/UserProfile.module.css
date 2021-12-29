@@ -2,7 +2,7 @@
   display: flex;
   column-gap: 5rem;
   width: 100%;
-  min-height: 100vh;
+  min-height: 30vh;
 }
 
 .profile__contents--container {
@@ -58,6 +58,6 @@
 }
 
 .contents__form-container--underline {
-  text-decoration: underline;
-  width: 15rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  width: 14rem;
 }

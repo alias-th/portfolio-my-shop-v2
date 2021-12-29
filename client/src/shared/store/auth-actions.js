@@ -1,10 +1,8 @@
 import axios from "axios";
-
 import { uiSliceActions } from "./ui-slice";
 import { authSliceActions } from "./auth-slice";
 
 export const signupAction = (data) => {
-  let timer;
   return async (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
@@ -35,8 +33,10 @@ export const signupAction = (data) => {
           message: "Sign up successfully!",
         })
       );
-      window.location.reload();
-      clearTimeout(timer);
+      setTimeout(() => {
+        dispatch(uiSliceActions.hideNotification());
+        window.location.replace("/auth");
+      }, 3000);
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -46,10 +46,6 @@ export const signupAction = (data) => {
         })
       );
     }
-
-    timer = setTimeout(() => {
-      dispatch(uiSliceActions.hideNotification());
-    }, 5000);
   };
 };
 
@@ -86,7 +82,7 @@ export const loginAction = (data) => {
         })
       );
       clearTimeout(timer);
-      window.location.reload();
+      window.location.replace("/");
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({

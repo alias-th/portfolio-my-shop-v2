@@ -26,3 +26,11 @@ export async function updateMe(data) {
     data,
   });
 }
+
+export async function updatePassword(data) {
+  await axios({
+    method: "patch",
+    url: "/api/v1/users/updatePassword",
+    data,
+  });
+}

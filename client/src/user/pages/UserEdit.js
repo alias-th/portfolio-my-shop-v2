@@ -80,7 +80,9 @@ function UserEdit(props) {
   } = useInput(
     (value) => value.length !== 0,
     true,
-    new Date(props.currentUser.birthday).toISOString().slice(0, 10)
+    props.currentUser.birthday
+      ? new Date(props.currentUser.birthday).toISOString().slice(0, 10)
+      : ""
   );
 
   // Validate Form Input
