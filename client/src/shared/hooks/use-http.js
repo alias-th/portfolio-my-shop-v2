@@ -13,7 +13,7 @@ function useHttp(
   const dispatch = useDispatch();
 
   const sendRequest = useCallback(
-    async function (requestData) {
+    async function (productId, requestData) {
       let timer;
 
       notification &&
@@ -34,7 +34,7 @@ function useHttp(
               message: messageNotification,
             })
           );
-        const responseData = await requestFunction(requestData);
+        const responseData = await requestFunction(productId, requestData);
 
         setData(responseData);
 

@@ -26,6 +26,7 @@ function UserProductsList() {
             imageCover={product.imageCover}
             name={product.name}
             quantity={product.quantity}
+            id={product._id}
           />
         );
       });

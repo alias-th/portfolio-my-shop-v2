@@ -36,10 +36,11 @@ function UserEdit(props) {
   // Custom Hooks
   const {
     value: photoValue,
+
     photoChangeHandler,
     inputBlurHandler: photoBlurHandler,
     reset: resetPhoto,
-  } = useInput(() => {}, false);
+  } = useInput((value) => {}, false);
 
   const {
     value: nameValue,
@@ -135,8 +136,8 @@ function UserEdit(props) {
               photoValue={photoValue}
               photoChangeHandler={photoChangeHandler}
               photoBlurHandler={photoBlurHandler}
-              currentPhoto={props.currentUser.photo}
               photoInputRef={photoInputRef}
+              categories="users"
             />
 
             <div className={`${classes.item} ${classes.alignItemCenter}`}>

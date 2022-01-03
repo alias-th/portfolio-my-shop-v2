@@ -25,13 +25,13 @@ function UserAddProduct(props) {
   const descriptionInputRef = useRef();
   const quantityInputRef = useRef();
   const priceInputRef = useRef();
-  const categoryInputRef = useRef();
+  const bandInputRef = useRef();
 
   const { sendRequest: createNewProduct } = useHttp(
     createProduct,
     true, //notification
     "Created your product successfully",
-    false // reload
+    true // reload
   );
 
   const {
@@ -41,7 +41,7 @@ function UserAddProduct(props) {
     reset: resetPhoto,
     hasError: photoHasError,
     isValid: photoIsValid,
-  } = useInput((value) => value.length !== 0, true);
+  } = useInput((value) => value !== null, true);
 
   const {
     value: imagesValue,
@@ -89,13 +89,13 @@ function UserAddProduct(props) {
   } = useInput((value) => value.length > 0, true);
 
   const {
-    value: categoryValue,
-    isValid: categoryIsValid,
-    hasError: categoryHasError,
-    valueChangeHandler: categoryChangeHandler,
-    inputBlurHandler: categoryBlurHandler,
-    reset: resetCategory,
-  } = useInput((value) => value.length > 0, true, "shoes");
+    value: bandValue,
+    isValid: bandIsValid,
+    hasError: bandHasError,
+    valueChangeHandler: bandChangeHandler,
+    inputBlurHandler: bandBlurHandler,
+    reset: resetBand,
+  } = useInput((value) => value.length > 0, true, "nike");
 
   // debounce and cleanup
   useEffect(() => {
@@ -107,7 +107,7 @@ function UserAddProduct(props) {
           descriptionIsValid &&
           quantityIsValid &&
           priceIsValid &&
-          categoryIsValid
+          bandIsValid
       );
     }, 1000);
 
@@ -121,7 +121,7 @@ function UserAddProduct(props) {
     descriptionIsValid,
     quantityIsValid,
     priceIsValid,
-    categoryIsValid,
+    bandIsValid,
   ]);
 
   const formSubmitHandler = (e) => {
@@ -136,7 +136,7 @@ function UserAddProduct(props) {
     const enteredDescription = descriptionInputRef.current.value;
     const enteredQuantity = quantityInputRef.current.value;
     const enteredPrice = priceInputRef.current.value;
-    const enteredCategory = categoryInputRef.current.value;
+    const enteredBand = bandInputRef.current.value;
     const enteredSeller = props.currentUser._id;
 
     const form = new FormData();
@@ -149,7 +149,7 @@ function UserAddProduct(props) {
     form.append("images", imagesInputRef.current.files[1]);
     form.append("images", imagesInputRef.current.files[2]);
     form.append("seller", enteredSeller);
-    form.append("categories", enteredCategory);
+    form.append("bands", enteredBand);
 
     createNewProduct(form);
 
@@ -159,7 +159,7 @@ function UserAddProduct(props) {
     resetDescription();
     resetQuantity();
     resetPrice();
-    resetCategory();
+    resetBand();
 
     window.scrollTo(0, 0);
   };
@@ -177,6 +177,7 @@ function UserAddProduct(props) {
           currentPhoto="no-image.jpg"
           photoInputRef={photoInputRef}
           photoHasError={photoHasError}
+          categories="products"
         />
         <UserUploadImagesProduct
           imagesValue={imagesValue}
@@ -259,22 +260,24 @@ function UserAddProduct(props) {
         </div>
         <div className={`${classes.item} ${classes.alignItemCenter}`}>
           <Input
-            ref={categoryInputRef}
-            label="Category"
+            ref={bandInputRef}
+            label="band"
             input={{
               type: "selector",
-              id: "category-input",
-              value: categoryValue,
-              onChange: categoryChangeHandler,
-              onBlur: categoryBlurHandler,
+              id: "band-input",
+              value: bandValue,
+              onChange: bandChangeHandler,
+              onBlur: bandBlurHandler,
               className: classes["input-custom__input"],
             }}
-            hasError={categoryHasError}
+            hasError={bandHasError}
             classes={classes["input-custom__container"]}
             options={
               <>
-                <option value="shoes">Shoes</option>
-                <option value="clothing">Clothing</option>
+                <option value="nike">Nike</option>
+                <option value="converse">Converse</option>
+                <option value="new-balance">New Balance</option>
+                <option value="vans">Vans</option>
               </>
             }
           />

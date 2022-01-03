@@ -38,12 +38,12 @@ const productSchema = new Schema({
     default: Date.now(),
     select: false,
   },
-  categories: {
+  bands: {
     type: String,
-    required: [true, "A product must have a category"],
+    required: [true, "A product must have a band"],
     enum: {
-      values: ["shoes", "clothing"],
-      message: "Difficulty is either : shoes, clothing",
+      values: ["nike", "converse", "new-balance", "vans"],
+      message: "Difficulty is either : nike, converse, new balance, vans",
     },
   },
   slug: String,

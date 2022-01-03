@@ -3,7 +3,7 @@ import classes from "./UserUploadPhoto.module.css";
 
 function UserUploadPhoto(props) {
   const [{ alt, src }, setImg] = useState({
-    src: `/uploads/images/users/${props.currentPhoto}`,
+    src: `/uploads/images/${props.categories}/no-image.jpg`,
     alt: "Upload an Image",
   });
 

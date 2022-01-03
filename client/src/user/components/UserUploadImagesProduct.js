@@ -3,18 +3,20 @@ import classes from "./UserUploadImagesProduct.module.css";
 
 function UserUploadImagesProduct(props) {
   const [{ imageOne, imageTwo, imageThree }, setImgName] = useState({
-    imageOne: "",
-    imageTwo: "",
-    imageThree: "",
+    imageOne: props.currentImages ? props.currentImages[0] : "",
+    imageTwo: props.currentImages ? props.currentImages[1] : "",
+    imageThree: props.currentImages ? props.currentImages[2] : "",
   });
 
   useEffect(() => {
-    setImgName({
-      imageOne: props.imagesValue[0],
-      imageTwo: props.imagesValue[1],
-      imageThree: props.imagesValue[2],
-    });
-  }, [props.imagesValue]);
+    if (!props.currentImages) {
+      setImgName({
+        imageOne: props.imagesValue[0],
+        imageTwo: props.imagesValue[1],
+        imageThree: props.imagesValue[2],
+      });
+    }
+  }, [props.imagesValue, props.currentImages]);
 
   return (
     <div className={classes.item}>
@@ -44,13 +46,20 @@ function UserUploadImagesProduct(props) {
             </p>
           </div>
           <div className={classes["form__img-container--upload"]}>
-            {!props.imagesHasError && (
-              <>
-                <p>{imageOne ? imageOne.name : ""}</p>
-                <p>{imageTwo ? imageTwo.name : ""}</p>
-                <p>{imageThree ? imageThree.name : ""}</p>
-              </>
-            )}
+            {!props.imagesHasError &&
+              (!props.currentImages ? (
+                <>
+                  <p>{imageOne ? imageOne.name : ""}</p>
+                  <p>{imageTwo ? imageTwo.name : ""}</p>
+                  <p>{imageThree ? imageThree.name : ""}</p>
+                </>
+              ) : (
+                <>
+                  <p>{imageOne ? imageOne : ""}</p>
+                  <p>{imageTwo ? imageTwo : ""}</p>
+                  <p>{imageThree ? imageThree : ""}</p>
+                </>
+              ))}
             {props.imagesHasError && (
               <p
                 style={{

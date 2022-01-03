@@ -1,0 +1,71 @@
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  row-gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  column-gap: 3.4rem;
+  padding: 2rem;
+}
+
+.itemName {
+  font-size: 1.2rem;
+  width: 20%;
+}
+
+.itemContent {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  height: 25rem;
+  border-radius: 0.5rem;
+}
+
+.btn {
+  align-self: flex-start;
+  margin-bottom: 2rem;
+}
+
+.selector {
+  padding: 0.5rem;
+}
+
+.input {
+  padding: 0.5rem;
+}
+
+.flexRow {
+  flex-direction: row;
+}
+
+.flexRow input {
+  width: 80%;
+  padding-right: 0.5rem;
+}
+
+.flexRow .selector {
+  width: 20%;
+}
+
+.input-custom__input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.input-custom__container {
+  display: flex;
+  width: 100%;
+}
+
+.input-custom__container label {
+  width: 29.5%;
+  font-size: 1.2rem;
+}

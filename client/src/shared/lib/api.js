@@ -35,7 +35,7 @@ export async function updatePassword(data) {
   });
 }
 
-export async function deleteMe(data) {
+export async function deleteMe() {
   await axios({
     method: "delete",
     url: "/api/v1/users/deleteMe",
@@ -46,6 +46,25 @@ export async function getUserProducts() {
   const response = await axios({
     method: "get",
     url: "/api/v1/products/seller",
+  });
+
+  return response;
+}
+
+export async function getProductWithId(data) {
+  const response = await axios({
+    method: "get",
+    url: `/api/v1/products/${data}`,
+  });
+
+  return response;
+}
+
+export async function updateProduct(productId, data) {
+  const response = await axios({
+    method: "patch",
+    url: `/api/v1/products/${productId}`,
+    data,
   });
 
   return response;
