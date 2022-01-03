@@ -41,3 +41,12 @@ export async function deleteMe(data) {
     url: "/api/v1/users/deleteMe",
   });
 }
+
+export async function getUserProducts() {
+  const response = await axios({
+    method: "get",
+    url: "/api/v1/products/seller",
+  });
+
+  return response;
+}

@@ -1,3 +1,11 @@
+.detail__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 5rem;
+}
+
 .detail-layout-1 {
   display: flex;
   width: 100%;
@@ -5,7 +13,7 @@
 }
 
 .img {
-  width: 60rem;
+  width: 45%;
   border-radius: 1rem;
   object-fit: cover;
 }
@@ -14,7 +22,7 @@
   display: flex;
   row-gap: 3rem;
   flex-direction: column;
-  width: 60%;
+  width: 70%;
 
   font-size: 1.6rem;
 }

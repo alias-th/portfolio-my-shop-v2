@@ -151,3 +151,16 @@ exports.getProductWithSlug = catchAsync(async (req, res, next) => {
     data: tour,
   });
 });
+
+exports.getProductWithIdSeller = catchAsync(async (req, res, next) => {
+  const tours = await Product.find({ seller: req.user._id });
+
+  if (!tours) {
+    return next(new AppError("There is no tours!", 401));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: tours,
+  });
+});

@@ -9,6 +9,7 @@ const {
   uploadProductImagesMiddleware,
   resizeProductImagesMiddleware,
   getProductWithSlug,
+  getProductWithIdSeller,
 } = require("../controller/productController");
 
 const {
@@ -17,6 +18,14 @@ const {
 } = require("../controller/authController");
 
 const productRouter = express.Router();
+
+productRouter
+  .route("/seller")
+  .get(
+    protectMiddleware,
+    restrictToMiddleware("seller", "admin"),
+    getProductWithIdSeller
+  );
 
 productRouter
   .route("/")

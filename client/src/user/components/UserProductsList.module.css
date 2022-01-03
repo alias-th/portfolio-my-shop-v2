@@ -1,0 +1,7 @@
+.product__not-found {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  padding: 2rem;
+}

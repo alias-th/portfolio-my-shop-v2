@@ -21,6 +21,7 @@ import UserAddProduct from "./user/pages/UserAddProduct";
 import UserEdit from "./user/pages/UserEdit";
 import UserSettings from "./user/pages/UserSettings";
 import UserAuth from "./user/pages/UserAuth";
+import UserProductsEdit from "./user/pages/UserProductsEdit";
 // import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
 
 function App() {
@@ -69,27 +70,28 @@ function App() {
         <main className="layout-flex-row__main">
           <Routes>
             <Route path="*" element={<NotFound />} />
-            <>
-              <Route path="*" element={<NotFound />} />
-              <Route path="/" element={<Products />} />
-              <Route path="/products/:productId" element={<ProductsDetail />} />
+            <Route path="/" element={<Products />} />
+            <Route path="/products/:productId" element={<ProductsDetail />} />
 
+            <Route
+              path="profile"
+              element={<UserProfile currentUser={currentUser} />}
+            >
+              <Route path="products" element={<UserProducts />} />
               <Route
-                path="profile"
-                element={<UserProfile currentUser={currentUser} />}
-              >
-                <Route path="products" element={<UserProducts />} />
-                <Route
-                  path="product/new"
-                  element={<UserAddProduct currentUser={currentUser} />}
-                />
-                <Route
-                  path="edit"
-                  element={<UserEdit currentUser={currentUser} />}
-                />
-                <Route path="settings" element={<UserSettings />} />
-              </Route>
-            </>
+                path="products/edit/:productId"
+                element={<UserProductsEdit />}
+              />
+              <Route
+                path="product/new"
+                element={<UserAddProduct currentUser={currentUser} />}
+              />
+              <Route
+                path="edit"
+                element={<UserEdit currentUser={currentUser} />}
+              />
+              <Route path="settings" element={<UserSettings />} />
+            </Route>
           </Routes>
         </main>
         <MainFooter />

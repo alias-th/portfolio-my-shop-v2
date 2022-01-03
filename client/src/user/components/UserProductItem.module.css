@@ -1,0 +1,28 @@
+.list__container {
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list__content {
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-around;
+  min-width: 40rem;
+}
+
+.img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.list__content p {
+  align-self: center;
+}
+
+.container__button button {
+  margin-left: 0.5rem;
+}
