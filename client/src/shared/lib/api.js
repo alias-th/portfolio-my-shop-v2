@@ -69,3 +69,12 @@ export async function updateProduct(productId, data) {
 
   return response;
 }
+
+export async function getAllProducts() {
+  const response = await axios({
+    method: "get",
+    url: `/api/v1/products/`,
+  });
+
+  return response;
+}

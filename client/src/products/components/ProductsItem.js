@@ -10,7 +10,10 @@ function ProductsItem(props) {
       <Link to={`/products/${props.id}`}>
         <Card className={classes["product-item__content"]}>
           <div className={classes.img}>
-            <img src={props.imageCover} alt={props.imageCover}></img>
+            <img
+              src={`/uploads/images/products/${props.imageCover}`}
+              alt={props.imageCover}
+            ></img>
           </div>
           <p className={classes.title}>{props.name}</p>
           <p className={classes.description}>{props.description}</p>

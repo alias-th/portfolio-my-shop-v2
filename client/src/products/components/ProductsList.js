@@ -7,8 +7,8 @@ function ProductsList(props) {
     <ul className={classes.grid}>
       {props.products.map((product) => (
         <ProductsItem
-          key={product.id}
-          id={product.id}
+          key={product._id}
+          id={product._id}
           imageCover={product.imageCover}
           name={product.name}
           description={product.description}
