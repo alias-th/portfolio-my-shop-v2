@@ -2,6 +2,8 @@ import ProductsReviewsItem from "../components/ProductsReviewsItem";
 
 import ProductDescription from "../components/ProductsDescription";
 
+import ProductsAddReview from "../components/ProductsAddReview";
+
 import classes from "./ProductsDetail.module.css";
 
 function DetailProduct() {
@@ -14,6 +16,7 @@ function DetailProduct() {
           className={classes.img}
         />
         <div className={classes["reviews-layout-1"]}>
+          <ProductsAddReview />
           <ProductsReviewsItem />
           <ProductsReviewsItem />
           <ProductsReviewsItem />

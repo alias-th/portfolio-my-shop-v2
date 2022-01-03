@@ -1,0 +1,11 @@
+.add-review__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1rem;
+}
+
+.add-review__label {
+  font-weight: 500;
+  font-size: 1.8rem;
+}

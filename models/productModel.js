@@ -46,6 +46,17 @@ const productSchema = new Schema({
       message: "Difficulty is either : nike, converse, new balance, vans",
     },
   },
+  ratingsAverage: {
+    type: Number,
+    default: 4.5,
+    max: [5, "Rating must be below 5.0"],
+    min: [1, "Rating must be above 1.0"],
+    set: (val) => Math.round(val * 10) / 10,
+  },
+  ratingsQuantity: {
+    type: Number,
+    default: 0,
+  },
   slug: String,
 });
 
