@@ -118,6 +118,7 @@ function App() {
           <>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Products />} />
+            <Route path="/products/:productId" element={<ProductsDetail />} />
             <Route path="/auth" element={<UserAuth />} />
           </>
         </Routes>

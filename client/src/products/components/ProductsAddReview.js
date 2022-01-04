@@ -19,7 +19,10 @@ function ProductsAddReview() {
           Review
         </label>
         <textarea id="review" name="review" rows="10" cols="50" />
-        <ProductsRate rating={rating} onRating={(rate) => setRating(rate)} />
+        <div className={classes["add-review__star"]}>
+          <ProductsRate rating={rating} onRating={(rate) => setRating(rate)} />
+          <p>{rating}</p>
+        </div>
         <div>
           <Button inverse>Add</Button>
         </div>

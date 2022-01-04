@@ -17,7 +17,11 @@ const {
   restrictToMiddleware,
 } = require("../controller/authController");
 
+const reviewRouter = require("./reviewRoutes");
+
 const productRouter = express.Router();
+
+productRouter.use("/:productId/reviews", reviewRouter);
 
 productRouter
   .route("/seller")

@@ -9,3 +9,8 @@
   font-weight: 500;
   font-size: 1.8rem;
 }
+
+.add-review__star {
+  display: flex;
+  column-gap: 2rem;
+}

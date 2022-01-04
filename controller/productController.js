@@ -98,7 +98,9 @@ exports.getAllProducts = catchAsync(async (req, res) => {
 });
 
 exports.getProduct = catchAsync(async (req, res, next) => {
-  const doc = await Product.findById(req.params.id);
+  const doc = await Product.findById(req.params.id).populate({
+    path: "reviews",
+  });
 
   if (!doc) {
     return next(new AppError("no product found", 404));
@@ -140,27 +142,27 @@ exports.deleteProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.getProductWithSlug = catchAsync(async (req, res, next) => {
-  const tour = await Product.findOne({ slug: req.params.slug });
+  const product = await Product.findOne({ slug: req.params.slug });
 
-  if (!tour) {
-    return next(new AppError("There is no tour with the that name", 404));
+  if (!product) {
+    return next(new AppError("There is no product with the that name", 404));
   }
 
   res.status(200).json({
     status: "success",
-    data: tour,
+    data: product,
   });
 });
 
 exports.getProductWithIdSeller = catchAsync(async (req, res, next) => {
-  const tours = await Product.find({ seller: req.user._id });
+  const products = await Product.find({ seller: req.user._id });
 
-  if (!tours) {
-    return next(new AppError("There is no tours!", 401));
+  if (!products) {
+    return next(new AppError("There is no products!", 401));
   }
 
   res.status(200).json({
     status: "success",
-    data: tours,
+    data: products,
   });
 });
