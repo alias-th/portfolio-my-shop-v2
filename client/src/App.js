@@ -9,8 +9,8 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import MainFooter from "./shared/components/Navigation/MainFooter";
 import Notification from "./shared/components/UIElements/Notification";
 import NotFound from "./shared/components/Pages/NotFound";
-import useHttp from "./shared/hooks/use-http";
-import { getCurrentUser } from "./shared/lib/api";
+// import useHttp from "./shared/hooks/use-http";
+// import { getCurrentUser } from "./shared/lib/api";
 
 import Cart from "./cart/components/Cart";
 import Products from "./products/pages/Products";
@@ -22,12 +22,12 @@ import UserEdit from "./user/pages/UserEdit";
 import UserSettings from "./user/pages/UserSettings";
 import UserAuth from "./user/pages/UserAuth";
 import UserProductsEdit from "./user/pages/UserProductsEdit";
-// import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
+import axios from "axios";
 
 function App() {
-  const user = useSelector((state) => state.auth.user);
+  const [currentUser, setCurrentUser] = useState();
 
-  const { sendRequest, data: currentUser } = useHttp(getCurrentUser, false);
+  const user = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
 
@@ -43,14 +43,40 @@ function App() {
     setCartIsShown(false);
   };
 
+  // get me
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     if (user) {
-      sendRequest();
-    }
-  }, [sendRequest, user]);
+      axios
+        .get("/api/v1/users/me", { cancelToken: source.token })
+        .then((res) => {
+          // console.log(res);
+          setCurrentUser(res.data.data);
+        })
+        .catch((err) => {
+          if (axios.isCancel(err)) {
+            console.log("successfully aborted");
+          } else {
+            console.log(err);
+          }
+        });
 
+      return () => {
+        source.cancel();
+      };
+    }
+
+    return () => source.cancel();
+  }, [user]);
+
+  // set user to state
   useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     dispatch(isLoggedInAction());
+
+    return () => source.cancel();
   }, [dispatch]);
 
   if (user && currentUser) {

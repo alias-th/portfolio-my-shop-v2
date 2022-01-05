@@ -12,6 +12,7 @@
 
 .img img {
   width: 30rem;
+  height: 20rem;
   object-fit: cover;
   border-radius: 1rem;
 }

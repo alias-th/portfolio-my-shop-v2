@@ -8,7 +8,7 @@ function useHttp(
   messageNotification,
   mustReload
 ) {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -38,6 +38,7 @@ function useHttp(
 
         setData(responseData);
 
+        window.scroll(0, 0);
         clearTimeout(timer);
       } catch (error) {
         dispatch(
@@ -53,7 +54,7 @@ function useHttp(
           window.location.reload();
         }
         dispatch(uiSliceActions.hideNotification());
-      }, 5000);
+      }, 2000);
     },
     [requestFunction, dispatch, messageNotification, notification, mustReload]
   );

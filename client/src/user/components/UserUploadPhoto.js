@@ -14,7 +14,7 @@ function UserUploadPhoto(props) {
         alt: props.photoValue.name,
       });
     }
-  }, [props.photoValue]);
+  }, [props.photoValue, props.categories]);
 
   return (
     <div className={classes.item}>

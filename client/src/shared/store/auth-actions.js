@@ -36,7 +36,7 @@ export const signupAction = (data) => {
       setTimeout(() => {
         dispatch(uiSliceActions.hideNotification());
         window.location.replace("/auth");
-      }, 3000);
+      }, 2000);
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -95,7 +95,7 @@ export const loginAction = (data) => {
 
     timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 5000);
+    }, 2000);
   };
 };
 
@@ -141,7 +141,7 @@ export const isLoggedInAction = () => {
     }
     timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 5000);
+    }, 2000);
   };
 };
 
@@ -194,6 +194,6 @@ export const logoutAction = () => {
 
     timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 5000);
+    }, 2000);
   };
 };

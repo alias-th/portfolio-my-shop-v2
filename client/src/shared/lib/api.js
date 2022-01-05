@@ -1,9 +1,12 @@
 import axios from "axios";
+const CancelToken = axios.CancelToken;
+const source = CancelToken.source();
 
 export async function getCurrentUser() {
   const response = await axios({
     method: "get",
     url: "/api/v1/users/me",
+    cancelToken: source.token,
   });
 
   const currentUser = response.data.data;
@@ -74,6 +77,25 @@ export async function getAllProducts() {
   const response = await axios({
     method: "get",
     url: `/api/v1/products/`,
+  });
+
+  return response;
+}
+
+export async function addReview(productId, data) {
+  const response = await axios({
+    method: "POST",
+    url: `/api/v1/products/${productId}/reviews`,
+    data,
+  });
+
+  return response;
+}
+
+export async function getReviewOnProduct(productId) {
+  const response = await axios({
+    method: "GET",
+    url: `/api/v1/products/${productId}/reviews`,
   });
 
   return response;

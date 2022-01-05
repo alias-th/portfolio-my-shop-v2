@@ -16,17 +16,26 @@ const {
 
 const reviewRouter = express.Router({ mergeParams: true }); //access :reviewId/reviews
 
-reviewRouter.use(protectMiddleware);
+// reviewRouter.use(protectMiddleware);
 
 reviewRouter
   .route("/")
   .get(getAllReviews)
-  .post(restrictToMiddleware("user", "admin"), setProductUserIds, createReview);
+  .post(
+    protectMiddleware,
+    restrictToMiddleware("user", "admin"),
+    setProductUserIds,
+    createReview
+  );
 
 reviewRouter
   .route("/:id")
   .get(getReview)
-  .patch(restrictToMiddleware("user", "admin"), updateReview)
-  .delete(restrictToMiddleware("user", "admin"), deleteReview);
+  .patch(protectMiddleware, restrictToMiddleware("user", "admin"), updateReview)
+  .delete(
+    protectMiddleware,
+    restrictToMiddleware("user", "admin"),
+    deleteReview
+  );
 
 module.exports = reviewRouter;

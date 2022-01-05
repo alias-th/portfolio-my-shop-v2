@@ -1,48 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import useHttp from "../../shared/hooks/use-http";
-
-import { getUserProducts } from "../../shared/lib/api";
-
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import axios from "axios";
 
 import classes from "./UserProductsList.module.css";
 
 import UserProductItem from "./UserProductItem";
 
 function UserProductsList() {
-  const { sendRequest, data } = useHttp(getUserProducts);
+  const [yourProducts, setYourProducts] = useState([]);
 
   useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
-  if (data) {
-    if (data.data.data.length > 0) {
-      return data.data.data.map((product) => {
-        return (
-          <UserProductItem
-            key={product._id}
-            imageCover={product.imageCover}
-            name={product.name}
-            quantity={product.quantity}
-            id={product._id}
-          />
-        );
+    axios
+      .get("/api/v1/products/seller", { cancelToken: source.token })
+      .then((res) => {
+        // console.log(res);
+        setYourProducts(res);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log("successfully aborted");
+        } else {
+          console.log(err);
+        }
       });
-    } else {
-      return (
-        <div className={classes["product__not-found"]}>
-          <p>There is no product!</p>
-        </div>
-      );
-    }
-  }
 
-  if (!data) {
+    return () => {
+      source.cancel();
+    };
+  }, []);
+
+  if (yourProducts.data) {
+    return yourProducts.data.data.map((product) => {
+      return (
+        <UserProductItem
+          key={product._id}
+          imageCover={product.imageCover}
+          name={product.name}
+          quantity={product.quantity}
+          id={product._id}
+        />
+      );
+    });
+  } else {
     return (
       <div className={classes["product__not-found"]}>
-        <LoadingSpinner />
+        <p>There is no product!</p>
       </div>
     );
   }

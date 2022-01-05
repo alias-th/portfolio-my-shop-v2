@@ -120,8 +120,6 @@ function UserEdit(props) {
     resetPhoneNum();
     resetGender();
     resetBirthDay();
-
-    window.scroll(0, 0);
   };
 
   return (

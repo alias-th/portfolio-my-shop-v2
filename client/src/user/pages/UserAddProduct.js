@@ -109,7 +109,7 @@ function UserAddProduct(props) {
           priceIsValid &&
           bandIsValid
       );
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
@@ -160,8 +160,6 @@ function UserAddProduct(props) {
     resetQuantity();
     resetPrice();
     resetBand();
-
-    window.scrollTo(0, 0);
   };
 
   return (

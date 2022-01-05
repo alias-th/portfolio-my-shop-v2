@@ -2,33 +2,42 @@ import ProductsList from "../components/ProductsList";
 import MainFilter from "../../shared/components/Filter/MainFilter";
 
 import classes from "./Products.module.css";
-import useHttp from "../../shared/hooks/use-http";
-import { getAllProducts } from "../../shared/lib/api";
-import { useEffect } from "react";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Products() {
-  const { sendRequest, data } = useHttp(getAllProducts);
+  const [AllProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
-  if (data) {
-    return (
-      <>
-        <MainFilter />
-        <div className={classes.product}>
-          <ProductsList products={data.data.data.products} />
-        </div>
-      </>
-    );
-  }
+    axios
+      .get("/api/v1/products/", { cancelToken: source.token })
+      .then((res) => {
+        setAllProducts(res);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log("successfully aborted");
+        } else {
+          console.log(err);
+        }
+      });
+
+    return () => {
+      source.cancel();
+    };
+  }, []);
 
   return (
-    <div>
-      <LoadingSpinner />
-    </div>
+    <>
+      <MainFilter />
+      <div className={classes.product}>
+        <ProductsList AllProducts={AllProducts} />
+      </div>
+    </>
   );
 }
 

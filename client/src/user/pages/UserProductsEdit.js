@@ -11,16 +11,15 @@ import useInput from "../../shared/hooks/use-input";
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
 import useHttp from "../../shared/hooks/use-http";
-import { getProductWithId, updateProduct } from "../../shared/lib/api";
+import { updateProduct } from "../../shared/lib/api";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 import classes from "./UserProductsEdit.module.css";
+import axios from "axios";
 
 function UserProductsEdit() {
+  const [product, setProduct] = useState([]);
   const { productId } = useParams();
-
-  const { sendRequest: getProductWithIdRequest, data: product } =
-    useHttp(getProductWithId);
 
   const { sendRequest: updateProductWithRequest } = useHttp(
     updateProduct,
@@ -30,8 +29,27 @@ function UserProductsEdit() {
   );
 
   useEffect(() => {
-    getProductWithIdRequest(productId);
-  }, [getProductWithIdRequest, productId]);
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    axios
+      .get(`/api/v1/products/${productId}`, { cancelToken: source.token })
+      .then((res) => {
+        // console.log(res);
+        setProduct(res);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log("successfully aborted");
+        } else {
+          console.log(err);
+        }
+      });
+
+    return () => {
+      source.cancel();
+    };
+  }, [productId]);
 
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -70,7 +88,7 @@ function UserProductsEdit() {
   } = useInput(
     (value) => value.length > 0,
     true,
-    product && product.data.data.name
+    product.data && product.data.data.name
   );
 
   const {
@@ -83,7 +101,7 @@ function UserProductsEdit() {
   } = useInput(
     (value) => value.length > 0,
     true,
-    product && product.data.data.description
+    product.data && product.data.data.description
   );
 
   const {
@@ -96,7 +114,7 @@ function UserProductsEdit() {
   } = useInput(
     (value) => value.length > 0,
     false,
-    product && product.data.data.quantity
+    product.data && product.data.data.quantity
   );
 
   const {
@@ -109,7 +127,7 @@ function UserProductsEdit() {
   } = useInput(
     (value) => value.length > 0,
     false,
-    product && product.data.data.price
+    product.data && product.data.data.price
   );
 
   const {
@@ -127,7 +145,7 @@ function UserProductsEdit() {
       setFormIsValid(
         imagesIsValid && nameIsValid && descriptionIsValid && bandIsValid
       );
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
@@ -169,8 +187,6 @@ function UserProductsEdit() {
     resetQuantity();
     resetPrice();
     resetBand();
-
-    window.scrollTo(0, 0);
   };
 
   if (product) {
