@@ -95,11 +95,11 @@ ul {
 }
 
 .centered {
-  margin: 3rem auto;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .alert-enter {

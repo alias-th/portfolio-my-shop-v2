@@ -33,7 +33,7 @@ function UserProductsList() {
   }, []);
 
   if (yourProducts.data) {
-    return yourProducts.data.data.map((product) => {
+    yourProducts.data.data.map((product) => {
       return (
         <UserProductItem
           key={product._id}
@@ -44,13 +44,13 @@ function UserProductsList() {
         />
       );
     });
-  } else {
-    return (
-      <div className={classes["product__not-found"]}>
-        <p>There is no product!</p>
-      </div>
-    );
   }
+
+  return (
+    <div className={classes["product__not-found"]}>
+      <p>There is no product!</p>
+    </div>
+  );
 }
 
 export default UserProductsList;

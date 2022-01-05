@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 import classes from "./ProductReviewsList.module.css";
 
@@ -24,22 +23,18 @@ function ProductReviewsList(props) {
 
   return (
     <ul className={classes["review-list__container"]}>
-      {props.reviewItems.data ? (
-        myReviewFirst.map((review) => (
-          <ProductsReviewsItem
-            onClickShowFormEditHandler={props.onClickShowFormEditHandler}
-            key={review._id}
-            photo={review.user.photo}
-            userName={review.user.name}
-            createdAt={review.createdAt}
-            rating={review.rating}
-            review={review.review}
-            id={review._id}
-          />
-        ))
-      ) : (
-        <LoadingSpinner />
-      )}
+      {myReviewFirst.map((review) => (
+        <ProductsReviewsItem
+          onClickShowFormEditHandler={props.onClickShowFormEditHandler}
+          key={review._id}
+          photo={review.user.photo}
+          userName={review.user.name}
+          createdAt={review.createdAt}
+          rating={review.rating}
+          review={review.review}
+          id={review._id}
+        />
+      ))}
     </ul>
   );
 }

@@ -4,6 +4,8 @@ import Card from "../../shared/components/UIElements/Card";
 
 import classes from "./ProductsItem.module.css";
 
+import capitalizeFirstLetter from "../../shared/helper/capitalizeFirstLetter";
+
 function ProductsItem(props) {
   return (
     <li>
@@ -15,7 +17,7 @@ function ProductsItem(props) {
               alt={props.imageCover}
             ></img>
           </div>
-          <p className={classes.title}>{props.name}</p>
+          <p className={classes.title}>{capitalizeFirstLetter(props.name)}</p>
           <p className={classes.description}>{props.description}</p>
           <p className={classes.price}>{props.price} THB</p>
         </Card>

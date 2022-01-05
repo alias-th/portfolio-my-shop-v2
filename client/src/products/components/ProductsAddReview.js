@@ -48,7 +48,7 @@ function ProductsAddReview(props) {
   };
 
   return (
-    <Card>
+    <Card className={classes["add-review__animation"]}>
       <form
         className={classes["add-review__container"]}
         onSubmit={reviewFormSubmitHandler}

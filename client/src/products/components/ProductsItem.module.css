@@ -11,14 +11,15 @@
 }
 
 .img img {
-  width: 30rem;
+  width: 20rem;
   height: 20rem;
   object-fit: cover;
   border-radius: 1rem;
 }
 
 .title {
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .description {
@@ -27,7 +28,7 @@
 }
 
 .price {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 500;
 }
 
