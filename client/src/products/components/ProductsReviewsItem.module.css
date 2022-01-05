@@ -9,7 +9,7 @@
   flex-direction: column;
   row-gap: 1rem;
   justify-content: center;
-  width: 50%;
+  width: 60%;
 }
 
 .review-img {
@@ -43,5 +43,6 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  column-gap: 1rem;
   width: 30%;
 }

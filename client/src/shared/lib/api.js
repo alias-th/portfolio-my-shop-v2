@@ -100,3 +100,22 @@ export async function getReviewOnProduct(productId) {
 
   return response;
 }
+
+export async function deleteReviewWithId(reviewId) {
+  const response = await axios({
+    method: "DELETE",
+    url: `/api/v1/reviews/${reviewId}`,
+  });
+
+  return response;
+}
+
+export async function updateReviewWithId(reviewId, data) {
+  const response = await axios({
+    method: "PATCH",
+    url: `/api/v1/reviews/${reviewId}`,
+    data,
+  });
+
+  return response;
+}

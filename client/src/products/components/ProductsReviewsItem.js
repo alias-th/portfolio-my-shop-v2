@@ -1,9 +1,25 @@
+import { useSelector } from "react-redux";
 import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
+import useHttp from "../../shared/hooks/use-http";
+import { deleteReviewWithId } from "../../shared/lib/api";
 
 import classes from "./ProductsReviewsItem.module.css";
 
 function ReviewsItem(props) {
+  const user = useSelector((state) => state.auth.user);
+
+  const { sendRequest: deleteReviewWithIdRequest } = useHttp(
+    deleteReviewWithId,
+    true,
+    "Deleted your review successfully",
+    true
+  );
+
+  const onClickDeleteReviewHandler = () => {
+    deleteReviewWithIdRequest(props.id);
+  };
+
   return (
     <Card>
       <li className={classes["review-layout-1"]}>
@@ -21,6 +37,7 @@ function ReviewsItem(props) {
                 month: "long",
                 year: "numeric",
                 day: "numeric",
+                hour: "numeric",
               })}
             </p>
           </div>
@@ -28,7 +45,14 @@ function ReviewsItem(props) {
           <p className={classes["review-description"]}>{props.review}</p>
         </div>
         <div className={classes["review__container__button"]}>
-          <Button>Delete</Button>
+          {user.name === props.userName && (
+            <>
+              <Button primary onClick={props.onClickShowFormEditHandler}>
+                Edit
+              </Button>
+              <Button onClick={onClickDeleteReviewHandler}>Delete</Button>
+            </>
+          )}
         </div>
       </li>
     </Card>

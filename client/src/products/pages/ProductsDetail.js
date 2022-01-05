@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -11,8 +11,15 @@ import ProductReviewsList from "../components/ProductReviewsList";
 import classes from "./ProductsDetail.module.css";
 
 import axios from "axios";
+import ProductsUpdateReview from "../components/ProductsUpdateReview";
+
+import { CSSTransition } from "react-transition-group";
 
 function DetailProduct() {
+  const nodeRef = useRef(null);
+
+  const [showFormEdit, setShowFormEdit] = useState(false);
+
   const [stateReviewsItem, stateSetReviewsItem] = useState([]);
 
   const { productId } = useParams();
@@ -53,6 +60,14 @@ function DetailProduct() {
     });
   }
 
+  const onClickShowFormEditHandler = () => {
+    setShowFormEdit((prev) => !prev);
+  };
+
+  const onClickHideFormEditHandler = () => {
+    setShowFormEdit((prev) => !prev);
+  };
+
   return (
     <div className={classes["detail-layout-1"]}>
       <div className={classes["detail__container"]}>
@@ -63,7 +78,23 @@ function DetailProduct() {
         />
         <div className={classes["reviews-layout-1"]}>
           {user && !haveReview && <ProductsAddReview productId={productId} />}
-          <ProductReviewsList reviewItems={stateReviewsItem} />
+          <CSSTransition
+            nodeRef={nodeRef}
+            in={showFormEdit}
+            timeout={300}
+            classNames="alert"
+            unmountOnExit
+          >
+            <ProductsUpdateReview
+              ref={nodeRef}
+              reviewItems={stateReviewsItem}
+              onClickHideFormEditHandler={onClickHideFormEditHandler}
+            />
+          </CSSTransition>
+          <ProductReviewsList
+            reviewItems={stateReviewsItem}
+            onClickShowFormEditHandler={onClickShowFormEditHandler}
+          />
         </div>
       </div>
       <ProductDescription />
