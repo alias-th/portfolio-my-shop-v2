@@ -81,7 +81,7 @@ function App() {
 
   if (user && currentUser) {
     return (
-      <>
+      <div className="container">
         {notification && (
           <Notification
             status={notification.status}
@@ -121,12 +121,12 @@ function App() {
           </Routes>
         </main>
         <MainFooter />
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="container">
       {notification && (
         <Notification
           status={notification.status}
@@ -138,7 +138,7 @@ function App() {
         <Cart cartIsShown={cartIsShown} onClose={hideCartHandler} />
       )}
       <MainNavigation onShowCart={showCartHandler} />
-      <main className="layout-flex-row__main">
+      <main>
         <Routes>
           <Route path="*" element={<NotFound />} />
           <>
@@ -150,7 +150,7 @@ function App() {
         </Routes>
       </main>
       <MainFooter />
-    </>
+    </div>
   );
 }
 export default App;

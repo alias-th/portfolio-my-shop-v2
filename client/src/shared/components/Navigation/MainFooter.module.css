@@ -1,7 +1,10 @@
 .main-footer {
+  width: 100%;
   display: flex;
+
   justify-content: center;
   align-items: center;
+
   background-color: var(--main-color-1);
 
   height: 5rem;
@@ -9,5 +12,5 @@
 
   font-size: 1.6rem;
   color: white;
-  margin-top: 10rem;
+  margin-top: auto;
 }

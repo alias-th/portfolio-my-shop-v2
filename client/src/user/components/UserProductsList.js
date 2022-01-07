@@ -5,6 +5,7 @@ import axios from "axios";
 import classes from "./UserProductsList.module.css";
 
 import UserProductItem from "./UserProductItem";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 function UserProductsList() {
   const [yourProducts, setYourProducts] = useState([]);
@@ -17,7 +18,7 @@ function UserProductsList() {
       .get("/api/v1/products/seller", { cancelToken: source.token })
       .then((res) => {
         // console.log(res);
-        setYourProducts(res);
+        setYourProducts(res.data.data);
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
@@ -32,8 +33,18 @@ function UserProductsList() {
     };
   }, []);
 
-  if (yourProducts.data) {
-    yourProducts.data.data.map((product) => {
+  // console.log(yourProducts);
+
+  if (yourProducts.length === 0) {
+    return (
+      <div className="centered">
+        <LoadingSpinner />;
+      </div>
+    );
+  }
+
+  if (yourProducts) {
+    return yourProducts.map((product) => {
       return (
         <UserProductItem
           key={product._id}

@@ -1,6 +1,6 @@
 .product {
-  position: relative;
+  justify-content: center;
+  width: 100%;
   display: flex;
-  width: 80%;
-  height: 100vh;
+  margin-bottom: 5rem;
 }

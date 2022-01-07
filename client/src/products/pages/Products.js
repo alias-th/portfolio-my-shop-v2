@@ -5,6 +5,7 @@ import classes from "./Products.module.css";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 function Products() {
   const [allProducts, setAllProducts] = useState([]);
@@ -30,6 +31,14 @@ function Products() {
       source.cancel();
     };
   }, []);
+
+  if (allProducts.length === 0) {
+    return (
+      <div className="centered">
+        <LoadingSpinner />;
+      </div>
+    );
+  }
 
   return (
     <>

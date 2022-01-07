@@ -1,8 +1,8 @@
 .form-filter {
+  max-width: 20rem;
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  width: 20%;
 }
 
 legend {

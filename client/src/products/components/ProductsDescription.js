@@ -4,16 +4,17 @@ import Button from "../../shared/components/FormElements/Button";
 
 import classes from "./ProductsDescription.module.css";
 
-function ProductDescription() {
+function ProductDescription(props) {
+  // console.log(props.product);
   return (
     <Card className={classes["desc-layout-1"]}>
-      <p className="heading-style-1">Some Product</p>
-      <p className="heading-style-2">2000 THB</p>
+      <p className="heading-style-1">{props.product.name}</p>
+      <p className="heading-style-2">{props.product.price} THB</p>
       <form className={classes["desc-form"]}>
         <div>
           <label htmlFor="select-color">Primary color</label>
           <select name="colors" id="select-color">
-            <option value="">--Please choose an option--</option>
+            <option value="">Please choose a color</option>
             <option value="red">Red</option>
             <option value="White">White</option>
             <option value="black">Black</option>
@@ -22,10 +23,10 @@ function ProductDescription() {
         <div>
           <label htmlFor="select-size">Size</label>
           <select name="sizes" id="select-size">
-            <option value="">--Please choose an option--</option>
-            <option value="red">Red</option>
-            <option value="White">White</option>
-            <option value="black">Black</option>
+            <option value="">Please choose a size</option>
+            <option value="42">42 EUR</option>
+            <option value="45">45 EUR</option>
+            <option value="47">47 EUR</option>
           </select>
         </div>
         <div>

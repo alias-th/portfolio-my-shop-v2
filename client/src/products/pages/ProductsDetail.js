@@ -8,9 +8,12 @@ import ProductsAddReview from "../components/ProductsAddReview";
 
 import ProductReviewsList from "../components/ProductReviewsList";
 
+import ProductImagesSlider from "../components/ProductImagesSlider";
+
 import classes from "./ProductsDetail.module.css";
 
 import axios from "axios";
+
 import ProductsUpdateReview from "../components/ProductsUpdateReview";
 
 import { CSSTransition } from "react-transition-group";
@@ -22,10 +25,15 @@ function DetailProduct() {
 
   const [stateReviewsItem, stateSetReviewsItem] = useState([]);
 
+  const [items, setItems] = useState([]);
+
+  const [product, setProduct] = useState({});
+
   const { productId } = useParams();
 
   const user = useSelector((state) => state.auth.user);
 
+  // get review on product
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -37,6 +45,58 @@ function DetailProduct() {
       .then((res) => {
         // console.log(res);
         stateSetReviewsItem(res);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log("successfully aborted");
+        } else {
+          console.log(err);
+        }
+
+        if (err.response) {
+          console.log(err.message);
+        }
+      });
+
+    return () => {
+      source.cancel();
+    };
+  }, [productId]);
+
+  // get products
+  useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    axios
+      .get(`/api/v1/products/${productId}`, {
+        cancelToken: source.token,
+      })
+      .then((res) => {
+        // console.log(res);
+        const handleDragStart = (e) => e.preventDefault();
+        setItems([
+          <img
+            src={`/uploads/images/products/${res.data.data.images[0]}`}
+            onDragStart={handleDragStart}
+            className={classes["size-image"]}
+            alt={res.data.data.name}
+          />,
+          <img
+            src={`/uploads/images/products/${res.data.data.images[1]}`}
+            onDragStart={handleDragStart}
+            className={classes["size-image"]}
+            alt={res.data.data.name}
+          />,
+          <img
+            src={`/uploads/images/products/${res.data.data.images[2]}`}
+            onDragStart={handleDragStart}
+            className={classes["size-image"]}
+            alt={res.data.data.name}
+          />,
+        ]);
+
+        setProduct(res.data.data);
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
@@ -71,11 +131,7 @@ function DetailProduct() {
   return (
     <div className={classes["detail-layout-1"]}>
       <div className={classes["detail__container"]}>
-        <img
-          src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=812&q=80"
-          alt="nike"
-          className={classes.img}
-        />
+        <ProductImagesSlider productId={productId} items={items} />
         <div className={classes["reviews-layout-1"]}>
           {user && !haveReview && <ProductsAddReview productId={productId} />}
           <CSSTransition
@@ -97,7 +153,7 @@ function DetailProduct() {
           />
         </div>
       </div>
-      <ProductDescription />
+      <ProductDescription product={product} />
     </div>
   );
 }

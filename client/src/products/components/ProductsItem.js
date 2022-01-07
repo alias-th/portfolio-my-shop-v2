@@ -8,7 +8,7 @@ import capitalizeFirstLetter from "../../shared/helper/capitalizeFirstLetter";
 
 function ProductsItem(props) {
   return (
-    <li>
+    <li className={classes["product__item"]}>
       <Link to={`/products/${props.id}`}>
         <Card className={classes["product-item__content"]}>
           <div className={classes.img}>
