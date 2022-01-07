@@ -6,8 +6,11 @@ import classes from "./Products.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import { useLocation } from "react-router-dom";
 
 function Products() {
+  const location = useLocation();
+
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
@@ -15,7 +18,7 @@ function Products() {
     const source = CancelToken.source();
 
     axios
-      .get("/api/v1/products/", { cancelToken: source.token })
+      .get(`/api/v1/products/${location.search}`, { cancelToken: source.token })
       .then((res) => {
         setAllProducts(res.data.data.products);
       })
@@ -30,7 +33,7 @@ function Products() {
     return () => {
       source.cancel();
     };
-  }, []);
+  }, [location]);
 
   if (allProducts.length === 0) {
     return (

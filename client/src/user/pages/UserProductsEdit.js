@@ -176,7 +176,7 @@ function UserProductsEdit() {
     form.append("images", imagesInputRef.current.files[1]);
     form.append("images", imagesInputRef.current.files[2]);
 
-    form.append("categories", enteredBand);
+    form.append("bands", enteredBand);
 
     updateProductWithRequest(product.data.data._id, form);
 

@@ -17,6 +17,7 @@ import axios from "axios";
 import ProductsUpdateReview from "../components/ProductsUpdateReview";
 
 import { CSSTransition } from "react-transition-group";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 function DetailProduct() {
   const nodeRef = useRef(null);
@@ -127,6 +128,14 @@ function DetailProduct() {
   const onClickHideFormEditHandler = () => {
     setShowFormEdit((prev) => !prev);
   };
+
+  if (!product.name) {
+    return (
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className={classes["detail-layout-1"]}>
