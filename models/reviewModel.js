@@ -79,7 +79,7 @@ reviewSchema.pre(/^findOneAnd/, async function (next) {
 });
 
 reviewSchema.post("save", function () {
-  console.log(this.constructor, "constructor");
+  // console.log(this.constructor, "constructor");
   this.constructor.calcAverageRating(this.product);
 });
 

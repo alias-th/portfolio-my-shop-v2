@@ -89,7 +89,10 @@ exports.getCurrentUserMiddleware = (req, res, next) => {
 };
 
 exports.getCurrentUser = catchAsync(async (req, res, next) => {
-  const doc = await User.findById(req.params.id);
+  const doc = await User.findById(req.params.id).populate({
+    path: "cart",
+    select: "-__v",
+  });
 
   res.status(200).json({
     status: "get current user successfully",

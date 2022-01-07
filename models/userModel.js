@@ -8,59 +8,71 @@ const bcryptJS = require("bcryptjs");
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-  email: {
-    type: String,
-    required: [true, "Please provide your email"],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, "Please provide a valid email!"],
-  },
-  name: {
-    type: String,
-    required: [true, "Please provide your name"],
-  },
-  password: {
-    type: String,
-    required: [true, "Please provide your password"],
-    minlength: [6, "passwords must be at least 6 characters"],
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, "Please confirm your password"],
-    validate: {
-      // this only work on CREATE and SAVE
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: "Password are not the same!",
+const userSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: [true, "Please provide your email"],
+      unique: true,
+      lowercase: true,
+      validate: [validator.isEmail, "Please provide a valid email!"],
     },
-  },
-  photo: {
-    type: String,
-    default: "default.png",
-  },
-  role: {
-    type: String,
-    enum: ["user", "seller", "admin"],
-    default: "user",
-  },
-  gender: {
-    type: String,
-    enum: ["male", "female", "not-say"],
-    default: "not-say",
-  },
+    name: {
+      type: String,
+      required: [true, "Please provide your name"],
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide your password"],
+      minlength: [6, "passwords must be at least 6 characters"],
+      select: false,
+    },
+    passwordConfirm: {
+      type: String,
+      required: [true, "Please confirm your password"],
+      validate: {
+        // this only work on CREATE and SAVE
+        validator: function (el) {
+          return el === this.password;
+        },
+        message: "Password are not the same!",
+      },
+    },
+    photo: {
+      type: String,
+      default: "default.png",
+    },
+    role: {
+      type: String,
+      enum: ["user", "seller", "admin"],
+      default: "user",
+    },
+    gender: {
+      type: String,
+      enum: ["male", "female", "not-say"],
+      default: "not-say",
+    },
 
-  active: {
-    type: Boolean,
-    default: true,
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    phoneNumber: String,
+    birthday: Date,
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
   },
-  phoneNumber: String,
-  birthday: Date,
-  passwordChangedAt: Date,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+
+userSchema.virtual("cart", {
+  ref: "Cart",
+  localField: "_id",
+  foreignField: "user",
 });
 
 // hash password

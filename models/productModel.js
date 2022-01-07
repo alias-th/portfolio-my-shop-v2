@@ -23,11 +23,11 @@ const productSchema = new Schema(
     },
     price: {
       type: Number,
-      require: [true, "A product must have a price"],
+      required: [true, "A product must have a price"],
     },
     imageCover: {
       type: String,
-      require: [true, "A product must have a cover image"],
+      required: [true, "A product must have a cover image"],
     },
     images: [String],
     seller: {
