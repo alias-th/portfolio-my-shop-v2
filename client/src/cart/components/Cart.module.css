@@ -2,13 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
 }
 
 .total-amount-actions {
   display: flex;
   justify-content: flex-end;
-  padding: 2rem;
 }
 
 .total-amount-actions button {

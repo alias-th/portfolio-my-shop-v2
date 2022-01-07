@@ -69,12 +69,6 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual("cart", {
-  ref: "Cart",
-  localField: "_id",
-  foreignField: "user",
-});
-
 // hash password
 userSchema.pre("save", async function (next) {
   // if password not change return next

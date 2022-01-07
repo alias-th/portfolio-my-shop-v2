@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -23,13 +23,16 @@ import UserSettings from "./user/pages/UserSettings";
 import UserAuth from "./user/pages/UserAuth";
 import UserProductsEdit from "./user/pages/UserProductsEdit";
 import axios from "axios";
+import { cartSliceActions } from "./shared/store/cart-slice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+
   const [currentUser, setCurrentUser] = useState();
 
   const user = useSelector((state) => state.auth.user);
-
-  const dispatch = useDispatch();
 
   const [cartIsShown, setCartIsShown] = useState(false);
 
@@ -42,6 +45,23 @@ function App() {
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
+
+  let initial = useRef(true);
+  useEffect(() => {
+    if (initial.current) {
+      initial.current = false;
+
+      return;
+    }
+    if (cart.changed) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || []);
+    dispatch(cartSliceActions.fetchItemToCart(cartFromLocalStorage));
+  }, [dispatch]);
 
   // get me
   useEffect(() => {

@@ -6,6 +6,8 @@ import classes from "./ProductsItem.module.css";
 
 import capitalizeFirstLetter from "../../shared/helper/capitalizeFirstLetter";
 
+import thaiCurrency from "../../shared/helper/thaiCurrency";
+
 function ProductsItem(props) {
   return (
     <li className={classes["product__item"]}>
@@ -19,7 +21,7 @@ function ProductsItem(props) {
           </div>
           <p className={classes.title}>{capitalizeFirstLetter(props.name)}</p>
           <p className={classes.description}>{props.description}</p>
-          <p className={classes.price}>{props.price} THB</p>
+          <p className={classes.price}>{thaiCurrency(props.price)} THB</p>
         </Card>
       </Link>
     </li>

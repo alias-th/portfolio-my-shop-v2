@@ -45,14 +45,16 @@ function ReviewsItem(props) {
           <p className={classes["review-description"]}>{props.review}</p>
         </div>
         <div className={classes["review__container__button"]}>
-          {user.name === props.userName && (
-            <>
-              <Button primary onClick={props.onClickShowFormEditHandler}>
-                Edit
-              </Button>
-              <Button onClick={onClickDeleteReviewHandler}>Delete</Button>
-            </>
-          )}
+          {user
+            ? user.name === props.userName && (
+                <>
+                  <Button primary onClick={props.onClickShowFormEditHandler}>
+                    Edit
+                  </Button>
+                  <Button onClick={onClickDeleteReviewHandler}>Delete</Button>
+                </>
+              )
+            : ""}
         </div>
       </li>
     </Card>

@@ -18,6 +18,8 @@ function ProductReviewsList(props) {
         user
       );
       setMyReviewFirst(myReviewFirst);
+    } else if (props.reviewItems.data) {
+      setMyReviewFirst(props.reviewItems.data.data.reviews);
     }
   }, [props.reviewItems.data, user]);
 
