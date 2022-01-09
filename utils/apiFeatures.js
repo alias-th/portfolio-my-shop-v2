@@ -6,19 +6,31 @@ class APIFeatures {
 
   filter() {
     // Build query
-    const { page, sort, limit, fields, ...queryObj } = this.queryString;
+    const { page, sort, limit, fields, search, ...queryObj } = this.queryString;
 
     // 1) Advance filtering
     let queryStr = JSON.stringify(queryObj);
 
     // return $gte ...
-    queryStr = queryStr.replace(/\b(gte|gt|lte}lt)\b/g, (match) => `$${match}`);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
     // parse string to object
     // { duration: { '$gte': '5' }, difficulty: 'easy' }
     this.query = this.query.find(JSON.parse(queryStr));
 
     // return entire obj
+    return this;
+  }
+
+  search() {
+    if (this.queryString.search) {
+      const textSearch = this.queryString.search;
+
+      this.query = this.query.find({
+        $text: { $search: `"\"${textSearch}\""` },
+      });
+    }
+
     return this;
   }
 

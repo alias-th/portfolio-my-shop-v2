@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 import ProductsItem from "./ProductsItem";
 
@@ -14,6 +15,21 @@ function ProductsList(props) {
     }
   }, [props.allProducts]);
 
+  if (props.allProducts.length === 0 && window.location.search) {
+    return (
+      <div className="centered">
+        <p>There are no products</p>
+      </div>
+    );
+  }
+
+  if (props.allProducts.length === 0) {
+    return (
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
+    );
+  }
   return (
     <ul className={classes.grid}>
       {allProducts.map((product) => (

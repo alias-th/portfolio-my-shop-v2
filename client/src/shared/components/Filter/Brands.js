@@ -1,18 +1,22 @@
 import classes from "./Brands.module.css";
 import { useNavigate } from "react-router-dom";
 
-function Brands() {
+import { useEffect } from "react";
+
+function Brands(props) {
   const navigate = useNavigate();
 
-  const onChangeValue = (e) => {
-    navigate({
-      search: "?bands=" + e.target.value,
-    });
-  };
-
-  const onClickReset = (e) => {
+  useEffect(() => {
     navigate({
       search: "",
+    });
+  }, [navigate]);
+
+  const onChangeValue = (e) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("bands", e.target.value);
+    navigate({
+      search: url.search,
     });
   };
 
@@ -42,9 +46,6 @@ function Brands() {
         <input type="radio" id="vans" name="bands" value="vans" />
         <label htmlFor="vans">Vans</label>
       </div>
-      <button type="reset" onClick={onClickReset}>
-        reset
-      </button>
     </fieldset>
   );
 }

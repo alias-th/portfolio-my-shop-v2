@@ -85,6 +85,7 @@ exports.getAllProducts = catchAsync(async (req, res) => {
   const features = new APIFeatures(Product.find(), req.query)
     .filter()
     .sort()
+    .search()
     .limitFields()
     .paginate();
 

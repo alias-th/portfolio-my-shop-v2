@@ -5,7 +5,6 @@ import classes from "./Products.module.css";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 
 function Products() {
@@ -34,14 +33,6 @@ function Products() {
       source.cancel();
     };
   }, [location]);
-
-  if (allProducts.length === 0) {
-    return (
-      <div className="centered">
-        <LoadingSpinner />;
-      </div>
-    );
-  }
 
   return (
     <>

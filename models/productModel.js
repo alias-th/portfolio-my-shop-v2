@@ -66,6 +66,8 @@ const productSchema = new Schema(
   }
 );
 
+productSchema.index({ name: "text" });
+
 // display review in response not save to DB (getProduct)
 productSchema.virtual("reviews", {
   ref: "Review",

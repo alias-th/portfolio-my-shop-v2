@@ -59,8 +59,12 @@ function App() {
   }, [cart]);
 
   useEffect(() => {
-    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || []);
-    dispatch(cartSliceActions.fetchItemToCart(cartFromLocalStorage));
+    if (localStorage.getItem("cart")) {
+      const cartFromLocalStorage = JSON.parse(
+        localStorage.getItem("cart") || []
+      );
+      dispatch(cartSliceActions.fetchItemToCart(cartFromLocalStorage));
+    }
   }, [dispatch]);
 
   // get me
