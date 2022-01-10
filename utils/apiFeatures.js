@@ -25,10 +25,11 @@ class APIFeatures {
   search() {
     if (this.queryString.search) {
       const textSearch = this.queryString.search;
-
-      this.query = this.query.find({
-        $text: { $search: `"\"${textSearch}\""` },
-      });
+      if (textSearch !== "") {
+        this.query = this.query.find({
+          $text: { $search: `${textSearch}` },
+        });
+      }
     }
 
     return this;
