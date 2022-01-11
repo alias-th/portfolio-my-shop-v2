@@ -163,6 +163,9 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
 
     // check if user still exists
     const currentUser = await User.findById(decoded.id);
+
+    // console.log(currentUser);
+
     if (!currentUser) {
       return next();
     }
@@ -175,6 +178,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
     res.status(200).json({
       status: "success",
       data: {
+        id: currentUser._id,
         name: currentUser.name,
         email: currentUser.email,
         photo: currentUser.photo,

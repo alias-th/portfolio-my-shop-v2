@@ -76,7 +76,6 @@ function App() {
       axios
         .get("/api/v1/users/me", { cancelToken: source.token })
         .then((res) => {
-          // console.log(res);
           setCurrentUser(res.data.data);
         })
         .catch((err) => {
@@ -107,8 +106,10 @@ function App() {
     })
       .then((res) => {
         const user = res.data.data;
+        // console.log(user);
         dispatch(
           authSliceActions.isLoggedIn({
+            id: user.id,
             name: user.name,
             email: user.email,
             photo: user.photo,

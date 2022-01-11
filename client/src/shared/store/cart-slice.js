@@ -19,7 +19,7 @@ const cartSlice = createSlice({
 
     addItemToCart(state, action) {
       const newItem = action.payload;
-      console.log(newItem.productId);
+      console.log(newItem);
       const existingItem = state.items.find(
         (item) => item.productId === newItem.productId
       );
@@ -35,6 +35,7 @@ const cartSlice = createSlice({
           price: newItem.price,
           color: newItem.color,
           size: newItem.size,
+          sellerId: newItem.sellerId,
           imageCover: newItem.imageCover,
           quantity: 1,
           totalPrice: newItem.price,

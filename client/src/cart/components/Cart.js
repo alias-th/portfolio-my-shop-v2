@@ -13,7 +13,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartSliceActions } from "../../shared/store/cart-slice";
 import thaiCurrency from "../../shared/helper/thaiCurrency";
 
+import { useNavigate } from "react-router-dom";
+
 const Cart = (props) => {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -24,7 +28,7 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
-  console.log(cart);
+  // console.log(cart);
 
   const onAddToCartHandler = (item) => {
     dispatch(cartSliceActions.addItemToCart(item));
@@ -32,6 +36,11 @@ const Cart = (props) => {
 
   const onDeleteToCartHandler = (productId) => {
     dispatch(cartSliceActions.removeFormCart(productId));
+  };
+
+  const onClickNavigateToLogin = () => {
+    navigate("/auth", { replace: true });
+    props.onClose();
   };
   return (
     <Modal onClose={props.onClose} cartIsShown={props.cartIsShown}>
@@ -58,7 +67,15 @@ const Cart = (props) => {
         <p className="heading-style-1">Total Amount</p>
         <p className="heading-style-2">{thaiCurrency(cart.totalAmount)} THB</p>
       </div>
-      {isCheckout && <CartCheckout />}
+      {isCheckout && user && <CartCheckout />}
+      {isCheckout && !user && (
+        <div className={classes["must-login"]}>
+          <p>You must login before Checkout</p>
+          <Button type="button" onClick={onClickNavigateToLogin}>
+            Login
+          </Button>
+        </div>
+      )}
       {!isCheckout && (
         <div className={classes["total-amount-actions"]}>
           <Button danger onClick={props.onClose}>

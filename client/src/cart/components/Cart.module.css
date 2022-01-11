@@ -12,3 +12,11 @@
 .total-amount-actions button {
   margin-left: 0.5rem;
 }
+
+.must-login {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+  font-size: 1.8rem;
+}

@@ -15,24 +15,42 @@ function Products() {
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
-
-    axios
-      .get(`/api/v1/products/${location.search}`, { cancelToken: source.token })
-      .then((res) => {
-        setAllProducts(res.data.data.products);
-      })
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          console.log("successfully aborted");
-        } else {
-          console.log(err);
-        }
-      });
+    if (location.search === "") {
+      axios
+        .get(`/api/v1/products/`, {
+          cancelToken: source.token,
+        })
+        .then((res) => {
+          setAllProducts(res.data.data.products);
+        })
+        .catch((err) => {
+          if (axios.isCancel(err)) {
+            console.log("successfully aborted");
+          } else {
+            console.log(err);
+          }
+        });
+    } else {
+      axios
+        .get(`/api/v1/products/${location.search}`, {
+          cancelToken: source.token,
+        })
+        .then((res) => {
+          setAllProducts(res.data.data.products);
+        })
+        .catch((err) => {
+          if (axios.isCancel(err)) {
+            console.log("successfully aborted");
+          } else {
+            console.log(err);
+          }
+        });
+    }
 
     return () => {
       source.cancel();
     };
-  }, [location]);
+  }, [location.search]);
 
   return (
     <>

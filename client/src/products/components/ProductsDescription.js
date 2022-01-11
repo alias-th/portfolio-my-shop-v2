@@ -9,6 +9,8 @@ import { cartSliceActions } from "../../shared/store/cart-slice";
 import thaiCurrency from "../../shared/helper/thaiCurrency";
 
 function ProductDescription(props) {
+  // console.log(props.product);
+
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
@@ -31,6 +33,7 @@ function ProductDescription(props) {
         name: props.product.name,
         price: props.product.price,
         imageCover: props.product.imageCover,
+        sellerId: props.product.seller.id,
         color: enteredColor,
         size: enteredSize,
         quantity: quantity,

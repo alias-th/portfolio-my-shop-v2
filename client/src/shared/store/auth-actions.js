@@ -125,6 +125,7 @@ export const isLoggedInAction = () => {
 
       dispatch(
         authSliceActions.isLoggedIn({
+          id: user.id,
           name: user.name,
           email: user.email,
           photo: user.photo,
