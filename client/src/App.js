@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { isLoggedInAction } from "./shared/store/auth-actions";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import MainFooter from "./shared/components/Navigation/MainFooter";
@@ -24,6 +23,8 @@ import UserAuth from "./user/pages/UserAuth";
 import UserProductsEdit from "./user/pages/UserProductsEdit";
 import axios from "axios";
 import { cartSliceActions } from "./shared/store/cart-slice";
+import UserForgotYourPassword from "./user/pages/UserForgotYourPassword";
+import { authSliceActions } from "./shared/store/auth-slice";
 
 function App() {
   const dispatch = useDispatch();
@@ -98,7 +99,30 @@ function App() {
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
-    dispatch(isLoggedInAction());
+
+    axios({
+      method: "get",
+      url: "/api/v1/users/isLoggedIn",
+      cancelToken: source.token,
+    })
+      .then((res) => {
+        const user = res.data.data;
+        dispatch(
+          authSliceActions.isLoggedIn({
+            name: user.name,
+            email: user.email,
+            photo: user.photo,
+            active: user.active,
+          })
+        );
+      })
+      .catch((error) => {
+        if (axios.isCancel(error)) {
+          console.log("successfully aborted");
+        } else {
+          console.log(error);
+        }
+      });
 
     return () => source.cancel();
   }, [dispatch]);
@@ -170,6 +194,11 @@ function App() {
             <Route path="/" element={<Products />} />
             <Route path="/products/:productId" element={<ProductsDetail />} />
             <Route path="/auth" element={<UserAuth />} />
+            <Route path="/resetPassword" element={<UserForgotYourPassword />} />
+            <Route
+              path="/resetPassword/:token"
+              element={<UserForgotYourPassword />}
+            />
           </>
         </Routes>
       </main>

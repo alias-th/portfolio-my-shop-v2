@@ -14,7 +14,9 @@ const Input = React.forwardRef((props, ref) => {
         )}
 
         {props.input.type === "text" && <input ref={ref} {...props.input} />}
-        {props.input.type === "email" && <input ref={ref} {...props.input} />}
+        {props.input.type === "email" && (
+          <input ref={ref} {...props.input} placeholder="you@email.com" />
+        )}
         {props.input.type === "password" && (
           <input ref={ref} {...props.input} />
         )}

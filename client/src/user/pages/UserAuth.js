@@ -14,6 +14,8 @@ import classes from "./UserAuth.module.css";
 
 import Input from "../../shared/components/FormElements/Input";
 
+import { Link } from "react-router-dom";
+
 function UserAuth(props) {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
@@ -185,7 +187,7 @@ function UserAuth(props) {
             errorText="Confirm password must be equal to password!"
           />
         )}
-        {isLogin && <p>forgot your password?</p>}
+        {isLogin && <Link to="/resetPassword">forgot your password?</Link>}
 
         {isLogin && (
           <Button primary type="submit" disabled={!formIsValid}>

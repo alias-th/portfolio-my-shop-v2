@@ -13,15 +13,19 @@ export const signupAction = (data) => {
     );
 
     const postData = async () => {
-      try {
-        await axios({
-          method: "post",
-          url: "/api/v1/users/signup",
-          data: data,
+      await axios({
+        method: "post",
+        url: "/api/v1/users/signup",
+        data: data,
+      })
+        .then((res) => {
+          setTimeout(() => {
+            window.location.replace("/auth");
+          }, 3000);
+        })
+        .catch((error) => {
+          throw new Error(error.response.data.message);
         });
-      } catch (error) {
-        throw new Error(error.response.data.message);
-      }
     };
 
     try {
@@ -33,10 +37,6 @@ export const signupAction = (data) => {
           message: "Sign up successfully!",
         })
       );
-      setTimeout(() => {
-        dispatch(uiSliceActions.hideNotification());
-        window.location.replace("/auth");
-      }, 2000);
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -46,11 +46,14 @@ export const signupAction = (data) => {
         })
       );
     }
+
+    setTimeout(() => {
+      dispatch(uiSliceActions.hideNotification());
+    }, 5000);
   };
 };
 
 export const loginAction = (data) => {
-  let timer;
   return async (dispatch) => {
     dispatch(
       uiSliceActions.showNotification({
@@ -61,15 +64,19 @@ export const loginAction = (data) => {
     );
 
     const postData = async () => {
-      try {
-        await axios({
-          method: "post",
-          url: "/api/v1/users/login",
-          data: data,
+      await axios({
+        method: "post",
+        url: "/api/v1/users/login",
+        data: data,
+      })
+        .then((res) => {
+          setTimeout(() => {
+            window.location.replace("/");
+          }, 3000);
+        })
+        .catch((error) => {
+          throw new Error(error.response.data.message);
         });
-      } catch (error) {
-        throw new Error(error.response.data.message);
-      }
     };
 
     try {
@@ -81,8 +88,6 @@ export const loginAction = (data) => {
           message: "Login successfully!",
         })
       );
-      clearTimeout(timer);
-      window.location.replace("/");
     } catch (error) {
       dispatch(
         uiSliceActions.showNotification({
@@ -93,30 +98,28 @@ export const loginAction = (data) => {
       );
     }
 
-    timer = setTimeout(() => {
+    setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 2000);
+    }, 5000);
   };
 };
 
 export const isLoggedInAction = () => {
-  let timer;
   return async (dispatch) => {
     const getData = async () => {
-      try {
-        const res = await axios({
-          method: "get",
-          url: "/api/v1/users/isLoggedIn",
+      await axios({
+        method: "get",
+        url: "/api/v1/users/isLoggedIn",
+      })
+        .then((res) => {
+          return res;
+        })
+        .catch((error) => {
+          throw new Error(error.response.data.message);
         });
-
-        return res;
-      } catch (error) {
-        throw new Error(error.response.data.message);
-      }
     };
 
     try {
-      console.log("isLogged");
       const res = await getData();
       const user = res.data.data;
 
@@ -129,19 +132,12 @@ export const isLoggedInAction = () => {
         })
       );
     } catch (error) {
-      dispatch(
-        uiSliceActions.showNotification({
-          status: "error",
-          title: "Error!",
-          message: error.message,
-        })
-      );
-
-      clearTimeout(timer);
+      console.log(error);
     }
-    timer = setTimeout(() => {
+
+    setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 2000);
+    }, 5000);
   };
 };
 
@@ -194,6 +190,107 @@ export const logoutAction = () => {
 
     timer = setTimeout(() => {
       dispatch(uiSliceActions.hideNotification());
-    }, 2000);
+    }, 5000);
+  };
+};
+
+export const resetPasswordAction = (data) => {
+  let timer;
+  return async (dispatch) => {
+    dispatch(
+      uiSliceActions.showNotification({
+        status: "pending",
+        title: "Loading...",
+        message: "Sending data!",
+      })
+    );
+
+    const postData = async () => {
+      try {
+        await axios({
+          method: "post",
+          url: "/api/v1/users/forgotPassword",
+          data: data,
+        });
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    };
+
+    try {
+      await postData();
+      dispatch(
+        uiSliceActions.showNotification({
+          status: "success",
+          title: "Success",
+          message: "Send token for reset password successfully!",
+        })
+      );
+      clearTimeout(timer);
+      window.location.replace("/auth");
+    } catch (error) {
+      dispatch(
+        uiSliceActions.showNotification({
+          status: "error",
+          title: "Error!",
+          message: error.message,
+        })
+      );
+    }
+
+    timer = setTimeout(() => {
+      dispatch(uiSliceActions.hideNotification());
+    }, 5000);
+  };
+};
+
+export const changePasswordWithTokenAction = (data, token) => {
+  return async (dispatch) => {
+    dispatch(
+      uiSliceActions.showNotification({
+        status: "pending",
+        title: "Loading...",
+        message: "Sending data!",
+      })
+    );
+
+    const postData = async () => {
+      await axios({
+        method: "patch",
+        url: `/api/v1/users/resetPassword/${token}`,
+        data: data,
+      })
+        .then((res) => {
+          setTimeout(() => {
+            window.location.replace("/auth");
+          }, 3000);
+        })
+        .catch((error) => {
+          throw new Error(error.response.data.message);
+        });
+    };
+
+    try {
+      await postData();
+      dispatch(
+        uiSliceActions.showNotification({
+          status: "success",
+          title: "Success",
+          message: "change your password successfully!",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        uiSliceActions.showNotification({
+          status: "error",
+          title: "Error!",
+          message: error.message,
+        })
+      );
+    }
+
+    setTimeout(() => {
+      dispatch(uiSliceActions.hideNotification());
+    }, 5000);
   };
 };
