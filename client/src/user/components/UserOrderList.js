@@ -4,21 +4,21 @@ import axios from "axios";
 
 import classes from "./UserProductsList.module.css";
 
-import UserProductItem from "./UserProductItem";
+import UserOrderItem from "./UserOrderItem";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
-function UserProductsList() {
-  const [yourProducts, setYourProducts] = useState([]);
+function UserOrderList() {
+  const [yourOrder, setYourOrder] = useState([]);
 
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
     axios
-      .get("/api/v1/products/seller", { cancelToken: source.token })
+      .get("/api/v1/orders/user", { cancelToken: source.token })
       .then((res) => {
         // console.log(res);
-        setYourProducts(res.data.data);
+        setYourOrder(res.data.data);
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
@@ -33,25 +33,27 @@ function UserProductsList() {
     };
   }, []);
 
-  // console.log(yourProducts);
-
-  if (yourProducts.length === 0) {
+  if (yourOrder.length === 0) {
     return (
       <div className={classes["product__not-found"]}>
-        <p>There is no product!</p>
+        <p>There is no order!</p>
       </div>
     );
   }
 
-  if (yourProducts) {
-    return yourProducts.map((product) => {
+  if (yourOrder) {
+    return yourOrder.map((order) => {
       return (
-        <UserProductItem
-          key={product._id}
-          imageCover={product.imageCover}
-          name={product.name}
-          quantity={product.quantity}
-          id={product._id}
+        <UserOrderItem
+          key={order._id}
+          imageCover={order.imageCover}
+          name={order.name}
+          transaction={order.transaction}
+          quantity={order.quantity}
+          status={order.status}
+          price={order.price}
+          size={order.size}
+          id={order._id}
         />
       );
     });
@@ -64,4 +66,4 @@ function UserProductsList() {
   );
 }
 
-export default UserProductsList;
+export default UserOrderList;

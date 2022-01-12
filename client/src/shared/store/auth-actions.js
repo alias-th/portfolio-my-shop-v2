@@ -72,7 +72,7 @@ export const loginAction = (data) => {
         .then((res) => {
           setTimeout(() => {
             window.location.replace("/");
-          }, 3000);
+          }, 2000);
         })
         .catch((error) => {
           throw new Error(error.response.data.message);
@@ -129,6 +129,7 @@ export const isLoggedInAction = () => {
           name: user.name,
           email: user.email,
           photo: user.photo,
+          role: user.role,
           active: user.active,
         })
       );

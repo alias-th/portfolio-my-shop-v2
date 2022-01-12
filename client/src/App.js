@@ -25,6 +25,7 @@ import axios from "axios";
 import { cartSliceActions } from "./shared/store/cart-slice";
 import UserForgotYourPassword from "./user/pages/UserForgotYourPassword";
 import { authSliceActions } from "./shared/store/auth-slice";
+import UserOrders from "./user/pages/UserOrders";
 
 function App() {
   const dispatch = useDispatch();
@@ -113,6 +114,7 @@ function App() {
             name: user.name,
             email: user.email,
             photo: user.photo,
+            role: user.role,
             active: user.active,
           })
         );
@@ -166,6 +168,8 @@ function App() {
                 element={<UserEdit currentUser={currentUser} />}
               />
               <Route path="settings" element={<UserSettings />} />
+
+              <Route path="orders" element={<UserOrders />} />
             </Route>
           </Routes>
         </main>

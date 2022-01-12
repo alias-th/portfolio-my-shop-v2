@@ -38,13 +38,15 @@ function CartCheckout() {
   }, []);
 
   const getFormData = useCallback(
-    (cart) => {
+    (cart, details) => {
       const formData = [];
       cart.items.forEach((item) => {
         formData.push({
           product: item.productId,
           user: user.id,
           seller: item.sellerId,
+          transaction: details.id,
+          name: item.name,
           price: item.price,
           imageCover: item.imageCover,
           quantity: item.quantity,
@@ -61,7 +63,6 @@ function CartCheckout() {
   useEffect(() => {
     const items = getItem(cart);
     const amount = getAmount(cart);
-    const formData = getFormData(cart);
 
     window.paypal
       .Buttons({
@@ -78,7 +79,8 @@ function CartCheckout() {
         onApprove: function (data, actions) {
           return actions.order.capture().then(function (details) {
             // console.log(data);
-            // console.log(details);
+
+            const formData = getFormData(cart, details);
 
             axios({
               method: "post",
@@ -86,7 +88,7 @@ function CartCheckout() {
               data: formData,
             })
               .then((res) => {
-                console.log(res);
+                localStorage.removeItem("cart");
               })
               .catch((err) => {
                 console.log(err);

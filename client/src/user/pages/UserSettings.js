@@ -170,7 +170,9 @@ function UserSettings() {
             </p>
           </div>
           <div className={classes["button-submit__container"]}>
-            <Button onClick={deleteMeHandler}>Close Your Account</Button>
+            <Button onClick={deleteMeHandler} disabled={true}>
+              Close Your Account
+            </Button>
           </div>
         </div>
       </div>

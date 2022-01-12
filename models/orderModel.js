@@ -16,6 +16,14 @@ const orderSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "Order must belong to a Seller!"],
   },
+  transaction: {
+    type: String,
+    require: [true, "Order mush have transaction id"],
+  },
+  name: {
+    type: String,
+    required: [true, "A product must have a name"],
+  },
   price: {
     type: Number,
     required: [true, "Order must have a price"],
