@@ -24,7 +24,7 @@
   display: grid;
   grid-template-columns:
     minmax(auto, 28rem) minmax(15.9rem, 46rem) minmax(auto, 100%)
-    minmax(auto, 3rem);
+    minmax(auto, 10rem);
   justify-content: space-between;
 
   align-items: center;

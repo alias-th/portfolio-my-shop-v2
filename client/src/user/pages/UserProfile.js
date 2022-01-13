@@ -12,7 +12,7 @@ import { phoneFormat } from "../../shared/helper/phoneFormat";
 
 function UserProfile(props) {
   return (
-    <main className="layout-flex-row__main">
+    <main className={classes["container"]}>
       <div className={classes["profile__container"]}>
         <MainSidebar />
         <div className={classes["profile__contents--container"]}>
@@ -33,7 +33,7 @@ function UserProfile(props) {
                     }
                   >
                     <p>
-                      Name :{" "}
+                      <span className={classes["label"]}> Name : </span>
                       <span
                         className={
                           classes["contents__form-container--underline"]
@@ -42,7 +42,7 @@ function UserProfile(props) {
                     </p>
 
                     <p>
-                      Gender :{" "}
+                      <span className={classes["label"]}>Gender : </span>
                       <span
                         className={
                           classes["contents__form-container--underline"]
@@ -50,7 +50,7 @@ function UserProfile(props) {
                       >{`${props.currentUser.gender}`}</span>
                     </p>
                     <p>
-                      Birthday :{" "}
+                      <span className={classes["label"]}>Birthday : </span>
                       <span
                         className={
                           classes["contents__form-container--underline"]
@@ -70,7 +70,7 @@ function UserProfile(props) {
                     </p>
 
                     <p>
-                      Email :{" "}
+                      <span className={classes["label"]}>Email : </span>
                       <span
                         className={
                           classes["contents__form-container--underline"]
@@ -78,7 +78,7 @@ function UserProfile(props) {
                       >{`${props.currentUser.email}`}</span>
                     </p>
                     <p>
-                      Phone numbers :{" "}
+                      <span className={classes["label"]}>Phone numbers : </span>
                       <span
                         className={
                           classes["contents__form-container--underline"]
@@ -90,7 +90,8 @@ function UserProfile(props) {
                       }`}</span>
                     </p>
                     <p>
-                      Role :{" "}
+                      <span className={classes["label"]}>Role : </span>
+
                       <span
                         className={
                           classes["contents__form-container--underline"]

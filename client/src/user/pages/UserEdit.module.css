@@ -103,3 +103,9 @@
 .input-radio__container label {
   width: 8rem;
 }
+
+@media (max-width: 32.9375em) {
+  .flexRow {
+    flex-direction: column;
+  }
+}

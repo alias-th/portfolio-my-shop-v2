@@ -191,7 +191,7 @@ function UserProductsEdit() {
 
   if (product) {
     return (
-      <main className="layout-flex-row__main">
+      <main className={classes["container"]}>
         <ProfileCard className={classes["content-layout"]}>
           <p className="heading-style-1">Edit Your Product</p>
           <hr />

@@ -11,7 +11,7 @@
   box-shadow: 1px 2px 8px 1px rgba(0, 0, 0, 0.17);
   row-gap: 5rem;
   margin: 0 auto;
-  max-height: 60vh;
+  max-height: 70vh;
 }
 
 .content-layout-1 input {
@@ -29,6 +29,7 @@
   display: flex;
   column-gap: 2rem;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .form-input__label {
@@ -60,5 +61,15 @@
 @media (max-width: 90em) {
   .content-layout-1 {
     width: 60rem;
+  }
+}
+@media (max-width: 50em) {
+  .content-layout-1 {
+    width: 50rem;
+  }
+}
+@media (max-width: 32.9375em) {
+  .content-layout-1 {
+    width: 35rem;
   }
 }

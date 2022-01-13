@@ -69,3 +69,7 @@
   width: 29.5%;
   font-size: 1.2rem;
 }
+
+.container {
+  grid-template-columns: 1fr 1fr 1fr;
+}

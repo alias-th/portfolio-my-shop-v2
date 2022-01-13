@@ -9,7 +9,7 @@
   align-items: center;
   z-index: 100;
 
-  justify-self: center;
+  justify-self: right;
 }
 
 .display-nav-links {
@@ -22,7 +22,7 @@
   height: 100%;
   align-items: center;
 
-  justify-self: center;
+  justify-self: right;
 }
 
 @media (max-width: 32.9375em) {

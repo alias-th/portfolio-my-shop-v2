@@ -38,12 +38,7 @@ function UserUploadPhoto(props) {
               <img
                 src="/uploads/images/upload.png"
                 alt="upload"
-                style={{
-                  width: "200px",
-                  height: "200px",
-
-                  borderRadius: "50%",
-                }}
+                className={classes["form-img__img-preview"]}
               />
               <p>
                 Must be a .jpg file smaller than 10 mb and at least 200px by
@@ -58,6 +53,7 @@ function UserUploadPhoto(props) {
               alt={alt}
               className={classes["form-img__img-preview"]}
             />
+            <p>Image preview</p>
             {props.photoHasError && (
               <p style={{ color: "red" }}>Must to upload image cover!</p>
             )}

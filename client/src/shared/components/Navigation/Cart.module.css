@@ -1,11 +1,13 @@
 .cart {
   position: relative;
   cursor: pointer;
+  justify-self: end;
 }
 
 .display-cart {
   position: relative;
   cursor: pointer;
+  justify-self: end;
 }
 
 @media (max-width: 32.9375em) {

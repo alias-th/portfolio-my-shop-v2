@@ -21,14 +21,14 @@
   justify-content: center;
   justify-content: space-between;
   height: 100%;
+  align-items: center;
 }
 
 .form-img__file-label {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
+  justify-content: space-between;
+  align-items: center;
   width: 20rem;
   height: 100%;
   border-radius: 50%;
@@ -68,4 +68,33 @@
   align-items: center;
   width: 20rem;
   row-gap: 1rem;
+  height: 25rem;
+}
+
+@media (max-width: 50em) {
+  .form-img__img-preview {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+@media (max-width: 32.9375em) {
+  .form-img__img-preview {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .form__img-container {
+    flex-direction: column;
+    row-gap: 5rem;
+  }
+
+  .form-img__file-label {
+    justify-content: center;
+  }
+
+  .form__img-container--upload {
+    justify-content: center;
+    height: min-content;
+  }
 }
