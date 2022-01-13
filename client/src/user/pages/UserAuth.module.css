@@ -1,5 +1,5 @@
 .content-layout-1 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,15 +9,19 @@
   width: 30%;
   padding: 4rem;
   box-shadow: 1px 2px 8px 1px rgba(0, 0, 0, 0.17);
-  row-gap: 2rem;
+  row-gap: 5rem;
   margin: 0 auto;
-  min-height: 50rem;
+  max-height: 60vh;
+}
+
+.content-layout-1 input {
+  padding: 0.5rem;
 }
 
 .content-layout-form {
   display: flex;
   flex-direction: column;
-
+  width: 100%;
   row-gap: 2rem;
 }
 
@@ -28,13 +32,13 @@
 }
 
 .form-input__label {
-  width: 8rem;
+  width: 15rem;
 }
 
 .content-layout-signup {
   display: flex;
   flex-direction: column;
-  min-width: 26.6rem;
+  width: 100%;
   row-gap: 1rem;
   margin-top: 5rem;
 }
@@ -47,4 +51,14 @@
 .input-is-invalid {
   font-size: 0.9rem;
   color: red;
+}
+
+.container {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 90em) {
+  .content-layout-1 {
+    width: 60rem;
+  }
 }

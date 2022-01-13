@@ -10,7 +10,7 @@ import ProfileMenu from "./ProfileMenu";
 
 import classes from "./NavLinks.module.css";
 
-function NavLinks() {
+function NavLinks(props) {
   const user = useSelector((state) => state.auth.user);
 
   const [profileIsTouched, setProfileIsTouched] = useState(false);
@@ -22,8 +22,14 @@ function NavLinks() {
   const mouseOutHandler = (e) => {
     setProfileIsTouched(false);
   };
+
+  const styledContainer =
+    props.isNotActive === false
+      ? `${classes["display-nav-links"]}`
+      : `${classes["nav-links"]}`;
+
   return (
-    <ul className={classes["nav-links"]}>
+    <ul className={styledContainer}>
       <li>
         <NavLink
           to="/"

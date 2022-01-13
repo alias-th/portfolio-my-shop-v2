@@ -16,8 +16,10 @@ function MainFilter() {
   return (
     <form className={classes["form-filter"]}>
       {/* <Offers /> */}
-      <Brands />
-      <Price />
+      <div className={classes["filter-container"]}>
+        <Brands />
+        <Price />
+      </div>
       <Button type="reset" onClick={onClickResetFilter}>
         Reset all filters
       </Button>

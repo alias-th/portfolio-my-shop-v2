@@ -29,3 +29,14 @@
 .margin-button button {
   margin-left: 0.5rem;
 }
+
+@media (max-width: 32.9375em) {
+  .content-layout-1 {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+  .content-layout-2 {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}

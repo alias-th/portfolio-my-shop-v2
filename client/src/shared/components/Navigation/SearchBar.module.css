@@ -1,6 +1,17 @@
 .form-search-bar {
   display: flex;
-  min-width: 55rem;
+}
+
+@media (min-width: 90em) {
+  .form-search-bar {
+    min-width: 30rem;
+  }
+}
+
+@media (max-width: 78.125em) {
+  .form-search-bar {
+    margin-left: 0rem;
+  }
 }
 
 .search-bar {
@@ -15,8 +26,22 @@
 }
 .search-results__container {
   position: absolute;
-  bottom: -1;
+  /* bottom: -1; */
   left: 0;
   width: 100%;
   z-index: 100;
+}
+
+@media (max-width: 32.9375em) {
+  .container {
+    position: relative;
+    width: 100%;
+    display: none;
+  }
+}
+
+.display-container {
+  position: relative;
+  width: 100%;
+  display: block;
 }

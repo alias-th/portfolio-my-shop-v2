@@ -6,6 +6,8 @@
   font-size: 1.8rem;
   align-items: center;
   column-gap: 2rem;
+  z-index: 200;
+  background-color: white;
 }
 
 .search-item:hover {
@@ -13,8 +15,10 @@
 }
 
 .item-img {
+  background-color: white;
   border-radius: 1rem;
   object-fit: cover;
   width: 10rem;
   height: 8rem;
+  z-index: 200;
 }

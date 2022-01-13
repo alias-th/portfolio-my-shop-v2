@@ -6,6 +6,13 @@
   --main-color-3: #064663;
   --main-color-4: #ecb365;
   --main-color-5: #0646631e;
+
+  --four-k: 115em;
+  --laptop-cart: 90em;
+  --laptop: 60em;
+  --tablet: 50em;
+  --mobile-l: 43.75em;
+  --mobile-l-berger-bar: 32.9375em;
 }
 
 *,
@@ -19,6 +26,24 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+}
+
+@media (min-width: 150rem) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 60em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 50em) {
+  html {
+    font-size: 45%;
+  }
 }
 
 body {
@@ -58,12 +83,22 @@ body {
 
 main {
   display: grid;
-  grid-template-columns: minmax(230px, 1fr) auto;
+  grid-template-columns: minmax(auto, 23rem) auto;
 
   padding: 0 5rem 0 5rem;
   column-gap: 5rem;
-  margin-top: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  min-height: 100vh;
   width: 100%;
+}
+
+@media (max-width: 43.75em) {
+  main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5rem;
+  }
 }
 
 .font-weight-300 {
@@ -134,4 +169,8 @@ ul {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+
+.display-none {
+  display: none;
 }

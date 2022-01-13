@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 
 import axios from "axios";
 
-function SearchBar() {
+function SearchBar(props) {
   const [textSearch, setTextSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [inputIsClicked, setInputIsClicked] = useState(false);
@@ -56,8 +56,13 @@ function SearchBar() {
     }, 1000);
   };
 
+  const styledContainer =
+    props.isNotActive === false
+      ? `${classes["display-container"]}`
+      : `${classes["container"]}`;
+
   return (
-    <div className={classes["container"]}>
+    <div className={styledContainer}>
       <form
         className={classes["form-search-bar"]}
         onChange={onChangeSearchResults}

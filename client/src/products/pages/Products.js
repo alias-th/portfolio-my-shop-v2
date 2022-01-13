@@ -53,12 +53,12 @@ function Products() {
   }, [location.search]);
 
   return (
-    <>
+    <main className="layout-flex-row__main">
       <MainFilter />
       <div className={classes.product}>
         <ProductsList allProducts={allProducts} />
       </div>
-    </>
+    </main>
   );
 }
 

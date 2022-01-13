@@ -144,35 +144,35 @@ function App() {
           <Cart cartIsShown={cartIsShown} onClose={hideCartHandler} />
         )}
         <MainNavigation onShowCart={showCartHandler} />
-        <main className="layout-flex-row__main">
-          <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Products />} />
-            <Route path="/products/:productId" element={<ProductsDetail />} />
 
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductsDetail />} />
+
+          <Route
+            path="profile"
+            element={<UserProfile currentUser={currentUser} />}
+          >
+            <Route path="products" element={<UserProducts />} />
             <Route
-              path="profile"
-              element={<UserProfile currentUser={currentUser} />}
-            >
-              <Route path="products" element={<UserProducts />} />
-              <Route
-                path="products/edit/:productId"
-                element={<UserProductsEdit />}
-              />
-              <Route
-                path="product/new"
-                element={<UserAddProduct currentUser={currentUser} />}
-              />
-              <Route
-                path="edit"
-                element={<UserEdit currentUser={currentUser} />}
-              />
-              <Route path="settings" element={<UserSettings />} />
+              path="products/edit/:productId"
+              element={<UserProductsEdit />}
+            />
+            <Route
+              path="product/new"
+              element={<UserAddProduct currentUser={currentUser} />}
+            />
+            <Route
+              path="edit"
+              element={<UserEdit currentUser={currentUser} />}
+            />
+            <Route path="settings" element={<UserSettings />} />
 
-              <Route path="orders" element={<UserOrders />} />
-            </Route>
-          </Routes>
-        </main>
+            <Route path="orders" element={<UserOrders />} />
+          </Route>
+        </Routes>
+
         <MainFooter />
       </div>
     );
@@ -191,22 +191,22 @@ function App() {
         <Cart cartIsShown={cartIsShown} onClose={hideCartHandler} />
       )}
       <MainNavigation onShowCart={showCartHandler} />
-      <main>
-        <Routes>
+
+      <Routes>
+        <Route path="*" element={<NotFound />} />
+        <>
           <Route path="*" element={<NotFound />} />
-          <>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Products />} />
-            <Route path="/products/:productId" element={<ProductsDetail />} />
-            <Route path="/auth" element={<UserAuth />} />
-            <Route path="/resetPassword" element={<UserForgotYourPassword />} />
-            <Route
-              path="/resetPassword/:token"
-              element={<UserForgotYourPassword />}
-            />
-          </>
-        </Routes>
-      </main>
+          <Route path="/" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductsDetail />} />
+          <Route path="/auth" element={<UserAuth />} />
+          <Route path="/resetPassword" element={<UserForgotYourPassword />} />
+          <Route
+            path="/resetPassword/:token"
+            element={<UserForgotYourPassword />}
+          />
+        </>
+      </Routes>
+
       <MainFooter />
     </div>
   );

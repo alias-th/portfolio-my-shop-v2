@@ -1,4 +1,4 @@
-.main-header {
+/* .main-header {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -10,4 +10,39 @@
 
   font-size: 1.6rem;
   color: white;
+} */
+
+/* @media (min-width: 90em) {
+  .main-header {
+    justify-content: center;
+
+  }
+} */
+
+.main-header {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    minmax(auto, 28rem) minmax(15.9rem, 46rem) minmax(auto, 100%)
+    minmax(auto, 3rem);
+  justify-content: space-between;
+
+  align-items: center;
+  align-content: center;
+
+  background-color: var(--main-color-1);
+  height: 5rem;
+  padding: 0 5rem 0 5rem;
+  font-size: 1.6rem;
+  color: white;
+}
+
+@media (max-width: 32.9375em) {
+  .main-header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    row-gap: 2rem;
+    padding: 2rem 5rem 2rem 5rem;
+  }
 }

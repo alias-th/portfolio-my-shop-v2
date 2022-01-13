@@ -4,10 +4,43 @@
   font-size: 1.6rem;
   justify-content: right;
   column-gap: 5rem;
-  min-width: 30rem;
+
   height: 100%;
   align-items: center;
   z-index: 100;
+
+  justify-self: center;
+}
+
+.display-nav-links {
+  display: flex;
+  list-style: none;
+  font-size: 1.6rem;
+  justify-content: right;
+  column-gap: 5rem;
+
+  height: 100%;
+  align-items: center;
+
+  justify-self: center;
+}
+
+@media (max-width: 32.9375em) {
+  .nav-links {
+    display: none;
+  }
+
+  .display-nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 2rem;
+    align-items: flex-start;
+  }
+}
+
+.display-nav-links a {
+  color: white;
 }
 
 .nav-links li {

@@ -26,8 +26,14 @@ function Cart(props) {
   }, [totalQuantity]);
 
   const iconClass = `${iconPlay ? classes.bump : ""}`;
+
+  const styledContainer =
+    props.isNotActive === false
+      ? `${classes["display-cart"]}`
+      : `${classes["cart"]}`;
+
   return (
-    <div className={classes["cart"]} onClick={props.onShowCart}>
+    <div className={styledContainer} onClick={props.onShowCart}>
       <AiOutlineShoppingCart
         style={{
           fontSize: "2.5rem",

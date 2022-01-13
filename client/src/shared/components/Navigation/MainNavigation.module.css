@@ -1,0 +1,31 @@
+.logo {
+  width: 10rem;
+}
+
+.logo-container {
+  grid-column: 1 / 2;
+}
+
+.berger-button {
+  display: none;
+}
+
+@media (max-width: 32.9375em) {
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .berger-button {
+    height: 100%;
+    display: contents;
+    width: 100%;
+    color: white;
+  }
+
+  .berger-icon {
+    font-size: 3rem;
+  }
+}

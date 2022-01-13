@@ -11,7 +11,9 @@
 .modal {
   position: fixed;
   top: 5vh;
-  left: 35%;
+  left: 0;
+  right: 0;
+  margin: 5% auto;
   width: 35%;
   background-color: white;
   padding: 1rem;
@@ -38,5 +40,14 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 90em) {
+  .modal {
+    left: 0;
+    right: 0;
+    margin: 5% auto;
+    width: 60%;
   }
 }

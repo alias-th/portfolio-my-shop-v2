@@ -138,32 +138,34 @@ function DetailProduct() {
   }
 
   return (
-    <div className={classes["detail-layout-1"]}>
-      <div className={classes["detail__container"]}>
-        <ProductImagesSlider productId={productId} items={items} />
-        <div className={classes["reviews-layout-1"]}>
-          {user && !haveReview && <ProductsAddReview productId={productId} />}
-          <CSSTransition
-            nodeRef={nodeRef}
-            in={showFormEdit}
-            timeout={300}
-            classNames="alert"
-            unmountOnExit
-          >
-            <ProductsUpdateReview
-              ref={nodeRef}
+    <main className="layout-flex-row__main">
+      <div className={classes["detail-layout-1"]}>
+        <div className={classes["detail__container"]}>
+          <ProductImagesSlider productId={productId} items={items} />
+          <div className={classes["reviews-layout-1"]}>
+            {user && !haveReview && <ProductsAddReview productId={productId} />}
+            <CSSTransition
+              nodeRef={nodeRef}
+              in={showFormEdit}
+              timeout={300}
+              classNames="alert"
+              unmountOnExit
+            >
+              <ProductsUpdateReview
+                ref={nodeRef}
+                reviewItems={stateReviewsItem}
+                onClickHideFormEditHandler={onClickHideFormEditHandler}
+              />
+            </CSSTransition>
+            <ProductReviewsList
               reviewItems={stateReviewsItem}
-              onClickHideFormEditHandler={onClickHideFormEditHandler}
+              onClickShowFormEditHandler={onClickShowFormEditHandler}
             />
-          </CSSTransition>
-          <ProductReviewsList
-            reviewItems={stateReviewsItem}
-            onClickShowFormEditHandler={onClickShowFormEditHandler}
-          />
+          </div>
         </div>
+        <ProductDescription product={product} />
       </div>
-      <ProductDescription product={product} />
-    </div>
+    </main>
   );
 }
 

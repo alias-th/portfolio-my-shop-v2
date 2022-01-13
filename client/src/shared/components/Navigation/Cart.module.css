@@ -3,6 +3,22 @@
   cursor: pointer;
 }
 
+.display-cart {
+  position: relative;
+  cursor: pointer;
+}
+
+@media (max-width: 32.9375em) {
+  .cart {
+    display: none;
+  }
+
+  .display-cart {
+    /* display: block; */
+    align-self: flex-start;
+  }
+}
+
 .cart-num {
   position: absolute;
   right: -10px;

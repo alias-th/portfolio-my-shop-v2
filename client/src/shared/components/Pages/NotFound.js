@@ -25,10 +25,13 @@ function NotFound() {
 
   if (!loading) {
     return (
-      <div className={classes["form-404"]}>
-        <p>404</p>
-        <p>Page Not Found</p>
-      </div>
+      <main className="layout-flex-row__main">
+        <div className={classes["form-404"]}>
+          <p>404</p>
+
+          <p>Page Not Found</p>
+        </div>
+      </main>
     );
   }
 }

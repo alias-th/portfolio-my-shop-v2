@@ -118,101 +118,103 @@ function UserAuth(props) {
   };
 
   return (
-    <Card className={classes["content-layout-1"]}>
-      <p className="heading-style-1">{isLogin ? "Login" : "Sing up"}</p>
-      <form
-        className={classes["content-layout-form"]}
-        onSubmit={formSubmitHandler}
-      >
-        <Input
-          classLabel={classes["form-input__label"]}
-          ref={emailInputRef}
-          label="Email"
-          input={{
-            type: "email",
-            id: "user-email",
-            value: emailValue,
-            onChange: emailChangeHandler,
-            onBlur: emailBlurHandler,
-          }}
-          hasError={emailHasError}
-          errorText="Email must include '@'!"
-        />
-
-        {!isLogin && (
+    <main className={classes["container"]}>
+      <Card className={classes["content-layout-1"]}>
+        <p className="heading-style-1">{isLogin ? "Login" : "Sing up"}</p>
+        <form
+          className={classes["content-layout-form"]}
+          onSubmit={formSubmitHandler}
+        >
           <Input
             classLabel={classes["form-input__label"]}
-            ref={nameInputRef}
-            label="Name"
+            ref={emailInputRef}
+            label="Email"
             input={{
-              type: "text",
-              id: "user-name",
-              value: nameValue,
-              onChange: nameChangeHandler,
-              onBlur: nameBlurHandler,
+              type: "email",
+              id: "user-email",
+              value: emailValue,
+              onChange: emailChangeHandler,
+              onBlur: emailBlurHandler,
             }}
-            hasError={nameHasError}
-            errorText="Name must not be empty!"
+            hasError={emailHasError}
+            errorText="Email must include '@'!"
           />
-        )}
 
-        <Input
-          classLabel={classes["form-input__label"]}
-          ref={passwordInputRef}
-          label="Password"
-          input={{
-            type: "password",
-            id: "password",
-            value: passwordValue,
-            onChange: passwordChangeHandler,
-            onBlur: passwordBlurHandler,
-          }}
-          hasError={passwordHasError}
-          errorText="Password must be at least 6 characters!"
-        />
+          {!isLogin && (
+            <Input
+              classLabel={classes["form-input__label"]}
+              ref={nameInputRef}
+              label="Name"
+              input={{
+                type: "text",
+                id: "user-name",
+                value: nameValue,
+                onChange: nameChangeHandler,
+                onBlur: nameBlurHandler,
+              }}
+              hasError={nameHasError}
+              errorText="Name must not be empty!"
+            />
+          )}
 
-        {!isLogin && (
           <Input
             classLabel={classes["form-input__label"]}
-            ref={confirmPasswordInputRef}
-            label="Confirm Password"
+            ref={passwordInputRef}
+            label="Password"
             input={{
               type: "password",
-              id: "confirm-password",
-              value: confirmPasswordValue,
-              onChange: confirmPasswordChangeHandler,
-              onBlur: confirmPasswordBlurHandler,
+              id: "password",
+              value: passwordValue,
+              onChange: passwordChangeHandler,
+              onBlur: passwordBlurHandler,
             }}
-            hasError={confirmPasswordHasError}
-            errorText="Confirm password must be equal to password!"
+            hasError={passwordHasError}
+            errorText="Password must be at least 6 characters!"
           />
-        )}
-        {isLogin && <Link to="/resetPassword">forgot your password?</Link>}
 
-        {isLogin && (
-          <Button primary type="submit" disabled={!formIsValid}>
-            Login
+          {!isLogin && (
+            <Input
+              classLabel={classes["form-input__label"]}
+              ref={confirmPasswordInputRef}
+              label="Confirm Password"
+              input={{
+                type: "password",
+                id: "confirm-password",
+                value: confirmPasswordValue,
+                onChange: confirmPasswordChangeHandler,
+                onBlur: confirmPasswordBlurHandler,
+              }}
+              hasError={confirmPasswordHasError}
+              errorText="Confirm password must be equal to password!"
+            />
+          )}
+          {isLogin && <Link to="/resetPassword">forgot your password?</Link>}
+
+          {isLogin && (
+            <Button primary type="submit" disabled={!formIsValid}>
+              Login
+            </Button>
+          )}
+
+          {!isLogin && (
+            <Button primary type="submit" disabled={!formIsValid}>
+              Sing up
+            </Button>
+          )}
+        </form>
+
+        <div className={classes["content-layout-signup"]}>
+          {isLogin ? (
+            <p>Not a member?, Sign up now!</p>
+          ) : (
+            <p>You is a member? Login Now!</p>
+          )}
+          <Button inverse onClick={switchAuthModeHandler}>
+            {isLogin ? "Sign up" : " Login"}
           </Button>
-        )}
-
-        {!isLogin && (
-          <Button primary type="submit" disabled={!formIsValid}>
-            Sing up
-          </Button>
-        )}
-      </form>
-
-      <div className={classes["content-layout-signup"]}>
-        {isLogin ? (
-          <p>Not a member?, Sign up now!</p>
-        ) : (
-          <p>You is a member? Login Now!</p>
-        )}
-        <Button inverse onClick={switchAuthModeHandler}>
-          {isLogin ? "Sign up" : " Login"}
-        </Button>
-      </div>
-    </Card>
+        </div>
+      </Card>
+    </main>
   );
 }
 
