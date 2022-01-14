@@ -214,6 +214,28 @@ function UserAuth(props) {
           </Button>
         </div>
       </Card>
+      <div>
+        <div>
+          <p>admin-1@gmail.com</p>
+          <p>mypassword1</p>
+          <p>role : admin</p>
+          <hr />
+        </div>
+        <br />
+        <div>
+          <p>user-1@gmail.com</p>
+          <p>mypassword1</p>
+          <p>role : user</p>
+          <hr />
+        </div>
+        <br />
+        <div>
+          <p>seller-1@gmail.com</p>
+          <p>mypassword1</p>
+          <p>role : seller</p>
+          <hr />
+        </div>
+      </div>
     </main>
   );
 }

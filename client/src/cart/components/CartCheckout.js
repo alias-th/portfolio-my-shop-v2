@@ -95,7 +95,7 @@ function CartCheckout() {
               });
 
             alert("Transaction completed by " + details.payer.name.given_name);
-            // window.location.replace("/");
+            window.location.replace("/");
           });
         },
         onError: (err) => {
@@ -113,45 +113,3 @@ export default CartCheckout;
 // sandbox
 // sb-rnu43w11346167@personal.example.com
 // 2QXrm-,x
-
-// window.paypal
-//       .Buttons({
-//         createOrder: function (data, actions) {
-//           return actions.order.create({
-//             purchase_units: [
-//               {
-//                 amount: {
-//                   currency_code: "THB",
-//                   value: "100",
-//                   breakdown: {
-//                     item_total: {
-//                       currency_code: "THB",
-//                       value: "100",
-//                     },
-//                   },
-//                 },
-//                 items: [
-//                   {
-//                     name: "First Product Name",
-//                     unit_amount: {
-//                       currency_code: "THB",
-//                       value: "50",
-//                     },
-//                     quantity: "2",
-//                   },
-//                 ],
-//               },
-//             ],
-//           });
-//         },
-//         onApprove: function (data, actions) {
-//           return actions.order.capture().then(function (details) {
-//             console.log(data);
-//             alert("Transaction completed by " + details.payer.name.given_name);
-//           });
-//         },
-//         onError: (err) => {
-//           console.log(err);
-//         },
-//       })
-//       .render(paypalRef.current);

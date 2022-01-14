@@ -15,7 +15,38 @@ function MainFooter() {
       </div>
       <div className={classes["content-container"]}>
         <p className={classes["p-title"]}>MY PORTFOLIO</p>
-        <p className={classes["p-content"]}>tour thai</p>
+        <a
+          href="https://sneakers-rbb.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+          className={classes["a-link-portfolio"]}
+        >
+          sneakers-rbb (html,css,scss)
+        </a>
+        <a
+          href="https://faster-m.netlify.app"
+          target="_blank"
+          rel="noreferrer"
+          className={classes["a-link-portfolio"]}
+        >
+          faster-m (html,css,scss)
+        </a>
+        <a
+          href="https://hotel-lo.netlify.app/"
+          target="_blank"
+          rel="noreferrer"
+          className={classes["a-link-portfolio"]}
+        >
+          hotel-lo (html,css,scss)
+        </a>
+        <a
+          href="https://xd.adobe.com/view/341c0292-0c01-4dcd-b884-804ca74f6bfa-614f/"
+          target="_blank"
+          rel="noreferrer"
+          className={classes["a-link-portfolio"]}
+        >
+          mind-box (UX/UI design)
+        </a>
       </div>
       <div className={classes["content-container"]}>
         <p className={classes["p-title"]}>CONTACT ME</p>

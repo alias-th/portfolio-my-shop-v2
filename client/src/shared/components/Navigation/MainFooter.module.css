@@ -45,6 +45,22 @@
   color: white;
 }
 
+.a-link:hover {
+  color: cyan;
+}
+
+.a-link-portfolio {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: white;
+}
+
+.a-link-portfolio:hover {
+  border-bottom: 1px solid white;
+  width: max-content;
+}
+
 .content-contact {
   display: flex;
   justify-content: space-between;
