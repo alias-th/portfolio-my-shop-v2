@@ -20,3 +20,9 @@
   align-items: center;
   font-size: 1.8rem;
 }
+
+@media (max-width: 32.9375em) {
+  .total-amount {
+    flex-direction: column;
+  }
+}

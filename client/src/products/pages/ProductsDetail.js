@@ -138,7 +138,7 @@ function DetailProduct() {
   }
 
   return (
-    <main className="layout-flex-row__main">
+    <main className={classes["container"]}>
       <div className={classes["detail-layout-1"]}>
         <div className={classes["detail__container"]}>
           <ProductImagesSlider productId={productId} items={items} />

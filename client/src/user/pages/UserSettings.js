@@ -93,92 +93,90 @@ function UserSettings() {
     deleteMeRequest();
   };
   return (
-    <main className="layout-flex-row__main">
-      <ProfileCard className={classes["content-layout"]}>
-        <p className="heading-style-1">Account Settings</p>
-        <hr />
+    <ProfileCard className={classes["content-layout"]}>
+      <p className="heading-style-1">Account Settings</p>
+      <hr />
 
-        <div className={classes["content__container"]}>
-          <form
-            className={classes["password__container"]}
-            onSubmit={formSubmitHandler}
-          >
-            <div>
-              <h3>Password</h3>
-            </div>
-            <div className={classes["password__container--input"]}>
-              <Input
-                label="Current Password"
-                input={{
-                  type: "password",
-                  value: currentPassword,
-                  onChange: currentPasswordChangeHandler,
-                  onBlur: currentPasswordBlurHandler,
-                  id: "current-password-input",
-                  className: classes["input-custom__input"],
-                }}
-                hasError={currentPasswordHasError}
-                classes={classes["input-custom__container"]}
-                errorText="Password must be at least 6 characters!"
-              />
+      <div className={classes["content__container"]}>
+        <form
+          className={classes["password__container"]}
+          onSubmit={formSubmitHandler}
+        >
+          <div>
+            <h3>Password</h3>
+          </div>
+          <div className={classes["password__container--input"]}>
+            <Input
+              label="Current Password"
+              input={{
+                type: "password",
+                value: currentPassword,
+                onChange: currentPasswordChangeHandler,
+                onBlur: currentPasswordBlurHandler,
+                id: "current-password-input",
+                className: classes["input-custom__input"],
+              }}
+              hasError={currentPasswordHasError}
+              classes={classes["input-custom__container"]}
+              errorText="Password must be at least 6 characters!"
+            />
 
-              <Input
-                label="New Password"
-                input={{
-                  type: "password",
-                  value: newPassword,
-                  onChange: newPasswordChangeHandler,
-                  onBlur: newPasswordBlurHandler,
-                  id: "new-password-input",
-                  className: classes["input-custom__input"],
-                }}
-                hasError={newPasswordHasError}
-                classes={classes["input-custom__container"]}
-                errorText="Password must be at least 6 characters!"
-              />
+            <Input
+              label="New Password"
+              input={{
+                type: "password",
+                value: newPassword,
+                onChange: newPasswordChangeHandler,
+                onBlur: newPasswordBlurHandler,
+                id: "new-password-input",
+                className: classes["input-custom__input"],
+              }}
+              hasError={newPasswordHasError}
+              classes={classes["input-custom__container"]}
+              errorText="Password must be at least 6 characters!"
+            />
 
-              <Input
-                label="Confirm Password"
-                input={{
-                  type: "password",
-                  value: newPasswordConfirm,
-                  onChange: newPasswordConfirmChangeHandler,
-                  onBlur: newPasswordConfirmBlurHandler,
-                  id: "confirm-password-input",
-                  className: classes["input-custom__input"],
-                }}
-                hasError={newPasswordConfirmHasError}
-                classes={classes["input-custom__container"]}
-                errorText="Confirm password must be equal to password!"
-              />
-            </div>
-            <div className={classes["button-submit__container"]}>
-              <Button inverse disabled={!formIsValid}>
-                Change Password
-              </Button>
-            </div>
-          </form>
+            <Input
+              label="Confirm Password"
+              input={{
+                type: "password",
+                value: newPasswordConfirm,
+                onChange: newPasswordConfirmChangeHandler,
+                onBlur: newPasswordConfirmBlurHandler,
+                id: "confirm-password-input",
+                className: classes["input-custom__input"],
+              }}
+              hasError={newPasswordConfirmHasError}
+              classes={classes["input-custom__container"]}
+              errorText="Confirm password must be equal to password!"
+            />
+          </div>
+          <div className={classes["button-submit__container"]}>
+            <Button inverse disabled={!formIsValid}>
+              Change Password
+            </Button>
+          </div>
+        </form>
 
-          <div className={classes["close-account__container"]}>
-            <div>
-              <h3>Close Your Account</h3>
-            </div>
-            <div className={classes["close-your-account"]}>
-              <p>What happens when you close your account?</p>
-              <p>• Your account will be inactive, until you reopen it.</p>
-              <p className={classes.marginBottom}>
-                • Your profile will no longer appear anywhere on My-shop.
-              </p>
-            </div>
-            <div className={classes["button-submit__container"]}>
-              <Button onClick={deleteMeHandler} disabled={true}>
-                Close Your Account
-              </Button>
-            </div>
+        <div className={classes["close-account__container"]}>
+          <div>
+            <h3>Close Your Account</h3>
+          </div>
+          <div className={classes["close-your-account"]}>
+            <p>What happens when you close your account?</p>
+            <p>• Your account will be inactive, until you reopen it.</p>
+            <p className={classes.marginBottom}>
+              • Your profile will no longer appear anywhere on My-shop.
+            </p>
+          </div>
+          <div className={classes["button-submit__container"]}>
+            <Button onClick={deleteMeHandler} disabled={true}>
+              Close Your Account
+            </Button>
           </div>
         </div>
-      </ProfileCard>
-    </main>
+      </div>
+    </ProfileCard>
   );
 }
 

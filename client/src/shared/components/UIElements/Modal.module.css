@@ -51,3 +51,10 @@
     width: 60%;
   }
 }
+
+@media (max-width: 32.9375em) {
+  .content {
+    justify-content: center;
+    align-items: center;
+  }
+}

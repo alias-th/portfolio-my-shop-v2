@@ -25,6 +25,27 @@
   row-gap: 0.5rem;
 }
 
+@media (max-width: 50em) {
+  .desc-layout-1 {
+    width: 100%;
+    padding: 5rem 15rem 5rem 15rem;
+  }
+
+  .desc-form {
+    row-gap: 3rem;
+  }
+}
+@media (max-width: 43.75em) {
+  .desc-layout-1 {
+    width: 100%;
+    padding: 5rem 7rem 5rem 7rem;
+  }
+
+  .desc-form {
+    row-gap: 3rem;
+  }
+}
+
 @keyframes slide-in {
   0% {
     opacity: 0;

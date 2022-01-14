@@ -70,7 +70,7 @@
   .profile__contents--container {
     flex-direction: column-reverse;
     row-gap: 5rem;
-    justify-content: space-between;
+    justify-content: start;
   }
 
   .profile__contents--card {

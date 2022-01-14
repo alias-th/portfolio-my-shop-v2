@@ -191,135 +191,133 @@ function UserProductsEdit() {
 
   if (product) {
     return (
-      <main className={classes["container"]}>
-        <ProfileCard className={classes["content-layout"]}>
-          <p className="heading-style-1">Edit Your Product</p>
-          <hr />
-          <form onSubmit={formSubmitHandler}>
-            <UserUploadPhoto
-              title="Image cover"
-              photoValue={photoValue}
-              photoChangeHandler={photoChangeHandler}
-              photoBlurHandler={photoBlurHandler}
-              photoInputRef={photoInputRef}
-              photoHasError={photoHasError}
-              categories="products"
+      <ProfileCard className={classes["content-layout"]}>
+        <p className="heading-style-1">Edit Your Product</p>
+        <hr />
+        <form onSubmit={formSubmitHandler}>
+          <UserUploadPhoto
+            title="Image cover"
+            photoValue={photoValue}
+            photoChangeHandler={photoChangeHandler}
+            photoBlurHandler={photoBlurHandler}
+            photoInputRef={photoInputRef}
+            photoHasError={photoHasError}
+            categories="products"
+          />
+          <UserUploadImagesProduct
+            imagesValue={imagesValue}
+            title="Images product"
+            imagesChangeHandler={imagesChangeHandler}
+            imagesInputRef={imagesInputRef}
+            imagesHasError={imagesHasError}
+            imagesBlurHandler={imagesBlurHandler}
+          />
+          <div className={`${classes.item} ${classes.alignItemCenter}`}>
+            <Input
+              ref={nameInputRef}
+              label="Name"
+              input={{
+                type: "text",
+                id: "name-input",
+                value: nameValue,
+                onChange: nameChangeHandler,
+                onBlur: nameBlurHandler,
+                className: classes["input-custom__input"],
+              }}
+              hasError={nameHasError}
+              classes={classes["input-custom__container"]}
+              errorText="Name must not be empty!"
             />
-            <UserUploadImagesProduct
-              imagesValue={imagesValue}
-              title="Images product"
-              imagesChangeHandler={imagesChangeHandler}
-              imagesInputRef={imagesInputRef}
-              imagesHasError={imagesHasError}
-              imagesBlurHandler={imagesBlurHandler}
+          </div>
+          <div className={`${classes.item} ${classes.alignItemCenter}`}>
+            <Input
+              ref={descriptionInputRef}
+              label="Description"
+              input={{
+                type: "textarea",
+                id: "description-input",
+                value: descriptionValue,
+                onChange: descriptionChangeHandler,
+                onBlur: descriptionBlurHandler,
+                rows: "4",
+                cols: "50",
+                className: classes["input-custom__input"],
+              }}
+              hasError={descriptionHasError}
+              classes={classes["input-custom__container"]}
+              errorText="The description must not be empty!"
             />
-            <div className={`${classes.item} ${classes.alignItemCenter}`}>
-              <Input
-                ref={nameInputRef}
-                label="Name"
-                input={{
-                  type: "text",
-                  id: "name-input",
-                  value: nameValue,
-                  onChange: nameChangeHandler,
-                  onBlur: nameBlurHandler,
-                  className: classes["input-custom__input"],
-                }}
-                hasError={nameHasError}
-                classes={classes["input-custom__container"]}
-                errorText="Name must not be empty!"
-              />
-            </div>
-            <div className={`${classes.item} ${classes.alignItemCenter}`}>
-              <Input
-                ref={descriptionInputRef}
-                label="Description"
-                input={{
-                  type: "textarea",
-                  id: "description-input",
-                  value: descriptionValue,
-                  onChange: descriptionChangeHandler,
-                  onBlur: descriptionBlurHandler,
-                  rows: "4",
-                  cols: "50",
-                  className: classes["input-custom__input"],
-                }}
-                hasError={descriptionHasError}
-                classes={classes["input-custom__container"]}
-                errorText="The description must not be empty!"
-              />
-            </div>
-            <div className={`${classes.item} ${classes.alignItemCenter}`}>
-              <Input
-                ref={quantityInputRef}
-                label="Quantity"
-                input={{
-                  type: "number",
-                  min: "1",
-                  id: "quantity-input",
-                  value: quantityValue,
-                  onChange: quantityChangeHandler,
-                  onBlur: quantityBlurHandler,
-                  className: classes["input-custom__input"],
-                }}
-                hasError={quantityHasError}
-                classes={classes["input-custom__container"]}
-                errorText="The Quantity must not be empty!"
-              />
-            </div>
-            <div className={`${classes.item} ${classes.alignItemCenter}`}>
-              <Input
-                ref={priceInputRef}
-                label="Price (Bath)"
-                input={{
-                  type: "number",
-                  id: "price-input",
-                  value: priceValue,
-                  onChange: priceChangeHandler,
-                  onBlur: priceBlurHandler,
-                  className: classes["input-custom__input"],
-                }}
-                hasError={priceHasError}
-                classes={classes["input-custom__container"]}
-                errorText="The price must not be empty"
-              />
-            </div>
-            <div className={`${classes.item} ${classes.alignItemCenter}`}>
-              <Input
-                ref={bandInputRef}
-                label="band"
-                input={{
-                  type: "selector",
-                  id: "band-input",
-                  value: bandValue,
-                  onChange: bandChangeHandler,
-                  onBlur: bandBlurHandler,
-                  className: classes["input-custom__input"],
-                }}
-                hasError={bandHasError}
-                classes={classes["input-custom__container"]}
-                options={
-                  <>
-                    <option value="nike">Nike</option>
-                    <option value="converse">Converse</option>
-                    <option value="new-balance">New Balance</option>
-                    <option value="vans">Vans</option>
-                  </>
-                }
-              />
-            </div>
+          </div>
+          <div className={`${classes.item} ${classes.alignItemCenter}`}>
+            <Input
+              ref={quantityInputRef}
+              label="Quantity"
+              input={{
+                type: "number",
+                min: "1",
+                id: "quantity-input",
+                value: quantityValue,
+                onChange: quantityChangeHandler,
+                onBlur: quantityBlurHandler,
+                className: classes["input-custom__input"],
+              }}
+              hasError={quantityHasError}
+              classes={classes["input-custom__container"]}
+              errorText="The Quantity must not be empty!"
+            />
+          </div>
+          <div className={`${classes.item} ${classes.alignItemCenter}`}>
+            <Input
+              ref={priceInputRef}
+              label="Price (Bath)"
+              input={{
+                type: "number",
+                id: "price-input",
+                value: priceValue,
+                onChange: priceChangeHandler,
+                onBlur: priceBlurHandler,
+                className: classes["input-custom__input"],
+              }}
+              hasError={priceHasError}
+              classes={classes["input-custom__container"]}
+              errorText="The price must not be empty"
+            />
+          </div>
+          <div className={`${classes.item} ${classes.alignItemCenter}`}>
+            <Input
+              ref={bandInputRef}
+              label="band"
+              input={{
+                type: "selector",
+                id: "band-input",
+                value: bandValue,
+                onChange: bandChangeHandler,
+                onBlur: bandBlurHandler,
+                className: classes["input-custom__input"],
+              }}
+              hasError={bandHasError}
+              classes={classes["input-custom__container"]}
+              options={
+                <>
+                  <option value="nike">Nike</option>
+                  <option value="converse">Converse</option>
+                  <option value="new-balance">New Balance</option>
+                  <option value="vans">Vans</option>
+                </>
+              }
+            />
+          </div>
 
-            <div className={`${classes.item} ${classes.alignItemCenter}`}>
-              <div className={classes.itemName}></div>
-              <div className={`${classes.itemContent} ${classes.flexRow} `}>
-                <Button inverse type="submit" disabled={!formIsValid}>
-                  Confirm
-                </Button>
-              </div>
+          <div className={`${classes.item} ${classes.alignItemCenter}`}>
+            <div className={classes.itemName}></div>
+            <div className={`${classes.itemContent} ${classes.flexRow} `}>
+              <Button inverse type="submit" disabled={!formIsValid}>
+                Confirm
+              </Button>
             </div>
-          </form>
-        </ProfileCard>
-      </main>
+          </div>
+        </form>
+      </ProfileCard>
     );
   }
 

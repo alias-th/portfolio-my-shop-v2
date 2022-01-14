@@ -26,3 +26,10 @@
 .container__button button {
   margin-left: 0.5rem;
 }
+
+@media (max-width: 50em) {
+  .list__container {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}

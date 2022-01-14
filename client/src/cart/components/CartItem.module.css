@@ -37,6 +37,6 @@
   }
   .content-layout-2 {
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 1rem;
   }
 }
