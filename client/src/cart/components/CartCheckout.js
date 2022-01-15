@@ -8,7 +8,7 @@ function CartCheckout() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);
 
-  console.log(user);
+  // console.log(user);
 
   const getItem = useCallback((cart) => {
     const items = [];
