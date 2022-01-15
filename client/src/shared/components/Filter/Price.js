@@ -5,7 +5,7 @@ function Price() {
   const navigate = useNavigate();
   const onChangePriceHandler = (e) => {
     const url = new URL(window.location.href);
-    console.log(url);
+    // console.log(url);
     if (`${e.target.id}`.startsWith("under")) {
       url.searchParams.delete("price[gte]");
       url.searchParams.set(`price[lte]`, e.target.value);
@@ -14,7 +14,7 @@ function Price() {
       url.searchParams.set("price[gte]", e.target.value);
     }
 
-    console.log(url.search);
+    // console.log(url.search);
     navigate({
       search: url.search,
     });

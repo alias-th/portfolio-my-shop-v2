@@ -87,15 +87,14 @@ function CartCheckout() {
               url: "/api/v1/orders/",
               data: formData,
             })
-              .then((res) => {
-                localStorage.removeItem("cart");
-              })
+              .then((res) => {})
               .catch((err) => {
                 console.log(err);
               });
 
             alert("Transaction completed by " + details.payer.name.given_name);
             window.location.replace("/");
+            localStorage.removeItem("cart");
           });
         },
         onError: (err) => {
@@ -109,7 +108,3 @@ function CartCheckout() {
 }
 
 export default CartCheckout;
-
-// sandbox
-// sb-rnu43w11346167@personal.example.com
-// 2QXrm-,x

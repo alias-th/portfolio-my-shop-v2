@@ -12,7 +12,7 @@ const AppError = require("../utils/appError");
 const multerStorage = multer.memoryStorage(); // store in buffer
 
 const multerFilter = (req, file, cb) => {
-  console.log(file, "multer");
+  // console.log(file, "multer");
 
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
@@ -37,7 +37,7 @@ exports.uploadUserPhotoMiddleware = upload.single("photo");
 exports.resizeUserPhotoMiddleware = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
-  console.log(req.file);
+  // console.log(req.file);
 
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 

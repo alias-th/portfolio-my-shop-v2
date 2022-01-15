@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
+README.md
+
 ### Node ###
 # Logs
 logs
@@ -75,6 +77,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
+config.env
 .env
 .env.test
 .env.production
@@ -131,5 +134,6 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+
 
 # End of https://www.toptal.com/developers/gitignore/api/node

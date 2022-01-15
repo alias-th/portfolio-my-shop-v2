@@ -1,3 +1,15 @@
 .layout-sidebar {
   min-width: 23rem;
 }
+
+@media (max-width: 105.9375em) {
+  .layout-sidebar {
+    width: 20%;
+  }
+}
+
+@media (max-width: 81em) {
+  .layout-sidebar {
+    width: 100%;
+  }
+}

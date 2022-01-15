@@ -66,7 +66,7 @@
   grid-template-columns: 1fr;
 }
 
-@media (max-width: 90em) {
+@media (max-width: 105.9375em) {
   .profile__contents--container {
     flex-direction: column-reverse;
     row-gap: 5rem;
@@ -93,7 +93,7 @@
   }
 }
 
-@media (max-width: 43.75em) {
+@media (max-width: 81em) {
   .profile__container {
     flex-direction: column;
     row-gap: 5rem;

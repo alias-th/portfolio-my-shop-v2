@@ -5,7 +5,7 @@ const AppError = require("../utils/appError");
 const { catchAsync } = require("../utils/catchAsync");
 
 exports.createOrder = catchAsync(async (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   const order = await Order.create(req.body);
 
@@ -20,7 +20,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 });
 
 exports.getOrderByUser = catchAsync(async (req, res, next) => {
-  console.log(req.user);
+  // console.log(req.user);
   const order = await Order.find({ user: req.user.id });
 
   if (!order) {

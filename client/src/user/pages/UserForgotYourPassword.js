@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 function UserForgotYourPassword() {
   const { token } = useParams();
 
-  console.log(token);
+  // console.log(token);
 
   const dispatch = useDispatch();
 
