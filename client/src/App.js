@@ -1,31 +1,36 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import axios from "axios";
+
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
+
 import MainFooter from "./shared/components/Navigation/MainFooter";
+
 import Notification from "./shared/components/UIElements/Notification";
-import NotFound from "./shared/components/Pages/NotFound";
-// import useHttp from "./shared/hooks/use-http";
-// import { getCurrentUser } from "./shared/lib/api";
 
 import Cart from "./cart/components/Cart";
-import Products from "./products/pages/Products";
-import ProductsDetail from "./products/pages/ProductsDetail";
-import UserProducts from "./user/pages/UserProducts";
-import UserProfile from "./user/pages/UserProfile";
-import UserAddProduct from "./user/pages/UserAddProduct";
-import UserEdit from "./user/pages/UserEdit";
-import UserSettings from "./user/pages/UserSettings";
-import UserAuth from "./user/pages/UserAuth";
-import UserProductsEdit from "./user/pages/UserProductsEdit";
-import axios from "axios";
+
 import { cartSliceActions } from "./shared/store/cart-slice";
-import UserForgotYourPassword from "./user/pages/UserForgotYourPassword";
 import { authSliceActions } from "./shared/store/auth-slice";
-import UserOrders from "./user/pages/UserOrders";
+
+import UserForgotYourPassword from "./user/pages/UserForgotYourPassword";
+import UserAuth from "./user/pages/UserAuth";
+import NotFound from "./shared/components/Pages/NotFound";
+import UserSettings from "./user/pages/UserSettings";
+import UserProductsEdit from "./user/pages/UserProductsEdit";
+import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
+
+const Products = lazy(() => import("./products/pages/Products"));
+const ProductsDetail = lazy(() => import("./products/pages/ProductsDetail"));
+const UserProducts = lazy(() => import("./user/pages/UserProducts"));
+const UserProfile = lazy(() => import("./user/pages/UserProfile"));
+const UserAddProduct = lazy(() => import("./user/pages/UserAddProduct"));
+const UserEdit = lazy(() => import("./user/pages/UserEdit"));
+const UserOrders = lazy(() => import("./user/pages/UserOrders"));
 
 function App() {
   const dispatch = useDispatch();
@@ -147,29 +152,69 @@ function App() {
 
         <Routes>
           <Route path="*" element={<NotFound />} />
-          <Route path="/" element={<Products />} />
-          <Route path="/products/:productId" element={<ProductsDetail />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <Products />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/products/:productId"
+            element={
+              <Suspense fallback={<div>fallback</div>}>
+                <ProductsDetail />
+              </Suspense>
+            }
+          />
 
           <Route
             path="profile"
-            element={<UserProfile currentUser={currentUser} />}
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <UserProfile currentUser={currentUser} />{" "}
+              </Suspense>
+            }
           >
-            <Route path="products" element={<UserProducts />} />
+            <Route
+              path="products"
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <UserProducts />
+                </Suspense>
+              }
+            />
             <Route
               path="products/edit/:productId"
               element={<UserProductsEdit />}
             />
             <Route
               path="product/new"
-              element={<UserAddProduct currentUser={currentUser} />}
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <UserAddProduct currentUser={currentUser} />
+                </Suspense>
+              }
             />
             <Route
               path="edit"
-              element={<UserEdit currentUser={currentUser} />}
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <UserEdit currentUser={currentUser} />
+                </Suspense>
+              }
             />
             <Route path="settings" element={<UserSettings />} />
 
-            <Route path="orders" element={<UserOrders />} />
+            <Route
+              path="orders"
+              element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <UserOrders />
+                </Suspense>
+              }
+            />
           </Route>
         </Routes>
 
@@ -196,8 +241,22 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <>
           <Route path="*" element={<NotFound />} />
-          <Route path="/" element={<Products />} />
-          <Route path="/products/:productId" element={<ProductsDetail />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <Products />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/products/:productId"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <ProductsDetail />
+              </Suspense>
+            }
+          />
           <Route path="/auth" element={<UserAuth />} />
           <Route path="/resetPassword" element={<UserForgotYourPassword />} />
           <Route
