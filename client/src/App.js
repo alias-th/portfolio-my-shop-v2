@@ -22,7 +22,6 @@ import UserAuth from "./user/pages/UserAuth";
 import NotFound from "./shared/components/Pages/NotFound";
 import UserSettings from "./user/pages/UserSettings";
 import UserProductsEdit from "./user/pages/UserProductsEdit";
-import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
 
 const Products = lazy(() => import("./products/pages/Products"));
 const ProductsDetail = lazy(() => import("./products/pages/ProductsDetail"));
@@ -155,7 +154,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense fallback={<></>}>
                 <Products />
               </Suspense>
             }
@@ -163,7 +162,7 @@ function App() {
           <Route
             path="/products/:productId"
             element={
-              <Suspense fallback={<div>fallback</div>}>
+              <Suspense fallback={<></>}>
                 <ProductsDetail />
               </Suspense>
             }
@@ -172,7 +171,7 @@ function App() {
           <Route
             path="profile"
             element={
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense fallback={<></>}>
                 <UserProfile currentUser={currentUser} />{" "}
               </Suspense>
             }
@@ -180,7 +179,7 @@ function App() {
             <Route
               path="products"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<></>}>
                   <UserProducts />
                 </Suspense>
               }
@@ -192,7 +191,7 @@ function App() {
             <Route
               path="product/new"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<></>}>
                   <UserAddProduct currentUser={currentUser} />
                 </Suspense>
               }
@@ -200,7 +199,7 @@ function App() {
             <Route
               path="edit"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<></>}>
                   <UserEdit currentUser={currentUser} />
                 </Suspense>
               }
@@ -210,7 +209,7 @@ function App() {
             <Route
               path="orders"
               element={
-                <Suspense fallback={<LoadingSpinner />}>
+                <Suspense fallback={<></>}>
                   <UserOrders />
                 </Suspense>
               }
@@ -244,7 +243,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense fallback={<></>}>
                 <Products />
               </Suspense>
             }
@@ -252,7 +251,7 @@ function App() {
           <Route
             path="/products/:productId"
             element={
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense fallback={<></>}>
                 <ProductsDetail />
               </Suspense>
             }

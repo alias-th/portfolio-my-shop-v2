@@ -65,4 +65,8 @@
   .review__container__name-and-date {
     justify-content: center;
   }
+
+  .review__container__button {
+    justify-content: center;
+  }
 }
