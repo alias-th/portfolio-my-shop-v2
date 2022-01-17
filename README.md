@@ -1,6 +1,6 @@
 # my-shop
 
-A personal portfolio project made with React, Nodejs
+A personal portfolio project made with React, Node Js for applying for work.
 
 # Description
 
